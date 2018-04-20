@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  iTerm2 - 
+  工具 - 
   
   </title>
   
@@ -98,36 +98,321 @@
        
 
  <script type="text/javascript">
-  $(function(){
-    $('#menu_item_index').addClass('is_active');
-  });
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
 </script>
 <div class="row">
-  <div class="large-8 medium-8 columns">
-      <div class="markdown-body article-wrap">
-       <div class="article">
-          
-          <h1>iTerm2</h1>
-     
-        <div class="read-more clearfix">
-          <span class="date">2018/4/18</span>
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15241488811717.html">
+                
+                  <h1>XtraFinder</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><a href="https://www.trankynam.com/xtrafinder/">https://www.trankynam.com/xtrafinder/</a></p>
 
-          <span>posted in&nbsp;</span> 
-          
-              <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
-           
-         
-          <span class="comments">
-            
+<p>在早期的OS X上，只需打开XtraFinderInstaller即可安装XtraFinder。</p>
 
-            
-          </span>
+<p>从OS X 10.11开始，系统完整性保护会阻止代码注入（以及其他许多事情）。<br/>
+XtraFinder的工作原理是将其代码注入Finder应用程序进程。<br/>
+为了安装XtraFinder，您需要禁用系统完整性保护。<br/>
+XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
 
-        </div>
-      </div><!-- article -->
+<p>有关系统完整性保护的更多信息，请访问此页<a href="http://www.trankynam.com/xtrafinder/sip.html">http://www.trankynam.com/xtrafinder/sip.html</a></p>
 
-      <div class="article-content">
-      <p>强大的 Mac OS 终端利器，跟着教程走了一遍。</p>
+<h3 id="toc_0">1、第一次安装XtraFinder的步骤</h3>
+
+<p>1.禁用系统完整性保护。<br/>
+2.打开XtraFinderInstaller安装XtraFinder。<br/>
+3.重新启用系统完整性保护。</p>
+
+<h3 id="toc_1">2、更新XtraFinder</h3>
+
+<p>您不需要重复安装过程。<br/>
+只需将XtraFinder复制到/ Applications目录即可。</p>
+
+<h3 id="toc_2">3、无需打开XtraFinderInstaller即可手动安装</h3>
+
+<p>1.将<code>Extra</code>目录中的<code>XtraFinderInjector.osax</code>复制到<code>/System/Library/ScriptingAdditions</code><br/>
+2.将<code>XtraFinder</code>复制到<code>/Applications</code></p>
+
+<h3 id="toc_3">4、禁用系统完整性保护的步骤</h3>
+
+<p>1.通过重新启动计算机并在启动时按住<code>Command和R</code>键启动到恢复操作系统。<br/>
+2.从 Utilities 菜单启动 Terminal。<br/>
+3.输入以下命令：<code>csrutil disable</code><br/>
+4.重新启动电脑。</p>
+
+<h3 id="toc_4">5、将系统完整性保护恢复到原始状态：</h3>
+
+<p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15241480672826.html">
+                
+                  <h1>XtraFinder 系统完整性保护(SIP)</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><a href="http://www.trankynam.com/xtrafinder/sip.html">XtraFinder 系统完整性保护原文</a></p>
+
+<h3 id="toc_0">1、关于OS X 10.11中的系统完整性保护</h3>
+
+<p><a href="https://support.apple.com/en-us/HT204899">苹果的文章</a>。<br/>
+系统完整性保护阻止代码注入（以及其他许多事情）。</p>
+
+<p>XtraFinder的工作原理是将其代码注入Finder应用程序进程。</p>
+
+<h3 id="toc_1">2、如何让XtraFinder在OS X 10.11中工作</h3>
+
+<p>您需要部分禁用系统完整性保护。</p>
+
+<p>我不鼓励您禁用系统完整性保护。它会让你的电脑不安全。</p>
+
+<h3 id="toc_2">3、如何部分禁用系统完整性保护</h3>
+
+<p>参考这篇<a href="https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html">苹果的文章</a>。</p>
+
+<p>按着这些次序：</p>
+
+<h5 id="toc_3">1. 通过重新启动计算机并在启动时按住<code>Command+R</code>键启动到恢复操作系统。</h5>
+
+<h5 id="toc_4">2. 从 Utilities 菜单启动 Terminal。</h5>
+
+<h5 id="toc_5">3. 输入以下命令：<code>csrutil enable --without debug</code></h5>
+
+<h5 id="toc_6">4. 重新启动您的计算机。</h5>
+
+<h3 id="toc_7">4、“csrutil enable --without debug” 命令的作用是什么？</h3>
+
+<p>它允许代码注入。这意味着XtraFinder可以将其代码注入Finder应用程序进程。</p>
+
+<h3 id="toc_8">5、如何将系统完整性保护恢复到原始状态</h3>
+
+<p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15241412696951.html">
+                
+                  <h1>Go2Shell and AppleScript</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>给Finder加上一个打开当前路径的终端的功能</p>
+
+<p>有两种实现：<br/>
+Go2Shell App 和 AppleScript</p>
+
+<p><strong>扩展：</strong></p>
+
+<p>AppleScript 实现 Go2Shell 一样的可视化打开方式</p>
+</blockquote>
+
+<h2 id="toc_0">一、 Go2Shell</h2>
+
+<h3 id="toc_1">1. 安装</h3>
+
+<p>1、Go2Shell官方安装 （推荐，因为AppStore下载的版本太低，无法打开iTerm2 -坑-）<br/>
+<a href="http://zipzapmac.com/Go2Shell">http://zipzapmac.com/Go2Shell</a> </p>
+
+<p>2、<a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">AppStore下载</a></p>
+
+<p><img src="media/15241412696951/15241416276817.jpg" alt=""/></p>
+
+<p>至此就可以打开shell，不过仅仅是打开系统默认的终端shell</p>
+
+<h3 id="toc_2">2. 进入 Preferences 的方式</h3>
+
+<pre><code>open -a Go2Shell --args config
+</code></pre>
+
+<p><img src="media/15241412696951/15241419447692.jpg" alt=""/></p>
+
+<p>iTerm2 不能打开当前文件所在目录（）</p>
+
+<h3 id="toc_3">3. 官网下载效果图(多了个 <code>&gt;_&lt;</code> 能直接打开配置)</h3>
+
+<p><img src="media/15241412696951/15241460616684.jpg" alt=""/></p>
+
+<h2 id="toc_4">二、配置 Automator 方法</h2>
+
+<h3 id="toc_5">1. 新建 Automator 服务</h3>
+
+<p>打开<code>Automator</code>，选择<code>新建</code>，选择<code>服务</code></p>
+
+<h3 id="toc_6">2. 设置 Automator 服务</h3>
+
+<h5 id="toc_7">1、 服务接受设为没有输入，位置设为<code>Finder(访达)</code></h5>
+
+<p><img src="media/15241412696951/15241426742785.jpg" alt=""/></p>
+
+<h5 id="toc_8">2、 从左侧的资源库中找出 运行 <code>AppleScript</code>，拖到右侧，然后保存为<code>Open iTerm Here</code></h5>
+
+<p><img src="media/15241412696951/15241444900342.jpg" alt=""/></p>
+
+<blockquote>
+<p>复制以下代码</p>
+
+<p>代码意思是将当前最前面的Finder地址如果获取不到，则返回桌面地址然后通知iTerm的第一个窗口新建标签并跳到这个目录去</p>
+</blockquote>
+
+<pre><code>on run {input, parameters}
+
+    tell application &quot;Finder&quot;
+
+        set pathList to (quoted form of POSIX path of (folder of the front window as alias))
+
+        set command to &quot;clear; cd &quot; &amp; pathList
+
+    end tell
+
+
+    tell application &quot;System Events&quot;
+
+        -- some versions might identify as &quot;iTerm2&quot; instead of &quot;iTerm&quot;
+
+        set isRunning to (exists (processes where name is &quot;iTerm&quot;)) or (exists (processes where name is &quot;iTerm2&quot;))
+
+    end tell
+
+
+    tell application &quot;iTerm&quot;
+
+        activate
+
+        set hasNoWindows to ((count of windows) is 0)
+
+        if isRunning and hasNoWindows then
+
+            create window with default profile
+
+        end if
+
+        select first window
+
+
+        tell the first window
+
+            if isRunning and hasNoWindows is false then
+
+                create tab with default profile
+
+            end if
+
+            tell current session to write text command
+
+        end tell
+
+    end tell
+
+
+end run
+
+
+</code></pre>
+
+<h5 id="toc_9">3、点击运行就能在 iTerm2 中打开当前目录</h5>
+
+<p><img src="media/15241412696951/15241432094154.jpg" alt=""/></p>
+
+<h5 id="toc_10">4、 设置快捷键</h5>
+
+<p>打开系统设置，再去键盘设置里改一下快捷键，然后就可以快速在Finder中通过iTerm打开当前目录了<br/>
+<img src="media/15241412696951/15241437705558.jpg" alt=""/></p>
+
+<h2 id="toc_11">三、扩展</h2>
+
+<h3 id="toc_12">Automator 创建应用</h3>
+
+<p>使用的 Automator AppleScript 时候就在想为什么使用创建的服务，好吧，换个思路创建个应用，尝试着以Go2Shell的方式按住<code>command</code>键拖到文件夹上，结果和Go2Shell实现的效果一样OK，对 Automator 的使用充满期望~~<br/>
+<img src="media/15241412696951/15241470137311.jpg" alt=""/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15240395407492.html">
+                
+                  <h1>iTerm2</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>强大的 Mac OS 终端利器，跟着教程走了一遍。</p>
 
 <h3 id="toc_0">1. 安装 iTerm2</h3>
 
@@ -348,43 +633,79 @@ $ curl ip.cn
 
 <p><a href="http://www.cnblogs.com/xishuai/p/mac-iterm2.html">Mac OS 终端利器 iTerm2</a></p>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
-    
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15240236247092.html">
+                
+                  <h1>Alfred</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>强大的只能搜索软件，w安全可以替代OS X自带的Spotlight</p>
 
-      </div>
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
-      <div class="row">
-        <div class="large-6 columns">
-        <p class="text-left" style="padding:15px 0px;">
-      
-          <a href="15241412696951.html" 
-          title="Previous Post: Go2Shell and AppleScript">&laquo; Go2Shell and AppleScript</a>
-      
-        </p>
-        </div>
-        <div class="large-6 columns">
-      <p class="text-right" style="padding:15px 0px;">
-      
-          <a  href="15240236247092.html" 
-          title="Next Post: Alfred">Alfred &raquo;</a>
-      
-      </p>
-        </div>
-      </div>
-      <div class="comments-wrap">
-        <div class="share-comments">
-          
-
-          
-
-          
-        </div>
-      </div>
-    </div><!-- article-wrap -->
-  </div><!-- large 8 -->
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
 
 
-
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">
