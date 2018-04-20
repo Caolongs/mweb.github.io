@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Go2Shell and AppleScript - 
+  Block用法和实现原理 - 
   
   </title>
   
@@ -99,12 +99,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Go2Shell and AppleScript</h1>
+          <h1>Block用法和实现原理</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2018/4/19</span>
+          <span class="date">2018/4/18</span>
 
+          <span>posted in&nbsp;</span> 
           
+              <span class="posted-in"><a href='text.html'>text</a></span>
            
          
           <span class="comments">
@@ -117,135 +119,282 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <blockquote>
-<p>给Finder加上一个打开当前路径的终端的功能</p>
-
-<p>有两种实现：<br/>
-Go2Shell App 和 AppleScript</p>
-
-<p><strong>扩展：</strong></p>
-
-<p>AppleScript 实现 Go2Shell 一样的可视化打开方式</p>
-</blockquote>
-
-<h2 id="toc_0">一、 Go2Shell</h2>
-
-<h3 id="toc_1">1. 安装</h3>
-
-<p>1、Go2Shell官方安装 （推荐，因为AppStore下载的版本太低，无法打开iTerm2 -坑-）<br/>
-<a href="http://zipzapmac.com/Go2Shell">http://zipzapmac.com/Go2Shell</a> </p>
-
-<p>2、<a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">AppStore下载</a></p>
-
-<p><img src="media/15241412696951/15241416276817.jpg" alt=""/></p>
-
-<p>至此就可以打开shell，不过仅仅是打开系统默认的终端shell</p>
-
-<h3 id="toc_2">2. 进入 Preferences 的方式</h3>
-
-<pre><code>open -a Go2Shell --args config
-</code></pre>
-
-<p><img src="media/15241412696951/15241419447692.jpg" alt=""/></p>
-
-<p>iTerm2 不能打开当前文件所在目录（）</p>
-
-<h3 id="toc_3">3. 官网下载效果图(多了个 <code>&gt;_&lt;</code> 能直接打开配置)</h3>
-
-<p><img src="media/15241412696951/15241460616684.jpg" alt=""/></p>
-
-<h2 id="toc_4">二、配置 Automator 方法</h2>
-
-<h3 id="toc_5">1. 新建 Automator 服务</h3>
-
-<p>打开<code>Automator</code>，选择<code>新建</code>，选择<code>服务</code></p>
-
-<h3 id="toc_6">2. 设置 Automator 服务</h3>
-
-<h5 id="toc_7">1、 服务接受设为没有输入，位置设为<code>Finder(访达)</code></h5>
-
-<p><img src="media/15241412696951/15241426742785.jpg" alt=""/></p>
-
-<h5 id="toc_8">2、 从左侧的资源库中找出 运行 <code>AppleScript</code>，拖到右侧，然后保存为<code>Open iTerm Here</code></h5>
-
-<p><img src="media/15241412696951/15241444900342.jpg" alt=""/></p>
+      <h3 id="toc_0">Block 概念</h3>
 
 <blockquote>
-<p>复制以下代码</p>
+<p>闭包 = 一个函数「或指向函数的指针」+ 该函数执行的外部的上下文变量「也就是自由变量」；<br/>
+Block 是 Objective-C 对于闭包的实现。</p>
 
-<p>代码意思是将当前最前面的Finder地址如果获取不到，则返回桌面地址然后通知iTerm的第一个窗口新建标签并跳到这个目录去</p>
+<p>其中，Block：</p>
+
+<ul>
+<li>可以嵌套定义，定义 Block 方法和定义函数方法相似</li>
+<li>Block 可以定义在方法内部或外部</li>
+<li>只有调用 Block 时候，才会执行其{}体内的代码</li>
+<li>本质是对象，使代码高聚合</li>
+</ul>
 </blockquote>
 
-<pre><code>on run {input, parameters}
+<h3 id="toc_1">Block 格式</h3>
 
-    tell application &quot;Finder&quot;
+<h5 id="toc_2">1. Block的定义格式</h5>
 
-        set pathList to (quoted form of POSIX path of (folder of the front window as alias))
+<pre><code>返回值类型 (^block变量名)(形参列表) = ^(形参列表) {
 
-        set command to &quot;clear; cd &quot; &amp; pathList
+};
+</code></pre>
 
-    end tell
+<p><img src="media/15240154214361/15240178321653.jpg" alt=""/></p>
 
+<h5 id="toc_3">2. Block表达式语法(等号后是表达式语法)</h5>
 
-    tell application &quot;System Events&quot;
+<blockquote>
+<p>^ 返回值类型 (参数列表) {表达式}</p>
+</blockquote>
 
-        -- some versions might identify as &quot;iTerm2&quot; instead of &quot;iTerm&quot;
+<pre><code>^ int (int count) {
+        return count + 1;
+    };
+</code></pre>
 
-        set isRunning to (exists (processes where name is &quot;iTerm&quot;)) or (exists (processes where name is &quot;iTerm2&quot;))
+<p>其中，可省略部分有：返回类型(上图为省略返回类型)</p>
 
-    end tell
+<pre><code>^ (int count) {
+        return count + 1;
+    };
+</code></pre>
 
+<p>参数列表为空，则可省略，例：</p>
 
-    tell application &quot;iTerm&quot;
+<pre><code>^ {
+        NSLog(@&quot;No Parameter&quot;);
+    };
+</code></pre>
 
-        activate
+<p>即表达式最简模式语法为：</p>
 
-        set hasNoWindows to ((count of windows) is 0)
+<pre><code> ^ {表达式}
+</code></pre>
 
-        if isRunning and hasNoWindows then
+<h5 id="toc_4">3. Block使用</h5>
 
-            create window with default profile
+<blockquote>
+<p>1、 无参数，无返回值，声明和定义</p>
+</blockquote>
 
-        end if
+<pre><code>void(^MyBlockOne)(void) = ^(void){
 
-        select first window
+NSLog(@&quot;无参数，无返回值&quot;);  
 
+};  
+MyBlockOne();//block的调用
+</code></pre>
 
-        tell the first window
+<blockquote>
+<p>2、有参数无返回值</p>
+</blockquote>
 
-            if isRunning and hasNoWindows is false then
+<pre><code>void(^MyblockTwo)(int a) = ^(int a){
 
-                create tab with default profile
+NSLog(@&quot;@ = %d我就是block，有参数，无返回值&quot;,a);
 
-            end if
+  };  
+MyblockTwo(100);
+</code></pre>
 
-            tell current session to write text command
+<blockquote>
+<p>3、有参数有返回值</p>
+</blockquote>
 
-        end tell
+<pre><code>int(^MyBlockThree)(int, int) = ^(int a, int b){    
 
-    end tell
+  NSLog(@&quot;%d我就是block，有参数，有返回值&quot;,a + b);
+  returna + b; 
 
+ };  
+MyBlockThree(12,56);
+</code></pre>
 
-end run
+<blockquote>
+<p>4、有参数有返回值</p>
+</blockquote>
 
+<pre><code>int(^MyblockFour)(void) = ^{
+    NSLog(@&quot;无参数，有返回值&quot;);
+    return45;
+  };
+MyblockFour();
+</code></pre>
+
+<blockquote>
+<p>5、实际开发中常用typedef 定义Block</p>
+</blockquote>
+
+<pre><code>//用typedef定义一个block：
+typedef int (^MyBlock)(int, int);
+
+//定义类的属性
+@property (nonatomic, copy) MyBlock myBlockOne;
+
+//使用
+self.myBlockOne = ^int (int ,int){
+    //...
+}
 
 </code></pre>
 
-<h5 id="toc_9">3、点击运行就能在 iTerm2 中打开当前目录</h5>
+<h5 id="toc_5">4. Block与外界变量</h5>
 
-<p><img src="media/15241412696951/15241432094154.jpg" alt=""/></p>
+<blockquote>
+<p>全局块(_NSConcreteGlobalBlock)<br/>
+栈块(_NSConcreteStackBlock)<br/>
+堆块(_NSConcreteMallocBlock) （ARC下引入外界变量）</p>
+</blockquote>
 
-<h5 id="toc_10">4、 设置快捷键</h5>
+<h6 id="toc_6">不使用 __block</h6>
 
-<p>打开系统设置，再去键盘设置里改一下快捷键，然后就可以快速在Finder中通过iTerm打开当前目录了<br/>
-<img src="media/15241412696951/15241437705558.jpg" alt=""/></p>
+<p>1、 创建 .c 文件<br/>
+```<br/>
+int main(){</p>
 
-<h2 id="toc_11">三、扩展</h2>
+<pre><code>int a = 10;
+void (^block)(void) = ^{
 
-<h3 id="toc_12">Automator 创建应用</h3>
+    printf(&quot;%d&quot;,a);
+    printf(&quot;test block\n&quot;);
 
-<p>使用的 Automator AppleScript 时候就在想为什么使用创建的服务，好吧，换个思路创建个应用，尝试着以Go2Shell的方式按住<code>command</code>键拖到文件夹上，结果和Go2Shell实现的效果一样OK，对 Automator 的使用充满期望~~<br/>
-<img src="media/15241412696951/15241470137311.jpg" alt=""/></p>
+};
+block();
+return 0;
+</code></pre>
+
+<p>}<br/>
+```<br/>
+2、编译</p>
+
+<pre><code>$ gcc testBlock.c
+</code></pre>
+
+<p>生成可执行文件 a.out<br/>
+3、执行</p>
+
+<pre><code>$./a.out testBlock.c 
+</code></pre>
+
+<ol>
+<li>使用clang 生成 c++ 文件<br/></li>
+</ol>
+
+<pre><code>$ clang -rewrite-objc testBlock.c
+</code></pre>
+
+<p>c++ 文件  内容</p>
+
+<pre><code>static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  int a = __cself-&gt;a; // bound by copy
+// 生成一个新的值
+
+        printf(&quot;%d&quot;,a);
+  printf(&quot;test block\n&quot;);
+
+ }
+
+//......
+
+int main(){
+
+    int a = 10;
+ void (*block)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, a));
+ ((void (*)(__block_impl *))((__block_impl *)block)-&gt;FuncPtr)((__block_impl *)block);
+ return 0;
+}
+</code></pre>
+
+<h6 id="toc_7">使用 __block</h6>
+
+<pre><code>int main(){
+    
+    __block int a = 10;
+    void (^block)(void) = ^{
+
+        printf(&quot;%d&quot;,a);
+        printf(&quot;test block\n&quot;);
+
+    };
+    block();
+    return 0;
+}
+</code></pre>
+
+<p>步骤同上，生成 c++ 文件</p>
+
+<pre><code>
+static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  __Block_byref_a_0 *a = __cself-&gt;a; // bound by ref
+// 指针
+
+        printf(&quot;%d&quot;,(a-&gt;__forwarding-&gt;a));
+  printf(&quot;test block\n&quot;);
+
+ }
+ 
+ //......
+
+int main(){
+//声明的变量由栈 copy 到堆，并将指针传递给block
+    __attribute__((__blocks__(byref))) __Block_byref_a_0 a = {(void*)0,(__Block_byref_a_0 *)&amp;a, 0, sizeof(__Block_byref_a_0), 10};
+ void (*block)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, (__Block_byref_a_0 *)&amp;a, 570425344));
+ ((void (*)(__block_impl *))((__block_impl *)block)-&gt;FuncPtr)((__block_impl *)block);
+ return 0;
+}
+</code></pre>
+
+<h1 id="toc_8">文章目录</h1>
+
+<ul>
+<li>
+<a href="#toc_0">Block 概念</a>
+</li>
+<li>
+<a href="#toc_1">Block 格式</a>
+<ul>
+<li>
+<ul>
+<li>
+<a href="#toc_2">1. Block的定义格式</a>
+</li>
+<li>
+<a href="#toc_3">2. Block表达式语法(等号后是表达式语法)</a>
+</li>
+<li>
+<a href="#toc_4">3. Block使用</a>
+</li>
+<li>
+<a href="#toc_5">4. Block与外界变量</a>
+<ul>
+<li>
+<a href="#toc_6">不使用 __block</a>
+</li>
+<li>
+<a href="#toc_7">使用 __block</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">文章目录</a>
+
+
+<p>参考：<br/>
+<a href="https://zhongjcbill.gitbooks.io/ios/oc/Block%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html">Block基本概念</a><br/>
+<a href="https://juejin.im/entry/588075132f301e00697f18e0">iOS Block 详解</a></p>
 
 
     
@@ -256,16 +405,13 @@ end run
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15241480672826.html" 
-          title="Previous Post: XtraFinder 系统完整性保护(SIP)">&laquo; XtraFinder 系统完整性保护(SIP)</a>
+          <a href="15240236247092.html" 
+          title="Previous Post: Alfred">&laquo; Alfred</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
-      
-          <a  href="15240395407492.html" 
-          title="Next Post: iTerm2">iTerm2 &raquo;</a>
       
       </p>
         </div>
