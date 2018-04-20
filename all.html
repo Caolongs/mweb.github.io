@@ -76,7 +76,13 @@
     <li><label>Categories</label></li>
 
         
-            <li><a href="text.html">text</a></li>
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
          
 
       </ul>
@@ -98,579 +104,6 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
-			<div class="article">
-                <a class="clearlink" href="15241488811717.html">
-                
-                  <h1>XtraFinder</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p><a href="https://www.trankynam.com/xtrafinder/">https://www.trankynam.com/xtrafinder/</a></p>
-
-<p>在早期的OS X上，只需打开XtraFinderInstaller即可安装XtraFinder。</p>
-
-<p>从OS X 10.11开始，系统完整性保护会阻止代码注入（以及其他许多事情）。<br/>
-XtraFinder的工作原理是将其代码注入Finder应用程序进程。<br/>
-为了安装XtraFinder，您需要禁用系统完整性保护。<br/>
-XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
-
-<p>有关系统完整性保护的更多信息，请访问此页<a href="http://www.trankynam.com/xtrafinder/sip.html">http://www.trankynam.com/xtrafinder/sip.html</a></p>
-
-<h3 id="toc_0">1、第一次安装XtraFinder的步骤</h3>
-
-<p>1.禁用系统完整性保护。<br/>
-2.打开XtraFinderInstaller安装XtraFinder。<br/>
-3.重新启用系统完整性保护。</p>
-
-<h3 id="toc_1">2、更新XtraFinder</h3>
-
-<p>您不需要重复安装过程。<br/>
-只需将XtraFinder复制到/ Applications目录即可。</p>
-
-<h3 id="toc_2">3、无需打开XtraFinderInstaller即可手动安装</h3>
-
-<p>1.将<code>Extra</code>目录中的<code>XtraFinderInjector.osax</code>复制到<code>/System/Library/ScriptingAdditions</code><br/>
-2.将<code>XtraFinder</code>复制到<code>/Applications</code></p>
-
-<h3 id="toc_3">4、禁用系统完整性保护的步骤</h3>
-
-<p>1.通过重新启动计算机并在启动时按住<code>Command和R</code>键启动到恢复操作系统。<br/>
-2.从 Utilities 菜单启动 Terminal。<br/>
-3.输入以下命令：<code>csrutil disable</code><br/>
-4.重新启动电脑。</p>
-
-<h3 id="toc_4">5、将系统完整性保护恢复到原始状态：</h3>
-
-<p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/4/19</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15241480672826.html">
-                
-                  <h1>XtraFinder 系统完整性保护(SIP)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p><a href="http://www.trankynam.com/xtrafinder/sip.html">XtraFinder 系统完整性保护原文</a></p>
-
-<h3 id="toc_0">1、关于OS X 10.11中的系统完整性保护</h3>
-
-<p><a href="https://support.apple.com/en-us/HT204899">苹果的文章</a>。<br/>
-系统完整性保护阻止代码注入（以及其他许多事情）。</p>
-
-<p>XtraFinder的工作原理是将其代码注入Finder应用程序进程。</p>
-
-<h3 id="toc_1">2、如何让XtraFinder在OS X 10.11中工作</h3>
-
-<p>您需要部分禁用系统完整性保护。</p>
-
-<p>我不鼓励您禁用系统完整性保护。它会让你的电脑不安全。</p>
-
-<h3 id="toc_2">3、如何部分禁用系统完整性保护</h3>
-
-<p>参考这篇<a href="https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html">苹果的文章</a>。</p>
-
-<p>按着这些次序：</p>
-
-<h5 id="toc_3">1. 通过重新启动计算机并在启动时按住<code>Command+R</code>键启动到恢复操作系统。</h5>
-
-<h5 id="toc_4">2. 从 Utilities 菜单启动 Terminal。</h5>
-
-<h5 id="toc_5">3. 输入以下命令：<code>csrutil enable --without debug</code></h5>
-
-<h5 id="toc_6">4. 重新启动您的计算机。</h5>
-
-<h3 id="toc_7">4、“csrutil enable --without debug” 命令的作用是什么？</h3>
-
-<p>它允许代码注入。这意味着XtraFinder可以将其代码注入Finder应用程序进程。</p>
-
-<h3 id="toc_8">5、如何将系统完整性保护恢复到原始状态</h3>
-
-<p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/4/19</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15241412696951.html">
-                
-                  <h1>Go2Shell and AppleScript</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<blockquote>
-<p>给Finder加上一个打开当前路径的终端的功能</p>
-
-<p>有两种实现：<br/>
-Go2Shell App 和 AppleScript</p>
-
-<p><strong>扩展：</strong></p>
-
-<p>AppleScript 实现 Go2Shell 一样的可视化打开方式</p>
-</blockquote>
-
-<h2 id="toc_0">一、 Go2Shell</h2>
-
-<h3 id="toc_1">1. 安装</h3>
-
-<p>1、Go2Shell官方安装 （推荐，因为AppStore下载的版本太低，无法打开iTerm2 -坑-）<br/>
-<a href="http://zipzapmac.com/Go2Shell">http://zipzapmac.com/Go2Shell</a> </p>
-
-<p>2、<a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">AppStore下载</a></p>
-
-<p><img src="media/15241412696951/15241416276817.jpg" alt=""/></p>
-
-<p>至此就可以打开shell，不过仅仅是打开系统默认的终端shell</p>
-
-<h3 id="toc_2">2. 进入 Preferences 的方式</h3>
-
-<pre><code>open -a Go2Shell --args config
-</code></pre>
-
-<p><img src="media/15241412696951/15241419447692.jpg" alt=""/></p>
-
-<p>iTerm2 不能打开当前文件所在目录（）</p>
-
-<h3 id="toc_3">3. 官网下载效果图(多了个 <code>&gt;_&lt;</code> 能直接打开配置)</h3>
-
-<p><img src="media/15241412696951/15241460616684.jpg" alt=""/></p>
-
-<h2 id="toc_4">二、配置 Automator 方法</h2>
-
-<h3 id="toc_5">1. 新建 Automator 服务</h3>
-
-<p>打开<code>Automator</code>，选择<code>新建</code>，选择<code>服务</code></p>
-
-<h3 id="toc_6">2. 设置 Automator 服务</h3>
-
-<h5 id="toc_7">1、 服务接受设为没有输入，位置设为<code>Finder(访达)</code></h5>
-
-<p><img src="media/15241412696951/15241426742785.jpg" alt=""/></p>
-
-<h5 id="toc_8">2、 从左侧的资源库中找出 运行 <code>AppleScript</code>，拖到右侧，然后保存为<code>Open iTerm Here</code></h5>
-
-<p><img src="media/15241412696951/15241444900342.jpg" alt=""/></p>
-
-<blockquote>
-<p>复制以下代码</p>
-
-<p>代码意思是将当前最前面的Finder地址如果获取不到，则返回桌面地址然后通知iTerm的第一个窗口新建标签并跳到这个目录去</p>
-</blockquote>
-
-<pre><code>on run {input, parameters}
-
-    tell application &quot;Finder&quot;
-
-        set pathList to (quoted form of POSIX path of (folder of the front window as alias))
-
-        set command to &quot;clear; cd &quot; &amp; pathList
-
-    end tell
-
-
-    tell application &quot;System Events&quot;
-
-        -- some versions might identify as &quot;iTerm2&quot; instead of &quot;iTerm&quot;
-
-        set isRunning to (exists (processes where name is &quot;iTerm&quot;)) or (exists (processes where name is &quot;iTerm2&quot;))
-
-    end tell
-
-
-    tell application &quot;iTerm&quot;
-
-        activate
-
-        set hasNoWindows to ((count of windows) is 0)
-
-        if isRunning and hasNoWindows then
-
-            create window with default profile
-
-        end if
-
-        select first window
-
-
-        tell the first window
-
-            if isRunning and hasNoWindows is false then
-
-                create tab with default profile
-
-            end if
-
-            tell current session to write text command
-
-        end tell
-
-    end tell
-
-
-end run
-
-
-</code></pre>
-
-<h5 id="toc_9">3、点击运行就能在 iTerm2 中打开当前目录</h5>
-
-<p><img src="media/15241412696951/15241432094154.jpg" alt=""/></p>
-
-<h5 id="toc_10">4、 设置快捷键</h5>
-
-<p>打开系统设置，再去键盘设置里改一下快捷键，然后就可以快速在Finder中通过iTerm打开当前目录了<br/>
-<img src="media/15241412696951/15241437705558.jpg" alt=""/></p>
-
-<h2 id="toc_11">三、扩展</h2>
-
-<h3 id="toc_12">Automator 创建应用</h3>
-
-<p>使用的 Automator AppleScript 时候就在想为什么使用创建的服务，好吧，换个思路创建个应用，尝试着以Go2Shell的方式按住<code>command</code>键拖到文件夹上，结果和Go2Shell实现的效果一样OK，对 Automator 的使用充满期望~~<br/>
-<img src="media/15241412696951/15241470137311.jpg" alt=""/></p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/4/19</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15240395407492.html">
-                
-                  <h1>iTerm2</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>强大的 Mac OS 终端利器，跟着教程走了一遍。</p>
-
-<h3 id="toc_0">1. 安装 iTerm2</h3>
-
-<p>下载地址：<a href="https://www.iterm2.com/downloads.html">https://www.iterm2.com/downloads.html</a><br/>
-下载的是压缩文件，解压后是执行程序文件，你可以直接双击，或者直接将它拖到 Applications 目录下。</p>
-
-<p>或者你可以直接使用 Homebrew 进行安装：</p>
-
-<pre><code>$ brew cask install iterm2
-</code></pre>
-
-<h3 id="toc_1">2. 配置 iTerm2 主题</h3>
-
-<p>iTerm2 最常用的主题是 Solarized Dark theme，下载地址：<a href="http://ethanschoonover.com/solarized">http://ethanschoonover.com/solarized</a></p>
-
-<p>下载的是压缩文件，你先解压一下，然后打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后 <code>Profiles -&gt; Colors -&gt; Color Presets -&gt; Import</code>，选择刚才解压的<code>solarized-&gt;iterm2-colors-solarized-&gt;Solarized Dark.itermcolors</code>文件，导入成功，最后选择 Solarized Dark 主题，就可以了。<br/>
-<img src="media/15240236247092/15240328372916.jpg" alt=""/></p>
-
-<h3 id="toc_2">3. 配置 Oh My Zsh</h3>
-
-<p>Oh My Zsh 是对主题的进一步扩展，地址：<a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a></p>
-
-<p>一键安装：</p>
-
-<pre><code>$ sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
-</code></pre>
-
-<p>安装好之后，需要把 Zsh 设置为当前用户的默认 Shell（这样新建标签的时候才会使用 Zsh）：</p>
-
-<pre><code>$ chsh -s /bin/zsh
-</code></pre>
-
-<p>然后，我们编辑<code>vim ~/.zshrc</code>文件，将主题配置修改为<code>ZSH_THEME=&quot;agnoster&quot;</code>。</p>
-
-<p><img src="media/15240236247092/15240328878602.jpg" alt=""/><br/>
-<code>agnoster</code>是比较常用的 zsh 主题之一，你可以挑选你喜欢的主题，zsh 主题列表：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">https://github.com/robbyrussell/oh-my-zsh/wiki/themes</a></p>
-
-<h3 id="toc_3">4. 配置 Meslo 字体</h3>
-
-<p>使用上面的主题，需要 Meslo 字体支持，要不然会出现乱码的情况，字体下载地址：<a href="https://github.com/powerline/fonts/blob/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf">Meslo LG M Regular for Powerline.ttf</a></p>
-
-<p>下载好之后，直接在 Mac OS 中安装即可。</p>
-
-<p>然后打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后<code>Profiles -&gt; Text -&gt; Font -&gt; Chanage Font，选择 Meslo LG M Regular for Powerline</code> 字体。<br/>
-<img src="media/15240236247092/15240335911662.jpg" alt=""/></p>
-
-<p>效果：<br/>
-<img src="media/15240236247092/15240336572945.jpg" alt=""/></p>
-
-<h3 id="toc_4">5. 声明高亮</h3>
-
-<p>特殊命令和错误命令，会有高亮显示。</p>
-
-<p>使用 Homebrew 安装：</p>
-
-<pre><code>$ brew install zsh-syntax-highlighting
-</code></pre>
-
-<p>安装成功之后，编辑<code>vim ~/.zshrc</code>文件，在最后一行增加下面配置：</p>
-
-<pre><code>source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-</code></pre>
-
-<p><img src="media/15240236247092/15240338613185.jpg" alt=""/></p>
-
-<p>特殊命令和错误命令，会有高亮显示效果：<br/>
-<img src="media/15240236247092/15240346220825.jpg" alt=""/></p>
-
-<h3 id="toc_5">6. 自动建议填充</h3>
-
-<p>这个功能是非常实用的，可以方便我们快速的敲命令。</p>
-
-<p>配置步骤，先克隆<code>zsh-autosuggestions</code>项目，到指定目录：</p>
-
-<pre><code>$ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-</code></pre>
-
-<p>然后编辑<code>vim ~/.zshrc</code>文件，找到plugins配置，增加<code>zsh-autosuggestions</code>插件。<br/>
-<img src="media/15240236247092/15240340214194.jpg" alt=""/><br/>
-<mark>注：</mark>上面声明高亮，如果配置不生效的话，在plugins配置，再增加zsh-syntax-highlighting插件试试。<br/>
-有时候因为自动填充的颜色和背景颜色很相似，以至于自动填充没有效果，我们可以手动更改下自动填充的颜色配置</p>
-
-<h3 id="toc_6">7. 左右键跳转</h3>
-
-<p>主要是按住<code>option + → or ←</code>键，在命令的开始和结尾跳转切换，原本是不生效的，需要手动开启下。</p>
-
-<p>打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后<code>Profiles → Keys → Load Preset... → Natural Text Editing</code>，就可以了。</p>
-
-<h3 id="toc_7">8. iTerm2 快速隐藏和显示</h3>
-
-<p>这个功能也非常使用，就是通过快捷键，可以快速的隐藏和打开 iTerm2，示例配置（<code>Commond + .</code>）：<br/>
-<img src="media/15240236247092/15240344213280.jpg" alt=""/></p>
-
-<h3 id="toc_8">9. iTerm2 隐藏用户名和主机名</h3>
-
-<p>有时候我们的用户名和主机名太长，比如我的<code>caolongjian@caolongjiandeMacBook-Pro</code>，终端显示的时候会很不好看（上面图片中可以看到），我们可以手动去除。</p>
-
-<p>编辑<code>vim ~/.zshrc</code>文件，增加<code>DEFAULT_USER=&#39;caolongjian&#39;</code>配置，示例：</p>
-
-<p><img src="media/15240236247092/15240353400543.jpg" alt=""/><br/>
-注意： 使用单引号 或者 DEFAULT_USER 放在 ZSH_THEME上面 否则 DEFAULT_USER 不生效<br/>
-<img src="media/15240236247092/15240357531048.jpg" alt=""/></p>
-
-<p>效果：<br/>
-<img src="media/15240236247092/15240358493334.jpg" alt=""/></p>
-
-<h3 id="toc_9">10. iTerm2 配置代理</h3>
-
-<p>编辑~ vim ~/.zshrc，增加下面配置（使用的 shadowsocks）：</p>
-
-<pre><code># proxy list
-alias proxy=&#39;export all_proxy=socks5://127.0.0.1:1086&#39;
-alias unproxy=&#39;unset all_proxy&#39;
-</code></pre>
-
-<p>iTerm2 需要新建标签页，才有效果：</p>
-
-<pre><code>$ proxy
-$ curl ip.cn
-当前 IP：185.225.14.5 来自：美国
-
-$ unproxy
-$ curl ip.cn
-当前 IP：115.236.186.130 来自：浙江省杭州市 电信
-</code></pre>
-
-<h3 id="toc_10">11. iTerm2 快捷命令</h3>
-
-<table>
-<thead>
-<tr>
-<th style="text-align: left">命令</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">command + t</td>
-<td style="text-align: left">新建标签</td>
-</tr>
-<tr>
-<td style="text-align: left">command + w</td>
-<td style="text-align: left">关闭标签</td>
-</tr>
-<tr>
-<td style="text-align: left">command + 数字 command + 左右方向键</td>
-<td style="text-align: left">切换标签</td>
-</tr>
-<tr>
-<td style="text-align: left">command +</td>
-<td style="text-align: left">enter 切换全屏</td>
-</tr>
-<tr>
-<td style="text-align: left">command + f</td>
-<td style="text-align: left">查找</td>
-</tr>
-<tr>
-<td style="text-align: left">command + d</td>
-<td style="text-align: left">垂直分屏</td>
-</tr>
-<tr>
-<td style="text-align: left">command + shift + d</td>
-<td style="text-align: left">水平分屏</td>
-</tr>
-<tr>
-<td style="text-align: left">command + option +</td>
-<td style="text-align: left">方向键</td>
-</tr>
-<tr>
-<td style="text-align: left">command + [ 或 command + ]</td>
-<td style="text-align: left">切换屏幕</td>
-</tr>
-<tr>
-<td style="text-align: left">command + ;</td>
-<td style="text-align: left">查看历史命令</td>
-</tr>
-<tr>
-<td style="text-align: left">command + shift + h</td>
-<td style="text-align: left">查看剪贴板历史</td>
-</tr>
-<tr>
-<td style="text-align: left">ctrl + u</td>
-<td style="text-align: left">清除当前行</td>
-</tr>
-<tr>
-<td style="text-align: left">ctrl + l</td>
-<td style="text-align: left">清屏</td>
-</tr>
-<tr>
-<td style="text-align: left">ctrl + a</td>
-<td style="text-align: left">到行首</td>
-</tr>
-<tr>
-<td style="text-align: left">ctrl + e</td>
-<td style="text-align: left">到行尾</td>
-</tr>
-<tr>
-<td style="text-align: left">ctrl + f/b</td>
-<td style="text-align: left">前进后退</td>
-</tr>
-<tr>
-<td style="text-align: left">ctrl + p</td>
-<td style="text-align: left">上一条命令</td>
-</tr>
-<tr>
-<td style="text-align: left">ctrl + r</td>
-<td style="text-align: left">搜索命令历史</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left"></td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="toc_11">参考</h3>
-
-<p><a href="http://www.cnblogs.com/xishuai/p/mac-iterm2.html">Mac OS 终端利器 iTerm2</a></p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/4/18</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15240236247092.html">
-                
-                  <h1>Alfred</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>强大的只能搜索软件，w安全可以替代OS X自带的Spotlight</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/4/18</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
 			<div class="article">
                 <a class="clearlink" href="15240154214361.html">
                 
@@ -966,7 +399,1736 @@ int main(){
                     <span class="date">2018/4/18</span>
                     <span>posted in&nbsp;</span> 
           				  
-          					    <span class="posted-in"><a href='text.html'>text</a></span>
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15215981447516.html">
+                
+                  <h1>架构模式 MVC MVP MVVM</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>架构模式，也叫架构风格，一个架构模式描述软件系统里的基本的结构组织或纲要。架构模式提供一些呈先定义好的子系统，指定它们的责任，并给出把它们组织在一起的法则和指南。一个架构模式常常可以分解成很多个设计模式的联合使用。MVC模式就属于架构模式。</p>
+</blockquote>
+
+<p>本文就 iOS 中使用 MVC、MVP、MVVM 架构模式表述个人见解。详细使用方法请参见 <a href="https://github.com/Caolongs/MVVM-Part">GitHub Demo</a></p>
+
+<h3 id="toc_0">MVC</h3>
+
+<p>MVC 作为iOS开发中较为原始基本的架构模式，它把软件系统分为三个基本的部分：模型Model、视图View以及控制器Controller。这种模式的目的是为了实现一种动态的程序设计，简化后续对软件系统的修改和扩展，并使得程序的某一部分的复用成为可能。在此不做过多的解释，附图一张：</p>
+
+<p><img src="media/15215981447516/15216155291063.jpg" alt=""/></p>
+
+<h3 id="toc_1">MVP</h3>
+
+<p>MVP 架构模式是 MVC 的一个变种，本人认为 MVC 与 MVP 两者之间最大的区别就是 MVP 中使用Presenter 对 View 和 Model 进行了解耦，View 中不会直接持有 Model 数据，之间的值传递都通过 Presenter 进行传递，换言之，Presenter 持有 View 和 Model，在其内部进行逻辑处理，并将处理后的结果直接传递给 View 显示。</p>
+
+<p><img src="media/15215981447516/15216176099173.jpg" alt=""/></p>
+
+<ul>
+<li>当视图接收到来自用户的事件时，会将事件转交给 Presenter 进行处理</li>
+<li>视图向外界暴露接口，当需要更新视图时， Presenter 通过视图暴露的接口更新视图的内容</li>
+<li>Presenter 持有模型并负责对模型进行操作和更新，在需要时取出其中存储的信息</li>
+<li>当模型层改变时，可以将改变的信息发送给 Presenter</li>
+</ul>
+
+<h3 id="toc_2">MVVM</h3>
+
+<p>MVVM有助于将图形用户界面的开发与业务逻辑或后端逻辑（数据模型）的开发分离开来。<br/>
+使用 MVVM 架构模式开发的关键点在于 ViewModel 和 View 的双向绑定机制，View 的变动，自动反映在 ViewModel，反之，ViewModel 的改变能够通知到 View。</p>
+
+<p><img src="media/15215981447516/15216186538894.jpg" alt=""/></p>
+
+<p>Demo 中采用绑定关系为，view 的改变通过调用 ViewModel 暴露的方法进行修改；ViewModel 的改变通过 KVO 监听来将变化的值传递给 View 进行展示。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/3/21</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%9E%B6%E6%9E%84.html'>架构</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15212766930412.html">
+                
+                  <h1>OpenGL ES - - GLKit（GLKBaseEffect）</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.<br/>
+加快OpenGL ES或OpenGL应用程序开发。 使用数学库，背景纹理加载，预先创建的着色器效果以及标准视图和视图控制器来实现渲染循环。</p>
+</blockquote>
+
+<p><img src="media/15212766930412/GLKit.png" alt="GLKit"/></p>
+
+<h3 id="toc_0">以一个简单的案例来使用 GLKBaseEffect</h3>
+
+<blockquote>
+<p>GLKBaseEffect is designed to simplify visual effects common to many OpenGL applications today. <br/>
+ GLKBaseEffect旨在简化当今许多OpenGL应用程序常见的视觉效果。</p>
+
+<p>GLKBaseEffect is program based and, with the binding of its underlying GLSL program<br/>
+GLKBaseEffect是基于程序的，并且通过其基础GLSL程序的绑定</p>
+
+<p>GLKBaseEffect requires at least an OpenGL Core Profile.  An appropriate context must be created and made current prior to instantiating and initializing GLKBaseEffect objects.</p>
+</blockquote>
+
+<h4 id="toc_1">使用GLKBaseEffect的规范步骤是</h4>
+
+<ul>
+<li><p>(1) 分配并初始化GLKBaseEffect的一个实例</p>
+
+<pre><code>directionalLightEffect = [[GLKBaseEffect alloc] init];
+</code></pre></li>
+<li><p>(2) 在效果上设置所需的属性</p>
+
+<pre><code> // Configure light0
+  directionalLightEffect.light0.position = lightPosition;
+  directionalLightEffect.light0.diffuseColor = diffuseColor;
+  directionalLightEffect.light0.ambientColor = ambientColor;
+
+  // Configure material
+  directionalLightEffect.material.diffuseColor = materialDiffuseColor;
+  directionalLightEffect.material.ambientColor = materialAmbientColor;
+  directionalLightEffect.material.specularColor = materialSpecularColor;
+  directionalLightEffect.material.shininess = 10.0;
+</code></pre></li>
+<li><p>(3) 优选用顶点数组对象初始化顶点属性/顶点数组状态为要绘制的模型或场景</p>
+
+<pre><code>    glGenVertexArraysOES(1, &amp;vaoName);
+    glBindVertexArrayOES(vaoName);
+
+  // 为每个顶点属性创建并初始化VBO
+  // 下面的例子展示了一个设置位置顶点属性的例子.
+  // 为每个额外的所需属性重复以下步骤：normal，color，texCoord0，texCoord1.
+
+  glGenBuffers(1, &amp;positionVBO);
+  glBindBuffer(GL_ARRAY_BUFFER, positionVBO);
+  glBufferData(GL_ARRAY_BUFFER, vboSize, dataBufPtr, GL_STATIC_DRAW);
+  glVertexAttribPointer(GLKVertexAttribPosition, size, type, normalize, stride, NULL);
+  glEnableVertexAttribArray(GLKVertexAttribPosition);
+
+  ...针对其他所需的顶点属性重复上述步骤
+
+  glBindVertexArrayOES(0);   // unbind the VAO we created above
+</code></pre></li>
+<li><p>(4) 对于每个绘制的帧：更新每帧更改的属性。 通过调用 - [GLKBaseEffect prepareToDraw] 同步更改的效果状态。用效果画出模型.  用效果画出模型</p>
+
+<pre><code>    directionalLightEffect.transform.modelviewMatrix = modelviewMatrix;
+    [directionalLightEffect prepareToDraw];
+    glBindVertexArrayOES(vaoName);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, vertCt);
+</code></pre></li>
+</ul>
+
+<p>详细代码：<a href="https://github.com/Caolongs/OpenGL-ES---GLKit">DEMO</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/3/17</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15211019198288.html">
+                
+                  <h1>OpenGL ES - GLSL</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>不采用GLKBaseEffect，使用编译链接自定义的着色器（shader）。用简单的glsl语言来实现顶点、片元着色器，并图形进行简单的变换。</p>
+
+<p><img src="media/15211019198288/OpenGL%20ES%20-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E7%9D%80%E8%89%B2%E5%99%A8-.png" alt="OpenGL ES -自定义的着色器-"/></p>
+
+<h3 id="toc_0">一、创建图层</h3>
+
+<p><code>CAEAGLLayer</code></p>
+
+<blockquote>
+<p>/* CAEAGLLayer is a layer that implements the EAGLDrawable protocol,<br/>
+ * allowing it to be used as an OpenGLES render target. Use the<br/>
+ * `drawableProperties&#39; property defined by the protocol to configure<br/>
+ * the created surface. */</p>
+
+<p>CAEAGLLayer是一个实现EAGLDrawable协议的层，<br/>
+  *允许它用作OpenGLES渲染目标。 使用<br/>
+  *协议定义的`drawableProperties&#39;属性进行配置<br/>
+  *创建的表面。</p>
+</blockquote>
+
+<ol>
+<li>创建图层</li>
+<li><p>设置放大倍数</p>
+
+<pre><code>[self setContentScaleFactor:[[UIScreen mainScreen]scale]];
+</code></pre></li>
+<li><p>将图层设为不透明（默认是透明的）</p>
+
+<pre><code>self.myEagLayer.opaque = YES;
+</code></pre></li>
+<li><p>设置 <code>drawableProperties</code> 属性,这里设置不维持渲染内容以及颜色格式为RGBA8</p>
+
+<pre><code>self.myEagLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:false],kEAGLDrawablePropertyRetainedBacking,kEAGLColorFormatRGBA8,kEAGLDrawablePropertyColorFormat,nil];
+</code></pre></li>
+</ol>
+
+<pre><code>/************************************************************************/
+/* Keys for EAGLDrawable drawableProperties dictionary                  */
+/*                                                                      */
+/* kEAGLDrawablePropertyRetainedBacking:                                */
+/*  Type: NSNumber (boolean)                                            */
+/*  Legal Values: True/False                                            */
+/*  Default Value: False                                                */
+/*  Description: True if EAGLDrawable contents are retained after a     */
+/*               call to presentRenderbuffer.  False, if they are not   */
+/*                                                                      */
+/* kEAGLDrawablePropertyColorFormat:                                    */
+/*  Type: NSString                                                      */
+/*  Legal Values: kEAGLColorFormat*                                     */
+/*  Default Value: kEAGLColorFormatRGBA8                                */
+/*  Description: Format of pixels in renderbuffer                       */
+/************************************************************************/
+</code></pre>
+
+<ul>
+<li>kEAGLDrawablePropertyRetainedBacking: 表示绘图表面显示后，是否保留其内容。这个key的值，是一个通过NSNumber包装的bool值。如果是false，则显示内容后不能依赖于相同的内容，ture表示显示后内容不变。一般只有在需要内容保存不变的情况下，才建议设置使用,因为会导致性能降低、内存使用量增减。一般设置为flase.</li>
+<li>kEAGLDrawablePropertyColorFormat: 可绘制表面的内部颜色缓存区格式，这个key对应的值是一个NSString指定特定颜色缓存区对象。默认是kEAGLColorFormatRGBA8
+
+<ul>
+<li>kEAGLColorFormatRGBA8：32位RGBA的颜色，4*8=32位</li>
+<li>kEAGLColorFormatRGB565：16位RGB的颜色，</li>
+<li>kEAGLColorFormatSRGBA8：sRGB代表了标准的红、绿、蓝，即CRT显示器、LCD显示器、投影机、打印机以及其他设备中色彩再现所使用的三个基本色素。sRGB的色彩空间基于独立的色彩坐标，可以使色彩在不同的设备使用传输中对应于同一个色彩坐标体系，而不受这些设备各自具有的不同色彩坐标的影响。</li>
+</ul></li>
+</ul>
+
+<h3 id="toc_1">二、创建上下文</h3>
+
+<ol>
+<li><p>指定OpenGL ES 渲染API版本，我们使用2.0</p>
+
+<pre><code>EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2;
+</code></pre></li>
+<li><p>创建图形上下文</p>
+
+<pre><code>EAGLContext *context = [[EAGLContext alloc] initWithAPI:api];
+</code></pre></li>
+<li><p>判断是否创建成功</p>
+
+<pre><code>if (!context) {
+    NSLog(@&quot;Create context failed!&quot;);
+    return;
+}
+</code></pre></li>
+<li><p>设置图形上下文</p>
+
+<pre><code>if (![EAGLContext setCurrentContext:context]) {
+    NSLog(@&quot;setCurrentContext failed!&quot;);
+    return;
+}
+</code></pre></li>
+<li><p>将局部context，变成全局的</p>
+
+<pre><code>self.myContext = context;
+</code></pre></li>
+</ol>
+
+<h3 id="toc_2">三、清空缓存区</h3>
+
+<ol>
+<li><p>导入框架#import <OpenGLES/ES2/gl.h></p></li>
+<li><p>创建2个帧缓存区，渲染缓存区，帧缓存区</p>
+
+<pre><code> @property (nonatomic , assign) GLuint myColorRenderBuffer;
+ @property (nonatomic , assign) GLuint myColorFrameBuffer;
+</code></pre></li>
+<li><p>清空缓存区 </p>
+
+<pre><code>glDeleteBuffers(1, &amp;_myColorRenderBuffer);
+self.myColorRenderBuffer = 0;
+
+glDeleteBuffers(1, &amp;_myColorFrameBuffer);
+self.myColorFrameBuffer = 0;
+</code></pre></li>
+</ol>
+
+<h3 id="toc_3">四、设置RenderBuffer</h3>
+
+<ol>
+<li><p>定义一个缓存区</p>
+
+<pre><code>GLuint buffer;
+</code></pre></li>
+<li><p>申请一个缓存区标志</p>
+
+<pre><code>glGenRenderbuffers(1, &amp;buffer);
+//同 glGenRenderbuffers(1, &amp;buffer);
+
+//赋值
+self.myColorRenderBuffer = buffer;
+</code></pre></li>
+<li><p>将标识符绑定到GL_RENDERBUFFER</p>
+
+<pre><code>glBindRenderbuffer(GL_RENDERBUFFER, self.myColorRenderBuffer);
+</code></pre></li>
+<li><p>myColorRenderBuffer渲染缓存区分配存储空间</p>
+
+<pre><code>[self.myContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:self.myEagLayer];
+</code></pre>
+
+<pre><code>注意：frame buffer仅仅是管理者，不需要分配空间；
+render buffer的存储空间的分配，对于不同的render buffer，使用不同的API进行分配，
+而只有分配空间的时候，render buffer句柄才确定其类型
+</code></pre></li>
+</ol>
+
+<h3 id="toc_4">五、设置FrameBuffer</h3>
+
+<ol>
+<li><p>定义一个缓存区</p>
+
+<pre><code>GLuint buffer;
+</code></pre></li>
+<li><p>申请一个缓存区标志</p>
+
+<pre><code>glGenRenderbuffers(1, &amp;buffer);
+
+//赋值
+self.myColorFrameBuffer = buffer;
+</code></pre></li>
+<li><p>将标识符绑定到GL_FRAMEBUFFER</p>
+
+<pre><code>glBindFramebuffer(GL_FRAMEBUFFER, self.myColorFrameBuffer);
+</code></pre></li>
+<li><p>renderbuffer跟framebuffer进行绑定,将_myColorRenderBuffer 通过glFramebufferRenderbuffer函数绑定到GL_COLOR_ATTACHMENT0上。</p>
+
+<pre><code>glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, self.myColorRenderBuffer);
+</code></pre>
+
+<p>//接下来，可以调用OpenGL ES进行绘制处理，最后则需要在EGALContext的OC方法进行最终的渲染绘制。这里渲染的color buffer,这个方法会将buffer渲染到CALayer上。- (BOOL)presentRenderbuffer:(NSUInteger)target;</p></li>
+</ol>
+
+<h3 id="toc_5">六、开始绘制</h3>
+
+<ol>
+<li><p>设置颜色、设置视口大小</p>
+
+<pre><code>//设置清屏颜色
+glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+
+//清除屏幕
+glClear(GL_COLOR_BUFFER_BIT);
+
+CGFloat scale = [[UIScreen mainScreen]scale];
+
+//设置视口大小
+glViewport(self.frame.origin.x * scale, self.frame.origin.y * scale, self.frame.size.width * scale, self.frame.size.height * scale);
+
+</code></pre></li>
+<li><p>读取顶点着色程序、片元着色程序</p>
+
+<pre><code>NSString *vertFile = [[NSBundle mainBundle]pathForResource:@&quot;shaderv&quot; ofType:@&quot;vsh&quot;];
+NSString *fragFile = [[NSBundle mainBundle]pathForResource:@&quot;shaderf&quot; ofType:@&quot;fsh&quot;];
+</code></pre></li>
+<li><p>加载shader</p>
+
+<pre><code>self.myPrograme = [self loadShaders:vertFile Withfrag:fragFile];//见附
+</code></pre></li>
+<li><p>链接</p>
+
+<pre><code>glLinkProgram(self.myPrograme);
+GLint linkStatus;
+//获取链接状态
+glGetProgramiv(self.myPrograme, GL_LINK_STATUS, &amp;linkStatus);
+if (linkStatus == GL_FALSE) {
+    GLchar message[512];
+    glGetProgramInfoLog(self.myPrograme, sizeof(message), 0, &amp;message[0]);
+    NSString *messageString = [NSString stringWithUTF8String:message];
+    NSLog(@&quot;Program Link Error:%@&quot;,messageString);
+    return;
+}
+
+</code></pre></li>
+<li><p>使用program</p>
+
+<pre><code>glUseProgram(self.myPrograme);
+</code></pre></li>
+<li><p>设置顶点、纹理坐标</p>
+
+<pre><code>...
+</code></pre></li>
+<li><p>处理顶点数据</p>
+
+<pre><code>glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
+</code></pre></li>
+<li><p>处理纹理数据</p>
+
+<pre><code>glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*5, (float *)NULL + 3);
+</code></pre></li>
+<li><p>加载纹理</p>
+
+<ul>
+<li><p>获取图片的CGImageRef</p></li>
+<li><p>读取图片的大小，宽和高</p></li>
+<li><p>获取图片字节数 宽<em>高</em>4（RGBA）</p></li>
+<li><p>创建上下文</p></li>
+<li><p>在CGContextRef上绘图 ,解决图片倒置的方法</p></li>
+<li><p>画图完毕就释放上下文</p></li>
+<li><p>绑定纹理到默认的纹理ID（这里只有一张图片，故而相当于默认于片元着色器里面的 </p></li>
+<li><p>设置纹理属性</p></li>
+<li><p>载入纹理2D数据</p></li>
+<li><p>绑定纹理</p></li>
+<li><p>释放spriteData</p></li>
+</ul></li>
+<li><p>获取shader里面的变量, 模型视图变换传值</p></li>
+<li><p>绘制并显示缓存数据 presentRenderbuffer </p>
+
+<pre><code>glDrawArrays(GL_TRIANGLES, 0, 6);
+
+[self.myContext presentRenderbuffer:GL_RENDERBUFFER];
+</code></pre></li>
+</ol>
+
+<h3 id="toc_6">附</h3>
+
+<ol>
+<li>frame buffer 和 render buffer 关系</li>
+</ol>
+
+<pre><code>buffer分为frame buffer 和 render buffer2个大类。其中frame buffer 相当于render buffer的管理者。frame buffer object即称FBO，常用于离屏渲染缓存等。render buffer则又可分为3类。colorBuffer、depthBuffer、stencilBuffer。
+</code></pre>
+
+<ol>
+<li><p>加载shader</p>
+
+<ul>
+<li>定义2个零时着色器对象</li>
+<li>创建program</li>
+<li>编译顶点着色程序、片元着色器程序
+
+<ul>
+<li>读取文件路径字符串</li>
+<li>创建一个shader（根据type类型）</li>
+<li>将顶点着色器源码附加到着色器对象上</li>
+<li>把着色器源代码编译成目标代码</li>
+</ul></li>
+<li>创建最终的程序</li>
+<li>释放不需要的shader</li>
+</ul></li>
+</ol>
+
+<pre><code>-(GLuint)loadShaders:(NSString *)vert Withfrag:(NSString *)frag {
+    //定义2个零时着色器对象
+    GLuint verShader, fragShader;
+    //创建program
+    GLint program = glCreateProgram();
+    
+    //编译顶点着色程序、片元着色器程序
+    //参数1：编译完存储的底层地址
+    //参数2：编译的类型，GL_VERTEX_SHADER（顶点）、GL_FRAGMENT_SHADER(片元)
+    //参数3：文件路径
+    [self compileShader:&amp;verShader type:GL_VERTEX_SHADER file:vert];
+    [self compileShader:&amp;fragShader type:GL_FRAGMENT_SHADER file:frag];
+    
+    //创建最终的程序
+    glAttachShader(program, verShader);
+    glAttachShader(program, fragShader);
+    
+    //释放不需要的shader
+    glDeleteShader(verShader);
+    glDeleteShader(fragShader);
+    
+    return program;
+}
+</code></pre>
+
+<pre><code>//链接shader
+- (void)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file{
+    
+    //读取文件路径字符串
+    NSString* content = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+    const GLchar* source = (GLchar *)[content UTF8String];
+    
+    //创建一个shader（根据type类型）
+    *shader = glCreateShader(type);
+    
+    //将顶点着色器源码附加到着色器对象上。
+    //参数1：shader,要编译的着色器对象 *shader
+    //参数2：numOfStrings,传递的源码字符串数量 1个
+    //参数3：strings,着色器程序的源码（真正的着色器程序源码）
+    //参数4：lenOfStrings,长度，具有每个字符串长度的数组，或NULL，这意味着字符串是NULL终止的
+    glShaderSource(*shader, 1, &amp;source,NULL);
+    
+    //把着色器源代码编译成目标代码
+    glCompileShader(*shader);
+    
+}
+</code></pre>
+
+<ol>
+<li>设置纹理</li>
+</ol>
+
+<pre><code>//设置纹理
+- (GLuint)setupTexture:(NSString *)fileName {
+    //1、获取图片的CGImageRef
+    CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
+    
+    //判断图片是否获取成功
+    if (!spriteImage) {
+        NSLog(@&quot;Failed to load image %@&quot;, fileName);
+        exit(1);
+    }
+    
+    //2、读取图片的大小，宽和高
+    size_t width = CGImageGetWidth(spriteImage);
+    size_t height = CGImageGetHeight(spriteImage);
+    
+    //3.获取图片字节数 宽*高*4（RGBA）
+    GLubyte * spriteData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
+    
+    //4.创建上下文
+    /*
+     参数1：data,指向要渲染的绘制图像的内存地址
+     参数2：width,bitmap的宽度，单位为像素
+     参数3：height,bitmap的高度，单位为像素
+     参数4：bitPerComponent,内存中像素的每个组件的位数，比如32位RGBA，就设置为8
+     参数5：bytesPerRow,bitmap的没一行的内存所占的比特数
+     参数6：colorSpace,bitmap上使用的颜色空间  kCGImageAlphaPremultipliedLast：RGBA
+     */
+    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4,CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
+    
+    
+    
+    //5、在CGContextRef上绘图
+    /*
+     CGContextDrawImage 使用的是Core Graphics框架，坐标系与UIKit 不一样。UIKit框架的原点在屏幕的左上角，Core Graphics框架的原点在屏幕的左下角。
+     CGContextDrawImage 
+     参数1：绘图上下文
+     参数2：rect坐标
+     参数3：绘制的图片
+     */
+    CGRect rect = CGRectMake(0, 0, width, height);
+    //使用默认方式绘制，发现图片是倒的。
+    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), spriteImage);
+    /*
+     解决图片倒置的方法(2):
+     CGContextTranslateCTM(spriteContext, rect.origin.x, rect.origin.y);
+     CGContextTranslateCTM(spriteContext, 0, rect.size.height);
+     CGContextScaleCTM(spriteContext, 1.0, -1.0);
+     CGContextTranslateCTM(spriteContext, -rect.origin.x, -rect.origin.y);
+     CGContextDrawImage(spriteContext, rect, spriteImage);
+     */
+   
+    //6、画图完毕就释放上下文
+    CGContextRelease(spriteContext);
+    
+    //5、绑定纹理到默认的纹理ID（这里只有一张图片，故而相当于默认于片元着色器里面的colorMap，如果有多张图不可以这么做）
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    //设置纹理属性
+    /*
+     参数1：纹理维度
+     参数2：线性过滤、为s,t坐标设置模式
+     参数3：wrapMode,环绕模式
+     */
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
+    float fw = width, fh = height;
+    //载入纹理2D数据
+    /*
+     参数1：纹理模式，GL_TEXTURE_1D、GL_TEXTURE_2D、GL_TEXTURE_3D
+     参数2：加载的层次，一般设置为0
+     参数3：纹理的颜色值GL_RGBA
+     参数4：宽
+     参数5：高
+     参数6：border，边界宽度
+     参数7：format
+     参数8：type
+     参数9：纹理数据
+     */
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fw, fh, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+    
+    //绑定纹理
+    /*
+     参数1：纹理维度
+     参数2：纹理ID,因为只有一个纹理，给0就可以了。
+     */
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    //释放spriteData
+    free(spriteData);
+    
+    return 0;
+}
+</code></pre>
+
+<p>详细代码：<a href="https://github.com/Caolongs/OpenGL-ES---GLSL">DEMO</a></p>
+
+<h1 id="toc_7">文章目录</h1>
+
+<ul>
+<li>
+<a href="#toc_0">一、创建图层</a>
+</li>
+<li>
+<a href="#toc_1">二、创建上下文</a>
+</li>
+<li>
+<a href="#toc_2">三、清空缓存区</a>
+</li>
+<li>
+<a href="#toc_3">四、设置RenderBuffer</a>
+</li>
+<li>
+<a href="#toc_4">五、设置FrameBuffer</a>
+</li>
+<li>
+<a href="#toc_5">六、开始绘制</a>
+</li>
+<li>
+<a href="#toc_6">附</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">文章目录</a>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/3/15</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15209234462100.html">
+                
+                  <h1>组件化 - 远程私有库</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>远程私有库相对于本地私有库多了许多配置，对 <code>.spec</code> 文件的配置就显得尤为重要了许多</p>
+
+<p>首先，一般采用pod库的形式来集成的远程私有库就需要我们对 cocoapods 的工作有一定的认识。</p>
+
+<p><img src="media/15209234462100/15210147171661.jpg" alt=""/></p>
+
+<h3 id="toc_0">一、 创建远程私有索引库</h3>
+
+<ol>
+<li><p>在git托管平台创建 ChuangSpecs 工程 作为远程索引库 git 地址为 <code>http://10.10.1.18/caolongjian/ChuangSpecs.git</code></p></li>
+<li><p>本地创建私有库索引仓库</p></li>
+</ol>
+
+<pre><code>pod repo add ChuangSpecs http://10.10.1.18/caolongjian/ChuangSpecs.git
+</code></pre>
+
+<p><strong>注意：</strong> 若使用 <code>git@10.10.1.18:caolongjian/ChuangSpecs.git</code> 需配置SSH</p>
+
+<p><img src="media/15209234462100/15209242919898.jpg" alt=""/></p>
+
+<h3 id="toc_1">二、 将本地项目推送到远程</h3>
+
+<ol>
+<li>在git托管平台创建 JJTableView 工程</li>
+</ol>
+
+<p>并将本地的仓库和远程的仓库进行关联</p>
+
+<pre><code>git remote add origin http://10.10.1.18/caolongjian/JJTableView.git
+</code></pre>
+
+<pre><code>git push -u origin master
+</code></pre>
+
+<p><strong>注意：</strong> 第一次push的时候,加上-u参数,Git就会把本地的master分支和远程的master分支进行关联起来,以后的push操作就不再需要加上-u参数了</p>
+
+<h3 id="toc_2">三、 配置 JJTableView.podspec 文件</h3>
+
+<p><img src="media/15209234462100/15209252706686.jpg" alt=""/></p>
+
+<h4 id="toc_3">1. 校验一下我们.spec文件是否合法</h4>
+
+<pre><code>pod lib lint
+</code></pre>
+
+<p>若发现如下 n 多错误，请根据WARN 修改（泪奔，一开始忽略了警告，直接修改ERROR）默认Swift3.2 验证，代码是在Swift4.0下编写运行 </p>
+
+<blockquote>
+<p>-WARN  | [iOS] swift: The validator used Swift 3.2 by default because no Swift version was specified. To specify a Swift version during validation, add the <code>swift_version</code> attribute in your podspec. Note that usage of the <code>--swift-version</code> parameter or a <code>.swift-version</code> file is now deprecated.</p>
+</blockquote>
+
+<p>错误：❌<br/>
+<img src="media/15209234462100/15209968805813.jpg" alt=""/></p>
+
+<p>解决方案,修改验证编译环境为 Swift 4.0<br/>
+<img src="media/15209234462100/15209971483117.jpg" alt=""/></p>
+
+<h4 id="toc_4">2. tag 标签</h4>
+
+<pre><code>git tag 0.1.0
+git push --tags
+</code></pre>
+
+<h4 id="toc_5">3. 校验远程 .spec文件是否合法</h4>
+
+<pre><code>pod spec lint
+</code></pre>
+
+<p><img src="media/15209234462100/15209979433502.jpg" alt=""/></p>
+
+<h4 id="toc_6">4. .repo 提交到远程私有索引库</h4>
+
+<p>我们要将 JJTableView.podspec 提交到我们的远程私有索引库(ChuangSpecs)当中去，使用pod repo push [远程私有索引库名称] [框架名称的描述文件]</p>
+
+<pre><code>$ pod repo push ChuangSpecs JJTableView.podspec
+</code></pre>
+
+<p><img src="media/15209234462100/15209981574964.jpg" alt=""/></p>
+
+<ul>
+<li><p>对应远程索引库：<br/>
+<img src="media/15209234462100/15209983974164.jpg" alt=""/></p></li>
+<li><p>对应本地索引库：<br/>
+<img src="media/15209234462100/15209982406452.jpg" alt=""/></p></li>
+<li><p>使用 pod search JJTableView 搜索<br/>
+<img src="media/15209234462100/15209984753755.jpg" alt=""/></p></li>
+</ul>
+
+<h3 id="toc_7">四、 主工程使用组件</h3>
+
+<ol>
+<li><p>配置 podfile 文件<br/>
+默认指定源是Cocoapods的官方索引库，需要添加自己的远程私有库</p>
+
+<ul>
+<li><p>添加source，记得默认源也要添加上</p>
+
+<pre><code>source &#39;https://github.com/CocoaPods/Specs.git&#39;
+source &#39;http://10.10.1.18/caolongjian/ChuangSpecs.git&#39;
+</code></pre></li>
+<li><p>pod &#39;JJTableView&#39;</p>
+
+<pre><code>#pod &#39;JJTableView&#39;, :path =&gt; &#39;../Lib/JJTableView&#39;
+pod &#39;JJTableView&#39;, &#39;0.1.4&#39;
+</code></pre></li>
+</ul></li>
+<li><p>执行 pod install</p></li>
+</ol>
+
+<h3 id="toc_8">附问题：</h3>
+
+<h4 id="toc_9">问题一：pod lib lint 验证不通过 出错</h4>
+
+<p>Swift 验证版本问题，根据提示添加 <code>swift_version</code> 属性</p>
+
+<h4 id="toc_10">问题二：二级目录没有显示出来</h4>
+
+<p><img src="media/15209234462100/15209991564647.jpg" alt=""/></p>
+
+<ul>
+<li><p>修改 s.source_files 加上 .swift<br/>
+<img src="media/15209234462100/15210088484156.jpg" alt=""/></p></li>
+<li><p>多级目录提交, 多文件之间尽量不要相互依赖</p></li>
+</ul>
+
+<pre><code>s.subspec &#39;CellKit&#39; do |cellKit|
+    cellKit.source_files = &#39;JJTableView/Classes/JJTableView/CellKit/**/*&#39;
+    cellKit.public_header_files = &#39;Pod/Classes/**/*.h&#39;
+    cellKit.dependency &#39;AFNetworking&#39;, &#39;~&gt; 2.3&#39;
+end
+</code></pre>
+
+<h1 id="toc_11">文章目录</h1>
+
+<ul>
+<li>
+<a href="#toc_0">一、 创建远程私有索引库</a>
+</li>
+<li>
+<a href="#toc_1">二、 将本地项目推送到远程</a>
+</li>
+<li>
+<a href="#toc_2">三、 配置 JJTableView.podspec 文件</a>
+<ul>
+<li>
+<a href="#toc_3">1. 校验一下我们.spec文件是否合法</a>
+</li>
+<li>
+<a href="#toc_4">2. tag 标签</a>
+</li>
+<li>
+<a href="#toc_5">3. 校验远程 .spec文件是否合法</a>
+</li>
+<li>
+<a href="#toc_6">4. .repo 提交到远程私有索引库</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">四、 主工程使用组件</a>
+</li>
+<li>
+<a href="#toc_8">附问题：</a>
+<ul>
+<li>
+<a href="#toc_9">问题一：pod lib lint 验证不通过 出错</a>
+</li>
+<li>
+<a href="#toc_10">问题二：二级目录没有显示出来</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_11">文章目录</a>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/3/13</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%9E%B6%E6%9E%84.html'>架构</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15208414821831.html">
+                
+                  <h1>组件化 - 本地私有库创建</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">创建子工程（测试工程）</h3>
+
+<ul>
+<li><p><strong>方法一：</strong> 确定需要抽取的组件，那么势必需要一个将其放到一个工程中能够正常运行，常规可以直接创建一个冲程，然后将需要的组件拖入工程中，创建 <code>.spec</code> 文件：</p>
+
+<pre><code>pod spec create [名称]
+</code></pre></li>
+<li><p><strong>方法二：</strong> 幸运的是 cocoapods 提供了我们快捷创建测试模板工程</p></li>
+<li><p>1.首先在当前工程目录文件中创建Lib文件，与工程目录同级，执行：</p>
+
+<pre><code>pod lib create [名称]
+</code></pre>
+
+<p>根据命令行提示操作，如下图</p></li>
+</ul>
+
+<p><img src="media/15208414821831/15208417126201.jpg" alt=""/></p>
+
+<ul>
+<li>2. 创建成功将直接打开测试工程，找到 ReplaceMe.swift 文件，将已封装的组件替换该文件</li>
+</ul>
+
+<p><img src="media/15208414821831/15208418690324.jpg" alt="" style="width:270px;"/></p>
+
+<ul>
+<li>3. 执行  pod install</li>
+</ul>
+
+<pre><code>pod install
+
+</code></pre>
+
+<p>拖入项目中的组件会自动出现在工程目录中，可进行对代码进行修改</p>
+
+<h3 id="toc_1">主工程使用本地组件</h3>
+
+<ul>
+<li>podfile 文件配置</li>
+</ul>
+
+<p>打开主项目工程，Podfile中添加 JJTableView 本地组件（Lib文件与主工程目录同级）</p>
+
+<pre><code>pod &#39;JJTableView&#39;, :path =&gt; &#39;../Lib/JJTableView&#39;
+</code></pre>
+
+<ul>
+<li>执行  pod install</li>
+</ul>
+
+<pre><code>pod install
+
+</code></pre>
+
+<p>主工程Pods工程中就会出现本地组件化的代码</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/3/12</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E6%9E%B6%E6%9E%84.html'>架构</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15204087282870.html">
+                
+                  <h1>Jenkins + Fastlane 持续集成自动化打包</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>本文使用 Jenkins 与 Fastlane 结合使用自动编译打包至蒲公英</p>
+</blockquote>
+
+<p>Fastlane 已在<a href="https://www.jianshu.com/p/de44b824f105">上篇文章</a>讲过，是一套使用Ruby写的自动化工具集，用于iOS和Android的自动化打包、发布等工作，可以节省大量的时间。</p>
+
+<blockquote>
+<p>Jenkins是一款自包含的开源自动化服务器，可用于自动执行与构建，测试和交付或部署软件有关的各种任务。</p>
+</blockquote>
+
+<h2 id="toc_0">Jenkins 安装</h2>
+
+<ul>
+<li>1. 命令行安装</li>
+</ul>
+
+<pre><code>brew install jenkins 
+
+
+</code></pre>
+
+<p><code>若无homebrew，安装homebrew</code></p>
+
+<pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<ul>
+<li>2. 官网下载安装</li>
+</ul>
+
+<pre><code>https://jenkins.io/
+</code></pre>
+
+<p>使用 homebrew 安装成功，显示启动Jenkins方法，如下图<br/>
+<img src="media/15204087282870/15204108387239.jpg" alt="" style="width:573px;"/></p>
+
+<h2 id="toc_1">Jenkins 使用</h2>
+
+<h4 id="toc_2">1. 启动Jenkins</h4>
+
+<pre><code>```
+$ jenkins
+
+```
+</code></pre>
+
+<h4 id="toc_3">2. 访问 <a href="http://localhost:8080/">http://localhost:8080/</a></h4>
+
+<pre><code>```
+2.1 弹出Jenkins安装界面，会让你输入安全密码,输入完成之后选择默认安装。
+（密码会在终端log日志中打印出来）
+
+2.2 新建管理员账号密码
+```
+</code></pre>
+
+<h4 id="toc_4">3. 安装插件</h4>
+
+<pre><code>创建账户之后会弹出插件安装选项，默认安装或选择安装，可根据需要自行选择
+
+GitLab插件
+在可选插件中选择GitLab和Gitlab Hook进行安装。
+
+Xcode插件
+在可选插件中选择Xcode进行安装。
+
+...
+
+以默认安装为例，（其实没有必要），后期可根据需要调整安装插件
+</code></pre>
+
+<h4 id="toc_5">4. 新建任务</h4>
+
+<ul>
+<li><p>进入主页面，点击新建任务，输入名称，选择&quot;构建一个自由风格的软件项目&quot;<br/>
+<img src="media/15204087282870/15204124474811.jpg" alt="" style="width:1037px;"/></p></li>
+<li><p>点击确认进入配置页面<br/>
+<img src="media/15204087282870/15204126203878.jpg" alt="" style="width:971px;"/></p></li>
+<li><p>配置源码管理，点击 Add 按钮，选择 Jenkins 填写仓库用户名、密码（或其他方式）<br/>
+<img src="media/15204087282870/15204128400804.jpg" alt="" style="width:895px;"/></p></li>
+<li><p>配置构建 - 上传至蒲公英</p>
+
+<ol>
+<li>输入项目中 fastlane 命令</li>
+</ol>
+
+<pre><code>fastlane beta_pgyer
+</code></pre>
+
+<p><img src="media/15204087282870/15204130038565.jpg" alt="" style="width:936px;"/>   </p>
+
+<ol>
+<li><p>与工作区对应关系如下：（否则构建 Execte shell 添加 cd ../  找到fastlane对应目录）<br/>
+<img src="media/15204087282870/15204132526762.jpg" alt="" style="width:704px;"/>   </p></li>
+<li><p>fastlane 文件夹中 Fastfile 文件中对应操作如下：<br/>
+<img src="media/15204087282870/15204134978253.jpg" alt="" style="width:469px;"/>         </p></li>
+</ol></li>
+</ul>
+
+<h4 id="toc_6">5. 立即构建</h4>
+
+<p><img src="media/15204087282870/15204140708308.jpg" alt="" style="width:569px;"/></p>
+
+<p>至此，Jenkins与fastlane结合使用的一个简单的自动化构建可正常运行，其他更多构建任务配置信息（构建触发器、构建环境、构建后操作等）可自行根据需要修改</p>
+
+<h2 id="toc_7">其他方式</h2>
+
+<ul>
+<li><p>Xcode 插件方式</p>
+
+<p>安装 Xcode 插件， 构建选项中会出现Xcode，具体配置信息可自行尝试<br/>
+<img src="media/15204087282870/15204142313802.jpg" alt="" style="width:574px;"/>   </p></li>
+<li><p>jenkins与fastlane分工</p>
+
+<p>jenkins配置项目相关参数，fastlane在fastfile脚本中使用。</p>
+
+<p>例如：在jenkins构建时添加参数：scheme，configuration，version，build</p>
+
+<p>然后在Execute Shell中使用命令：</p>
+
+<pre><code>fastlane beta_pgyer scheme:${scheme} configuration:${configuration}     version:${version} build:${build}
+</code></pre>
+
+<p>项目中Fastfile中可以这么使用：</p>
+
+<pre><code>lane :beta_pgyer do |options|
+#这样就可以获取到jenkins中传入的scheme，configuration，version，build的值
+#获取方式：options[:scheme]，options[:configuration]，options[: version]，  options[: build]
+end
+
+</code></pre></li>
+</ul>
+
+<h1 id="toc_8">文章目录</h1>
+
+<ul>
+<li>
+<a href="#toc_0">Jenkins 安装</a>
+</li>
+<li>
+<a href="#toc_1">Jenkins 使用</a>
+<ul>
+<li>
+<ul>
+<li>
+<a href="#toc_2">1. 启动Jenkins</a>
+</li>
+<li>
+<a href="#toc_3">2. 访问 http://localhost:8080/</a>
+</li>
+<li>
+<a href="#toc_4">3. 安装插件</a>
+</li>
+<li>
+<a href="#toc_5">4. 新建任务</a>
+</li>
+<li>
+<a href="#toc_6">5. 立即构建</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">其他方式</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">文章目录</a>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/3/7</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15196291080319.html">
+                
+                  <h1>FastLane - 上传到蒲公英</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">安装蒲公英的 Fastlane 插件</h2>
+
+<ul>
+<li>安装蒲公英的 Fastlane 插件
+<code>
+fastlane add_plugin pgyer
+</code></li>
+</ul>
+
+<h2 id="toc_1">Fastfile文件中添加Lane，加入蒲公英插件的配置信息</h2>
+
+<pre><code>lane :beta do
+  build_app(export_method: &quot;ad-hoc&quot;)
+  pgyer(api_key: &quot;7f15xxxxxxxxxxxxxxxxxx141&quot;, user_key: &quot;4a5bcxxxxxxxxxxxxxxx3a9e&quot;)
+end
+</code></pre>
+
+<p>注意：以上的 <code>api_key</code> 和 <code>user_key</code>，请开发者在自己账号下的 <code>应用管理</code> - <code>App概述</code> - <code>API</code> 中可以找到，并替换到以上相应的位置。<br/>
+<img src="media/15196291080319/15196309745541.jpg" alt="" style="width:582px;"/></p>
+
+<h2 id="toc_2">打包并自动上传 App 到蒲公英</h2>
+
+<pre><code>bundle exec fastlane beta_pgyer
+</code></pre>
+
+<p>打包上传成功截图如下：<br/>
+<img src="media/15196291080319/15196292344319.jpg" alt="" style="width:614px;"/></p>
+
+<h2 id="toc_3">参考</h2>
+
+<p><a href="https://www.pgyer.com/doc/view/fastlane">使用 Fastlane 上传 App 到蒲公英</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/2/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15196148245866.html">
+                
+                  <h1>Fastlane</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">简介</h2>
+
+<p>fastlane是为iOS和Android应用程序自动化测试版部署和发布的最简单方法。🚀它处理所有繁琐的任务，例如生成屏幕截图，处理代码签名以及发布应用程序。</p>
+
+<p>您可以从Fastfile存储库中创建一个文件开始，这里定义了您的测试版或App Store发布过程：</p>
+
+<pre><code>lane :beta do
+  increment_build_number
+  build_app
+  upload_to_testflight
+end
+
+lane :release do
+  capture_screenshots
+  build_app                 
+  upload_to_app_store       # Upload the screenshots and the binary to iTunes
+  slack                     # Let your team-mates know the new version is live
+end
+</code></pre>
+
+<pre><code>gym         # alias for &quot;build_ios_app&quot;
+build_app   # alias for &quot;build_ios_app&quot;
+</code></pre>
+
+<p>您只定义了2个不同的通道，一个用于测试版部署，另一个用于App Store。要在App Store中发布你的应用程序，你所要做的就是</p>
+
+<pre><code>fastlane release
+</code></pre>
+
+<h2 id="toc_1">安装使用fastlane</h2>
+
+<ul>
+<li><p>确保安装了最新版本的Xcode命令行工具：</p>
+
+<pre><code>xcode-select --install
+</code></pre></li>
+<li><p>使用安装fastlane</p>
+
+<pre><code>[sudo] gem install fastlane -NV 
+</code></pre></li>
+<li><p>导航到您的iOS或Android应用程序并运行</p>
+
+<pre><code>fastlane init
+
+注:(对于Swift安装：fastlane init swift)
+</code></pre>
+
+<p>安装fastlane根据提示信息填写相关信息即可，生成如下文件目录：<br/>
+<img src="media/15196148245866/15196248166965.jpg" alt=""/></p>
+
+<ul>
+<li><p>Appfile =&gt; 是用来存储一些公共信息的，<br/>
+比如app_identifier，apple_id，team_id，itc_team_id等 <a href="https://docs.fastlane.tools/advanced/#appfile">Appfile帮助</a></p></li>
+<li><p>Deliverfile =&gt; deliver的配置文件 <a href="https://docs.fastlane.tools/actions/deliver/">Deliverfile帮助</a></p></li>
+<li><p>Fastfile，其中包含分发您的应用程序所需的所有信息。是最重要的一个文件，在这个里面可以编写和定制我们的自动化脚本，所有的流程控制功能都写在这个文件里面。<a href="https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile">Fastfile帮助</a></p></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_2">配置效果</h2>
+
+<p><img src="media/15196148245866/15196262906220.jpg" alt=""/></p>
+
+<pre><code>increment_build_number_in_plist 需安装插件 fastlane-plugin-versioning
+</code></pre>
+
+<h2 id="toc_3">插件</h2>
+
+<p>Fastlane的插件是一个或者一组action的打包，单独发布在fastlane之外。<a href="https://docs.fastlane.tools/plugins/create-plugin/">Fastlane Plugin 指南</a></p>
+
+<ul>
+<li><p>查看所有插件：</p>
+
+<pre><code>fastlane search_plugins
+</code></pre></li>
+<li><p>安装插件</p></li>
+</ul>
+
+<pre><code>    fastlane add_plugin [插件名称]
+    
+    如:fastlane add_plugin versioning
+</code></pre>
+
+<h2 id="toc_4">环境变量<a href="https://docs.fastlane.tools/advanced/#environment-variables">Environment Variables</a></h2>
+
+<p>有时候我们希望把账号信息、更新描述和版本号等信息单独放在一个配置文件。在这里Fastlane给我们提供了相应的解决方案。</p>
+
+<p>我们可以在工程目录下创建一个名为 <code>.env</code> 的文件，自定义所需的临时变量，然后Fastlane的三个配置文件（<code>Appfile</code>、<code>Deliverfile</code>和<code>Fastfile</code>）分别从<code>.env</code>文件中读取配置信息</p>
+
+<p>更多信息查看<a href="https://docs.fastlane.tools/advanced/#environment-variables">fastlane文档</a></p>
+
+<h2 id="toc_5">其他 (辅助命令查看)</h2>
+
+<h3 id="toc_6">1.0 fastlane actions</h3>
+
+<p><em>fastlane actions</em>: 列出所有的 fastlane 的 actions，可以看到 fastlane 支持的所有 action<br/>
+<img src="media/15196148245866/15196167896499.jpg" alt="" style="width:610px;"/></p>
+
+<h3 id="toc_7">1.1 fastlane action [name]</h3>
+
+<p><code>fastlane action [name]</code> 显示某一个特定的 action 的详细配置</p>
+
+<p>例如：<code>fastlane action gym</code><br/>
+<img src="media/15196148245866/15196172482949.jpg" alt="" style="width:610px;"/></p>
+
+<h3 id="toc_8">2.0 fastlane lanes</h3>
+
+<pre><code>fastlane lanes: 列出所有的可用的 lane 及其描述。
+这里显示的就是你的 Fastfile 里面定义的所有 lane
+</code></pre>
+
+<h3 id="toc_9">2.1 fastlane list</h3>
+
+<pre><code>fastlane list: 显示所有的 lane，但是不显示描述。
+</code></pre>
+
+<h2 id="toc_10">参考</h2>
+
+<ol>
+<li>更多信息请参看<a href="https://docs.fastlane.tools/">官方网站fastlane docs</a></li>
+<li><a href="http://blog.devzeng.com/blog/ios-fastlane-in-action.html">iOS中fastlane的使用</a></li>
+<li><a href="https://whlsxl.github.io/">Fastlane带来的全自动化发布</a></li>
+</ol>
+
+<h2 id="toc_11">值得借鉴</h2>
+
+<p><a href="https://mp.weixin.qq.com/s/UDxe5eBVeLPMC14ed_DJhQ">iOS使用fastlane一键打包审核</a></p>
+
+<h1 id="toc_12">文章目录</h1>
+
+<ul>
+<li>
+<a href="#toc_0">简介</a>
+</li>
+<li>
+<a href="#toc_1">安装使用fastlane</a>
+</li>
+<li>
+<a href="#toc_2">配置效果</a>
+</li>
+<li>
+<a href="#toc_3">插件</a>
+</li>
+<li>
+<a href="#toc_4">环境变量Environment Variables</a>
+</li>
+<li>
+<a href="#toc_5">其他 (辅助命令查看)</a>
+<ul>
+<li>
+<a href="#toc_6">1.0 fastlane actions</a>
+</li>
+<li>
+<a href="#toc_7">1.1 fastlane action [name]</a>
+</li>
+<li>
+<a href="#toc_8">2.0 fastlane lanes</a>
+</li>
+<li>
+<a href="#toc_9">2.1 fastlane list</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_10">参考</a>
+</li>
+<li>
+<a href="#toc_11">值得借鉴</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_12">文章目录</a>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/2/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15193516410111.html">
+                
+                  <h1>Continuous Integration in Xcode</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在Xcode中，持续集成是自动化和简化Mac和iOS应用程序的构建，分析，测试和存档的过程，以确保它们始终处于可释放状态。在持续集成工作流程中，您可以在开发Mac上的Xcode本地编写应用程序，并将它们检入源代码存储库。然后将它们发送到OS X服务器提供的服务Xcode Server进行处理。在开发Mac上的Xcode中，您设置了运行在服务器上的僵尸程序。这些机器人使用存储库中的源代码处理您的应用程序，并报告结果。bot的每次运行称为集成，并且这些运行在整个应用程序的开发生命周期中定期发生<br/>
+<img src="media/15193516410111/15193516796669.png" alt=""/></p>
+
+<h2 id="toc_0">持续集成的目标是提高软件质量，实现这一目标有多种方式：</h2>
+
+<p><em>快速，轻松，及早地捕捉问题。</em>每次将代码更改提交到源代码存储库，按照特定的时间表或者手动启动它们时，Bot集成都可以设置为运行。这使您可以在整个开发过程中识别代码问题，在问题发生时解决问题，并防止将较小的问题级联到较大的问题。</p>
+
+<p><em>加强协作。</em>在持续集成工作流程中，您的整个团队（或选定的个人）可以创建机器人，触发集成，查看活动和下载构​​建。如果引入问题，代码更改导致失败的人将自动收到通知。</p>
+
+<p><em>扩大测试覆盖范围。</em>在本地工作时，在具有多种配置的多个设备上测试您的应用程序是一项手动和时间密集型过程。在持续集成工作流程中，它自动且简单。只需将多个设备插入服务器或将工作流配置为使用多个模拟器，相应地配置您的机器人，并让系统为您完成工作。</p>
+
+<p><em>随着时间的推移生成构建和测试统计。</em>在持续集成工作流程中，记录所有进度和失败。在任何时候，您都可以看到您的应用程序在开发过程中的位置以及它随着时间的推移如何成熟。</p>
+
+<p>[关于iOS自动化打包的一些分享](<a href="https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ">https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/2/23</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15176282030413.html">
+                
+                  <h1>OpenGL简单介绍及实践</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">什么是<a href="https://zh.wikipedia.org/wiki/OpenGL">OpenGL</a> (Open Graphics Library)</h2>
+
+<pre><code class="language-js">OpenGL 是一种应用程序编程接口（Application Programming Interface,API）,
+用于渲染2D、3D矢量图形。    
+
+</code></pre>
+
+<h2 id="toc_1">相关程序库</h2>
+
+<p>OpenGL被设计为只有输出的，所以它只提供渲染功能。核心API没有窗口系统、音频、打印、键盘／鼠标或其他输入设备的概念。</p>
+
+<p><strong>几个库创建在OpenGL之上，提供了OpenGL本身没有的功能:</strong></p>
+
+<ul>
+<li>GLU</li>
+<li>GLUT <code>(能够以可移植的方式提供基本的窗口功能)</code></li>
+<li>GLUI</li>
+<li>GLEW <code>(GLEW可以简化获取函数地址的过程，并且包含了可以跨平台使用的其他一些OpenGL编程方法)</code></li>
+<li>GLEE </li>
+<li>FREEGLUT <code>（GLUT已经于1998年不再更新了。于是就有了freeglut）</code></li>
+<li>OpenGL Performer <code>(可以创建实时可视化仿真程序)</code></li>
+<li>......</li>
+</ul>
+
+<p>当开发者需要使用最新的OpenGL扩展时，他们往往需要使用GLEW库或者是GLEE库提供的功能，可以在程序的运行期判断当前硬件是否支持相关的扩展，防止程序崩溃甚至造成硬件损坏。这类库利用动态加载技术（dlsym、GetProcAddress等函数）搜索各种扩展的信息。</p>
+
+<h2 id="toc_2">实践</h2>
+
+<ul>
+<li>GLUT 库使用</li>
+</ul>
+
+<pre><code>int main(int argc,char *argv[]) {
+    //1. 初始化一个GLUT库
+    glutInit(&amp;argc, (char **)argv);
+        
+    //2. 创建一个窗口并定制窗口名
+    glutCreateWindow(&quot;OpenGL_Demo&quot;);
+        
+    //3. 注册一个绘图函数，操作系统在必要的时刻就会对窗体进行重绘制操作
+    //它设置了一个现实回调（display callback）,即GLUT没在每次更新窗口内容时会自动调用改例程
+    glutDisplayFunc(RenderScene);
+        
+        
+    //这是一个无限执行的循环，它会负责一直处理窗口和操作系统的用户输入等操作。（
+    //注意：不会执    行在glutMainLoop()之后的所有命令。）
+    glutMainLoop();
+        
+        }
+</code></pre>
+
+<ul>
+<li>GLEW 库使用</li>
+</ul>
+
+<p>可在程序运行操作前进行使用，确保驱动程序的初始化过程中没有任何问题</p>
+
+<pre><code>    /*
+     初始化一个GLEW库,确保OpenGL API对程序完全可用。
+     在试图做任何渲染之前，要检查确定驱动程序的初始化过程中没有任何问题
+     */
+    GLenum status = glewInit();
+    if (GLEW_OK != status) {
+        
+        printf(&quot;GLEW Error:%s\n&quot;,glewGetErrorString(status));
+        return 1;
+        
+    }
+</code></pre>
+
+<ul>
+<li>详细过程</li>
+</ul>
+
+<pre><code>int main(int argc,char *argv[])
+{
+    gltSetWorkingDirectory(argv[0]);//设置当前工作目录，针对MAC OS X
+    glutInit(&amp;argc, argv);          //初始化一个GLUT库
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH|GLUT_STENCIL);//显示类型模式 
+    glutInitWindowSize(800, 600);   //GLUT窗口大小、窗口标题
+    glutCreateWindow(&quot;OpenGL_Demo&quot;);//创建一个窗口并定制窗口名
+    glutReshapeFunc(changeSize);    //改变窗口大小
+    glutDisplayFunc(RenderScene);   //绘图函数
+    glutSpecialFunc(SpeacialKeys);  //键盘操作
+    
+    //初始化一个GLEW库,确保OpenGL API对程序完全可用
+    GLenum status = glewInit();
+    if (GLEW_OK != status) {
+        printf(&quot;GLEW Error:%s\n&quot;,glewGetErrorString(status));
+        return 1;
+    }
+    
+    setupRC();//设置我们的渲染环境  
+      
+    glutMainLoop();//这是一个无限执行的循环,相当于RunLoop
+
+    return  0;
+    
+}
+
+
+/*
+ 在窗口大小改变时，接收新的宽度&amp;高度。
+ */
+void changeSize(int w,int h)
+{
+    /*
+     x,y 参数代表窗口中视图的左下角坐标，而宽度、高度是像素为表示，通常x,y 都是为0
+     */
+    glViewport(0, 0, w, h);
+
+}
+
+/*
+    绘制界面
+*/
+void RenderScene(void)
+{    
+     //清除一个或者一组特定的缓存区
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+
+    //2.设置一组浮点数来表示红色
+    GLfloat vRed[] = {1.0,0.0,0.0,1.0f};
+
+    //单元着色器(类型，颜色)
+    //shaderManager.UseStockShader(GLT_SHADER_IDENTITY,vRed);
+
+    //提交着色器
+    triangleBatch.Draw();
+
+    //将后台缓冲区进行渲染，然后结束后交换给前台
+    glutSwapBuffers();
+
+}
+
+
+/*
+    移动图形 -- 修改图形坐标！
+*/
+void SpeacialKeys(int key,int x,int y) {
+    
+    // ...
+    
+    glutPostRedisplay();//重新绘制
+}
+
+
+/*
+    设置我们的渲染环境 
+*/
+void setupRC()
+{
+    //设置清屏颜色（背景颜色）
+    glClearColor(0.2f, 0.40f, 0.7f, 1);
+
+    //初始化一个渲染管理器,没有着色器，在OpenGL 核心框架中是无法进行任何渲染的。
+    shaderManager.InitializeStockShaders();
+
+    //指定顶点
+    //矩形
+    GLfloat blockSize = 0.1f;
+    GLfloat vVerts[] = {
+        -blockSize,-blockSize,0.0f,
+        blockSize,-blockSize,0.0f,
+        blockSize,blockSize,0.0f,
+        -blockSize,blockSize,0.0f
+    };
+
+    triangleBatch.Begin(GL_TRIANGLE_FAN, 4);
+    triangleBatch.CopyVertexData3f(vVerts);//复制顶点数据到批处理中  
+    triangleBatch.End();
+
+}
+</code></pre>
+
+<p><a href="https://github.com/Caolongs/OpenGLDemo.git">Demo地址</a></p>
+
+<h2 id="toc_3">附</h2>
+
+<pre><code>    /*
+     GLUT_RGBA:RGBA颜色值模式
+     GLUT_DOUBLE:双缓存窗口
+     GLUT_DEPTH：
+     GLUT_STENCIL：
+     */
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH|GLUT_STENCIL);
+</code></pre>
+
+<pre><code>    /* 清除一个或者一组特定的缓存区
+     缓冲区是一块存在图像信息的储存空间，红色、绿色、蓝色和alpha分量通常一起分量通常一起作为颜色缓存区或像素缓存区引用。
+     OpenGL 中不止一种缓冲区（颜色缓存区、深度缓存区和模板缓存区）
+     清除缓存区对数值进行预置
+     参数：指定将要清除的缓存的
+     GL_COLOR_BUFFER_BIT :指示当前激活的用来进行颜色写入缓冲区
+     GL_DEPTH_BUFFER_BIT :指示深度缓存区
+     GL_STENCIL_BUFFER_BIT:指示模板缓冲区
+     */
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+
+</code></pre>
+
+<pre><code>    
+    /* 平面着色器
+     0.传递到存储着色器，即GLT_SHADER_IDENTITY着色器，
+     这个着色器只是使用指定颜色以默认笛卡尔坐标第在屏幕上渲染几何图形
+     1.平移矩阵 mTransformMatrix 与 每个顶点 相乘 -&gt; 新顶点 （顶点着色器）
+     2.将片元着色红色 (片元着色器)
+     */
+     shaderManager.UseStockShader(GLT_SHADER_IDENTITY,vRed);
+     
+     
+     //单元着色器(类型，颜色)---第一种方法用到的
+     shaderManager.UseStockShader(GLT_SHADER_IDENTITY,vRed);
+</code></pre>
+
+<pre><code>    //在开始的设置openGL 窗口的时候，我们指定要一个双缓冲区的渲染环境。
+    //这就意味着将在后台缓冲区进行渲染，渲染结束后交换给前台。
+    //这种方式可以防止观察者看到可能伴随着动画帧与动画帧之间的闪烁的渲染过程。
+    //缓冲区交换平台将以平台特定的方式进行。
+    //将后台缓冲区进行渲染，然后结束后交换给前台
+    glutSwapBuffers();
+</code></pre>
+
+<p><img src="media/15176282030413/QQ20180203-0.jpg" alt="QQ20180203-0"/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/2/3</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
           				   
                   </div>
                   <div class="more-right right">
@@ -1031,7 +2193,13 @@ int main(){
 
       	<p class="cat-list">
         
-            <a href="text.html"><strong>text</strong></a>
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
          
         </p>
 
@@ -1048,33 +2216,43 @@ int main(){
 	      
 		      
 			      <li class="post">
-			        <a href="15241488811717.html">XtraFinder</a>
+			        <a href="15240154214361.html">Block用法和实现原理</a>
 			      </li>
 		     
 		  
 		      
 			      <li class="post">
-			        <a href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a>
+			        <a href="15215981447516.html">架构模式 MVC MVP MVVM</a>
 			      </li>
 		     
 		  
 		      
 			      <li class="post">
-			        <a href="15241412696951.html">Go2Shell and AppleScript</a>
+			        <a href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a>
 			      </li>
 		     
 		  
 		      
 			      <li class="post">
-			        <a href="15240395407492.html">iTerm2</a>
+			        <a href="15211019198288.html">OpenGL ES - GLSL</a>
 			      </li>
 		     
 		  
 		      
 			      <li class="post">
-			        <a href="15240236247092.html">Alfred</a>
+			        <a href="15209234462100.html">组件化 - 远程私有库</a>
 			      </li>
 		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
 		  
 		      
 		   
@@ -1119,8 +2297,8 @@ Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
      
     </script>
 
-    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+    
+
 
 
   </body>

@@ -1,0 +1,785 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  CI - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15204087282870.html">
+                
+                  <h1>Jenkins + Fastlane 持续集成自动化打包</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>本文使用 Jenkins 与 Fastlane 结合使用自动编译打包至蒲公英</p>
+</blockquote>
+
+<p>Fastlane 已在<a href="https://www.jianshu.com/p/de44b824f105">上篇文章</a>讲过，是一套使用Ruby写的自动化工具集，用于iOS和Android的自动化打包、发布等工作，可以节省大量的时间。</p>
+
+<blockquote>
+<p>Jenkins是一款自包含的开源自动化服务器，可用于自动执行与构建，测试和交付或部署软件有关的各种任务。</p>
+</blockquote>
+
+<h2 id="toc_0">Jenkins 安装</h2>
+
+<ul>
+<li>1. 命令行安装</li>
+</ul>
+
+<pre><code>brew install jenkins 
+
+
+</code></pre>
+
+<p><code>若无homebrew，安装homebrew</code></p>
+
+<pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<ul>
+<li>2. 官网下载安装</li>
+</ul>
+
+<pre><code>https://jenkins.io/
+</code></pre>
+
+<p>使用 homebrew 安装成功，显示启动Jenkins方法，如下图<br/>
+<img src="media/15204087282870/15204108387239.jpg" alt="" style="width:573px;"/></p>
+
+<h2 id="toc_1">Jenkins 使用</h2>
+
+<h4 id="toc_2">1. 启动Jenkins</h4>
+
+<pre><code>```
+$ jenkins
+
+```
+</code></pre>
+
+<h4 id="toc_3">2. 访问 <a href="http://localhost:8080/">http://localhost:8080/</a></h4>
+
+<pre><code>```
+2.1 弹出Jenkins安装界面，会让你输入安全密码,输入完成之后选择默认安装。
+（密码会在终端log日志中打印出来）
+
+2.2 新建管理员账号密码
+```
+</code></pre>
+
+<h4 id="toc_4">3. 安装插件</h4>
+
+<pre><code>创建账户之后会弹出插件安装选项，默认安装或选择安装，可根据需要自行选择
+
+GitLab插件
+在可选插件中选择GitLab和Gitlab Hook进行安装。
+
+Xcode插件
+在可选插件中选择Xcode进行安装。
+
+...
+
+以默认安装为例，（其实没有必要），后期可根据需要调整安装插件
+</code></pre>
+
+<h4 id="toc_5">4. 新建任务</h4>
+
+<ul>
+<li><p>进入主页面，点击新建任务，输入名称，选择&quot;构建一个自由风格的软件项目&quot;<br/>
+<img src="media/15204087282870/15204124474811.jpg" alt="" style="width:1037px;"/></p></li>
+<li><p>点击确认进入配置页面<br/>
+<img src="media/15204087282870/15204126203878.jpg" alt="" style="width:971px;"/></p></li>
+<li><p>配置源码管理，点击 Add 按钮，选择 Jenkins 填写仓库用户名、密码（或其他方式）<br/>
+<img src="media/15204087282870/15204128400804.jpg" alt="" style="width:895px;"/></p></li>
+<li><p>配置构建 - 上传至蒲公英</p>
+
+<ol>
+<li>输入项目中 fastlane 命令</li>
+</ol>
+
+<pre><code>fastlane beta_pgyer
+</code></pre>
+
+<p><img src="media/15204087282870/15204130038565.jpg" alt="" style="width:936px;"/>   </p>
+
+<ol>
+<li><p>与工作区对应关系如下：（否则构建 Execte shell 添加 cd ../  找到fastlane对应目录）<br/>
+<img src="media/15204087282870/15204132526762.jpg" alt="" style="width:704px;"/>   </p></li>
+<li><p>fastlane 文件夹中 Fastfile 文件中对应操作如下：<br/>
+<img src="media/15204087282870/15204134978253.jpg" alt="" style="width:469px;"/>         </p></li>
+</ol></li>
+</ul>
+
+<h4 id="toc_6">5. 立即构建</h4>
+
+<p><img src="media/15204087282870/15204140708308.jpg" alt="" style="width:569px;"/></p>
+
+<p>至此，Jenkins与fastlane结合使用的一个简单的自动化构建可正常运行，其他更多构建任务配置信息（构建触发器、构建环境、构建后操作等）可自行根据需要修改</p>
+
+<h2 id="toc_7">其他方式</h2>
+
+<ul>
+<li><p>Xcode 插件方式</p>
+
+<p>安装 Xcode 插件， 构建选项中会出现Xcode，具体配置信息可自行尝试<br/>
+<img src="media/15204087282870/15204142313802.jpg" alt="" style="width:574px;"/>   </p></li>
+<li><p>jenkins与fastlane分工</p>
+
+<p>jenkins配置项目相关参数，fastlane在fastfile脚本中使用。</p>
+
+<p>例如：在jenkins构建时添加参数：scheme，configuration，version，build</p>
+
+<p>然后在Execute Shell中使用命令：</p>
+
+<pre><code>fastlane beta_pgyer scheme:${scheme} configuration:${configuration}     version:${version} build:${build}
+</code></pre>
+
+<p>项目中Fastfile中可以这么使用：</p>
+
+<pre><code>lane :beta_pgyer do |options|
+#这样就可以获取到jenkins中传入的scheme，configuration，version，build的值
+#获取方式：options[:scheme]，options[:configuration]，options[: version]，  options[: build]
+end
+
+</code></pre></li>
+</ul>
+
+<h1 id="toc_8">文章目录</h1>
+
+<ul>
+<li>
+<a href="#toc_0">Jenkins 安装</a>
+</li>
+<li>
+<a href="#toc_1">Jenkins 使用</a>
+<ul>
+<li>
+<ul>
+<li>
+<a href="#toc_2">1. 启动Jenkins</a>
+</li>
+<li>
+<a href="#toc_3">2. 访问 http://localhost:8080/</a>
+</li>
+<li>
+<a href="#toc_4">3. 安装插件</a>
+</li>
+<li>
+<a href="#toc_5">4. 新建任务</a>
+</li>
+<li>
+<a href="#toc_6">5. 立即构建</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">其他方式</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">文章目录</a>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/3/7</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15196291080319.html">
+                
+                  <h1>FastLane - 上传到蒲公英</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">安装蒲公英的 Fastlane 插件</h2>
+
+<ul>
+<li>安装蒲公英的 Fastlane 插件
+<code>
+fastlane add_plugin pgyer
+</code></li>
+</ul>
+
+<h2 id="toc_1">Fastfile文件中添加Lane，加入蒲公英插件的配置信息</h2>
+
+<pre><code>lane :beta do
+  build_app(export_method: &quot;ad-hoc&quot;)
+  pgyer(api_key: &quot;7f15xxxxxxxxxxxxxxxxxx141&quot;, user_key: &quot;4a5bcxxxxxxxxxxxxxxx3a9e&quot;)
+end
+</code></pre>
+
+<p>注意：以上的 <code>api_key</code> 和 <code>user_key</code>，请开发者在自己账号下的 <code>应用管理</code> - <code>App概述</code> - <code>API</code> 中可以找到，并替换到以上相应的位置。<br/>
+<img src="media/15196291080319/15196309745541.jpg" alt="" style="width:582px;"/></p>
+
+<h2 id="toc_2">打包并自动上传 App 到蒲公英</h2>
+
+<pre><code>bundle exec fastlane beta_pgyer
+</code></pre>
+
+<p>打包上传成功截图如下：<br/>
+<img src="media/15196291080319/15196292344319.jpg" alt="" style="width:614px;"/></p>
+
+<h2 id="toc_3">参考</h2>
+
+<p><a href="https://www.pgyer.com/doc/view/fastlane">使用 Fastlane 上传 App 到蒲公英</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/2/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15196148245866.html">
+                
+                  <h1>Fastlane</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">简介</h2>
+
+<p>fastlane是为iOS和Android应用程序自动化测试版部署和发布的最简单方法。🚀它处理所有繁琐的任务，例如生成屏幕截图，处理代码签名以及发布应用程序。</p>
+
+<p>您可以从Fastfile存储库中创建一个文件开始，这里定义了您的测试版或App Store发布过程：</p>
+
+<pre><code>lane :beta do
+  increment_build_number
+  build_app
+  upload_to_testflight
+end
+
+lane :release do
+  capture_screenshots
+  build_app                 
+  upload_to_app_store       # Upload the screenshots and the binary to iTunes
+  slack                     # Let your team-mates know the new version is live
+end
+</code></pre>
+
+<pre><code>gym         # alias for &quot;build_ios_app&quot;
+build_app   # alias for &quot;build_ios_app&quot;
+</code></pre>
+
+<p>您只定义了2个不同的通道，一个用于测试版部署，另一个用于App Store。要在App Store中发布你的应用程序，你所要做的就是</p>
+
+<pre><code>fastlane release
+</code></pre>
+
+<h2 id="toc_1">安装使用fastlane</h2>
+
+<ul>
+<li><p>确保安装了最新版本的Xcode命令行工具：</p>
+
+<pre><code>xcode-select --install
+</code></pre></li>
+<li><p>使用安装fastlane</p>
+
+<pre><code>[sudo] gem install fastlane -NV 
+</code></pre></li>
+<li><p>导航到您的iOS或Android应用程序并运行</p>
+
+<pre><code>fastlane init
+
+注:(对于Swift安装：fastlane init swift)
+</code></pre>
+
+<p>安装fastlane根据提示信息填写相关信息即可，生成如下文件目录：<br/>
+<img src="media/15196148245866/15196248166965.jpg" alt=""/></p>
+
+<ul>
+<li><p>Appfile =&gt; 是用来存储一些公共信息的，<br/>
+比如app_identifier，apple_id，team_id，itc_team_id等 <a href="https://docs.fastlane.tools/advanced/#appfile">Appfile帮助</a></p></li>
+<li><p>Deliverfile =&gt; deliver的配置文件 <a href="https://docs.fastlane.tools/actions/deliver/">Deliverfile帮助</a></p></li>
+<li><p>Fastfile，其中包含分发您的应用程序所需的所有信息。是最重要的一个文件，在这个里面可以编写和定制我们的自动化脚本，所有的流程控制功能都写在这个文件里面。<a href="https://github.com/fastlane/fastlane/tree/master/fastlane/docs#fastfile">Fastfile帮助</a></p></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_2">配置效果</h2>
+
+<p><img src="media/15196148245866/15196262906220.jpg" alt=""/></p>
+
+<pre><code>increment_build_number_in_plist 需安装插件 fastlane-plugin-versioning
+</code></pre>
+
+<h2 id="toc_3">插件</h2>
+
+<p>Fastlane的插件是一个或者一组action的打包，单独发布在fastlane之外。<a href="https://docs.fastlane.tools/plugins/create-plugin/">Fastlane Plugin 指南</a></p>
+
+<ul>
+<li><p>查看所有插件：</p>
+
+<pre><code>fastlane search_plugins
+</code></pre></li>
+<li><p>安装插件</p></li>
+</ul>
+
+<pre><code>    fastlane add_plugin [插件名称]
+    
+    如:fastlane add_plugin versioning
+</code></pre>
+
+<h2 id="toc_4">环境变量<a href="https://docs.fastlane.tools/advanced/#environment-variables">Environment Variables</a></h2>
+
+<p>有时候我们希望把账号信息、更新描述和版本号等信息单独放在一个配置文件。在这里Fastlane给我们提供了相应的解决方案。</p>
+
+<p>我们可以在工程目录下创建一个名为 <code>.env</code> 的文件，自定义所需的临时变量，然后Fastlane的三个配置文件（<code>Appfile</code>、<code>Deliverfile</code>和<code>Fastfile</code>）分别从<code>.env</code>文件中读取配置信息</p>
+
+<p>更多信息查看<a href="https://docs.fastlane.tools/advanced/#environment-variables">fastlane文档</a></p>
+
+<h2 id="toc_5">其他 (辅助命令查看)</h2>
+
+<h3 id="toc_6">1.0 fastlane actions</h3>
+
+<p><em>fastlane actions</em>: 列出所有的 fastlane 的 actions，可以看到 fastlane 支持的所有 action<br/>
+<img src="media/15196148245866/15196167896499.jpg" alt="" style="width:610px;"/></p>
+
+<h3 id="toc_7">1.1 fastlane action [name]</h3>
+
+<p><code>fastlane action [name]</code> 显示某一个特定的 action 的详细配置</p>
+
+<p>例如：<code>fastlane action gym</code><br/>
+<img src="media/15196148245866/15196172482949.jpg" alt="" style="width:610px;"/></p>
+
+<h3 id="toc_8">2.0 fastlane lanes</h3>
+
+<pre><code>fastlane lanes: 列出所有的可用的 lane 及其描述。
+这里显示的就是你的 Fastfile 里面定义的所有 lane
+</code></pre>
+
+<h3 id="toc_9">2.1 fastlane list</h3>
+
+<pre><code>fastlane list: 显示所有的 lane，但是不显示描述。
+</code></pre>
+
+<h2 id="toc_10">参考</h2>
+
+<ol>
+<li>更多信息请参看<a href="https://docs.fastlane.tools/">官方网站fastlane docs</a></li>
+<li><a href="http://blog.devzeng.com/blog/ios-fastlane-in-action.html">iOS中fastlane的使用</a></li>
+<li><a href="https://whlsxl.github.io/">Fastlane带来的全自动化发布</a></li>
+</ol>
+
+<h2 id="toc_11">值得借鉴</h2>
+
+<p><a href="https://mp.weixin.qq.com/s/UDxe5eBVeLPMC14ed_DJhQ">iOS使用fastlane一键打包审核</a></p>
+
+<h1 id="toc_12">文章目录</h1>
+
+<ul>
+<li>
+<a href="#toc_0">简介</a>
+</li>
+<li>
+<a href="#toc_1">安装使用fastlane</a>
+</li>
+<li>
+<a href="#toc_2">配置效果</a>
+</li>
+<li>
+<a href="#toc_3">插件</a>
+</li>
+<li>
+<a href="#toc_4">环境变量Environment Variables</a>
+</li>
+<li>
+<a href="#toc_5">其他 (辅助命令查看)</a>
+<ul>
+<li>
+<a href="#toc_6">1.0 fastlane actions</a>
+</li>
+<li>
+<a href="#toc_7">1.1 fastlane action [name]</a>
+</li>
+<li>
+<a href="#toc_8">2.0 fastlane lanes</a>
+</li>
+<li>
+<a href="#toc_9">2.1 fastlane list</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_10">参考</a>
+</li>
+<li>
+<a href="#toc_11">值得借鉴</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_12">文章目录</a>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/2/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15193516410111.html">
+                
+                  <h1>Continuous Integration in Xcode</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在Xcode中，持续集成是自动化和简化Mac和iOS应用程序的构建，分析，测试和存档的过程，以确保它们始终处于可释放状态。在持续集成工作流程中，您可以在开发Mac上的Xcode本地编写应用程序，并将它们检入源代码存储库。然后将它们发送到OS X服务器提供的服务Xcode Server进行处理。在开发Mac上的Xcode中，您设置了运行在服务器上的僵尸程序。这些机器人使用存储库中的源代码处理您的应用程序，并报告结果。bot的每次运行称为集成，并且这些运行在整个应用程序的开发生命周期中定期发生<br/>
+<img src="media/15193516410111/15193516796669.png" alt=""/></p>
+
+<h2 id="toc_0">持续集成的目标是提高软件质量，实现这一目标有多种方式：</h2>
+
+<p><em>快速，轻松，及早地捕捉问题。</em>每次将代码更改提交到源代码存储库，按照特定的时间表或者手动启动它们时，Bot集成都可以设置为运行。这使您可以在整个开发过程中识别代码问题，在问题发生时解决问题，并防止将较小的问题级联到较大的问题。</p>
+
+<p><em>加强协作。</em>在持续集成工作流程中，您的整个团队（或选定的个人）可以创建机器人，触发集成，查看活动和下载构​​建。如果引入问题，代码更改导致失败的人将自动收到通知。</p>
+
+<p><em>扩大测试覆盖范围。</em>在本地工作时，在具有多种配置的多个设备上测试您的应用程序是一项手动和时间密集型过程。在持续集成工作流程中，它自动且简单。只需将多个设备插入服务器或将工作流配置为使用多个模拟器，相应地配置您的机器人，并让系统为您完成工作。</p>
+
+<p><em>随着时间的推移生成构建和测试统计。</em>在持续集成工作流程中，记录所有进度和失败。在任何时候，您都可以看到您的应用程序在开发过程中的位置以及它随着时间的推移如何成熟。</p>
+
+<p>[关于iOS自动化打包的一些分享](<a href="https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ">https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/2/23</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='CI.html'>CI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15240154214361.html">Block用法和实现原理</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15215981447516.html">架构模式 MVC MVP MVVM</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15211019198288.html">OpenGL ES - GLSL</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15209234462100.html">组件化 - 远程私有库</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

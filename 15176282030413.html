@@ -1,0 +1,531 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  OpenGL简单介绍及实践 - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>OpenGL简单介绍及实践</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/2/3</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <h2 id="toc_0">什么是<a href="https://zh.wikipedia.org/wiki/OpenGL">OpenGL</a> (Open Graphics Library)</h2>
+
+<pre><code class="language-js">OpenGL 是一种应用程序编程接口（Application Programming Interface,API）,
+用于渲染2D、3D矢量图形。    
+
+</code></pre>
+
+<h2 id="toc_1">相关程序库</h2>
+
+<p>OpenGL被设计为只有输出的，所以它只提供渲染功能。核心API没有窗口系统、音频、打印、键盘／鼠标或其他输入设备的概念。</p>
+
+<p><strong>几个库创建在OpenGL之上，提供了OpenGL本身没有的功能:</strong></p>
+
+<ul>
+<li>GLU</li>
+<li>GLUT <code>(能够以可移植的方式提供基本的窗口功能)</code></li>
+<li>GLUI</li>
+<li>GLEW <code>(GLEW可以简化获取函数地址的过程，并且包含了可以跨平台使用的其他一些OpenGL编程方法)</code></li>
+<li>GLEE </li>
+<li>FREEGLUT <code>（GLUT已经于1998年不再更新了。于是就有了freeglut）</code></li>
+<li>OpenGL Performer <code>(可以创建实时可视化仿真程序)</code></li>
+<li>......</li>
+</ul>
+
+<p>当开发者需要使用最新的OpenGL扩展时，他们往往需要使用GLEW库或者是GLEE库提供的功能，可以在程序的运行期判断当前硬件是否支持相关的扩展，防止程序崩溃甚至造成硬件损坏。这类库利用动态加载技术（dlsym、GetProcAddress等函数）搜索各种扩展的信息。</p>
+
+<h2 id="toc_2">实践</h2>
+
+<ul>
+<li>GLUT 库使用</li>
+</ul>
+
+<pre><code>int main(int argc,char *argv[]) {
+    //1. 初始化一个GLUT库
+    glutInit(&amp;argc, (char **)argv);
+        
+    //2. 创建一个窗口并定制窗口名
+    glutCreateWindow(&quot;OpenGL_Demo&quot;);
+        
+    //3. 注册一个绘图函数，操作系统在必要的时刻就会对窗体进行重绘制操作
+    //它设置了一个现实回调（display callback）,即GLUT没在每次更新窗口内容时会自动调用改例程
+    glutDisplayFunc(RenderScene);
+        
+        
+    //这是一个无限执行的循环，它会负责一直处理窗口和操作系统的用户输入等操作。（
+    //注意：不会执    行在glutMainLoop()之后的所有命令。）
+    glutMainLoop();
+        
+        }
+</code></pre>
+
+<ul>
+<li>GLEW 库使用</li>
+</ul>
+
+<p>可在程序运行操作前进行使用，确保驱动程序的初始化过程中没有任何问题</p>
+
+<pre><code>    /*
+     初始化一个GLEW库,确保OpenGL API对程序完全可用。
+     在试图做任何渲染之前，要检查确定驱动程序的初始化过程中没有任何问题
+     */
+    GLenum status = glewInit();
+    if (GLEW_OK != status) {
+        
+        printf(&quot;GLEW Error:%s\n&quot;,glewGetErrorString(status));
+        return 1;
+        
+    }
+</code></pre>
+
+<ul>
+<li>详细过程</li>
+</ul>
+
+<pre><code>int main(int argc,char *argv[])
+{
+    gltSetWorkingDirectory(argv[0]);//设置当前工作目录，针对MAC OS X
+    glutInit(&amp;argc, argv);          //初始化一个GLUT库
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH|GLUT_STENCIL);//显示类型模式 
+    glutInitWindowSize(800, 600);   //GLUT窗口大小、窗口标题
+    glutCreateWindow(&quot;OpenGL_Demo&quot;);//创建一个窗口并定制窗口名
+    glutReshapeFunc(changeSize);    //改变窗口大小
+    glutDisplayFunc(RenderScene);   //绘图函数
+    glutSpecialFunc(SpeacialKeys);  //键盘操作
+    
+    //初始化一个GLEW库,确保OpenGL API对程序完全可用
+    GLenum status = glewInit();
+    if (GLEW_OK != status) {
+        printf(&quot;GLEW Error:%s\n&quot;,glewGetErrorString(status));
+        return 1;
+    }
+    
+    setupRC();//设置我们的渲染环境  
+      
+    glutMainLoop();//这是一个无限执行的循环,相当于RunLoop
+
+    return  0;
+    
+}
+
+
+/*
+ 在窗口大小改变时，接收新的宽度&amp;高度。
+ */
+void changeSize(int w,int h)
+{
+    /*
+     x,y 参数代表窗口中视图的左下角坐标，而宽度、高度是像素为表示，通常x,y 都是为0
+     */
+    glViewport(0, 0, w, h);
+
+}
+
+/*
+    绘制界面
+*/
+void RenderScene(void)
+{    
+     //清除一个或者一组特定的缓存区
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+
+    //2.设置一组浮点数来表示红色
+    GLfloat vRed[] = {1.0,0.0,0.0,1.0f};
+
+    //单元着色器(类型，颜色)
+    //shaderManager.UseStockShader(GLT_SHADER_IDENTITY,vRed);
+
+    //提交着色器
+    triangleBatch.Draw();
+
+    //将后台缓冲区进行渲染，然后结束后交换给前台
+    glutSwapBuffers();
+
+}
+
+
+/*
+    移动图形 -- 修改图形坐标！
+*/
+void SpeacialKeys(int key,int x,int y) {
+    
+    // ...
+    
+    glutPostRedisplay();//重新绘制
+}
+
+
+/*
+    设置我们的渲染环境 
+*/
+void setupRC()
+{
+    //设置清屏颜色（背景颜色）
+    glClearColor(0.2f, 0.40f, 0.7f, 1);
+
+    //初始化一个渲染管理器,没有着色器，在OpenGL 核心框架中是无法进行任何渲染的。
+    shaderManager.InitializeStockShaders();
+
+    //指定顶点
+    //矩形
+    GLfloat blockSize = 0.1f;
+    GLfloat vVerts[] = {
+        -blockSize,-blockSize,0.0f,
+        blockSize,-blockSize,0.0f,
+        blockSize,blockSize,0.0f,
+        -blockSize,blockSize,0.0f
+    };
+
+    triangleBatch.Begin(GL_TRIANGLE_FAN, 4);
+    triangleBatch.CopyVertexData3f(vVerts);//复制顶点数据到批处理中  
+    triangleBatch.End();
+
+}
+</code></pre>
+
+<p><a href="https://github.com/Caolongs/OpenGLDemo.git">Demo地址</a></p>
+
+<h2 id="toc_3">附</h2>
+
+<pre><code>    /*
+     GLUT_RGBA:RGBA颜色值模式
+     GLUT_DOUBLE:双缓存窗口
+     GLUT_DEPTH：
+     GLUT_STENCIL：
+     */
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH|GLUT_STENCIL);
+</code></pre>
+
+<pre><code>    /* 清除一个或者一组特定的缓存区
+     缓冲区是一块存在图像信息的储存空间，红色、绿色、蓝色和alpha分量通常一起分量通常一起作为颜色缓存区或像素缓存区引用。
+     OpenGL 中不止一种缓冲区（颜色缓存区、深度缓存区和模板缓存区）
+     清除缓存区对数值进行预置
+     参数：指定将要清除的缓存的
+     GL_COLOR_BUFFER_BIT :指示当前激活的用来进行颜色写入缓冲区
+     GL_DEPTH_BUFFER_BIT :指示深度缓存区
+     GL_STENCIL_BUFFER_BIT:指示模板缓冲区
+     */
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+
+</code></pre>
+
+<pre><code>    
+    /* 平面着色器
+     0.传递到存储着色器，即GLT_SHADER_IDENTITY着色器，
+     这个着色器只是使用指定颜色以默认笛卡尔坐标第在屏幕上渲染几何图形
+     1.平移矩阵 mTransformMatrix 与 每个顶点 相乘 -&gt; 新顶点 （顶点着色器）
+     2.将片元着色红色 (片元着色器)
+     */
+     shaderManager.UseStockShader(GLT_SHADER_IDENTITY,vRed);
+     
+     
+     //单元着色器(类型，颜色)---第一种方法用到的
+     shaderManager.UseStockShader(GLT_SHADER_IDENTITY,vRed);
+</code></pre>
+
+<pre><code>    //在开始的设置openGL 窗口的时候，我们指定要一个双缓冲区的渲染环境。
+    //这就意味着将在后台缓冲区进行渲染，渲染结束后交换给前台。
+    //这种方式可以防止观察者看到可能伴随着动画帧与动画帧之间的闪烁的渲染过程。
+    //缓冲区交换平台将以平台特定的方式进行。
+    //将后台缓冲区进行渲染，然后结束后交换给前台
+    glutSwapBuffers();
+</code></pre>
+
+<p><img src="media/15176282030413/QQ20180203-0.jpg" alt="QQ20180203-0"/></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15193516410111.html" 
+          title="Previous Post: Continuous Integration in Xcode">&laquo; Continuous Integration in Xcode</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15240154214361.html">Block用法和实现原理</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15215981447516.html">架构模式 MVC MVP MVVM</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15211019198288.html">OpenGL ES - GLSL</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15209234462100.html">组件化 - 远程私有库</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

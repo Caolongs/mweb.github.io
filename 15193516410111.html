@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Block用法和实现原理 - 
+  Continuous Integration in Xcode - 
   
   </title>
   
@@ -105,14 +105,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Block用法和实现原理</h1>
+          <h1>Continuous Integration in Xcode</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2018/4/18</span>
+          <span class="date">2018/2/23</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+              <span class="posted-in"><a href='CI.html'>CI</a></span>
            
          
           <span class="comments">
@@ -125,282 +125,20 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">Block 概念</h3>
+      <p>在Xcode中，持续集成是自动化和简化Mac和iOS应用程序的构建，分析，测试和存档的过程，以确保它们始终处于可释放状态。在持续集成工作流程中，您可以在开发Mac上的Xcode本地编写应用程序，并将它们检入源代码存储库。然后将它们发送到OS X服务器提供的服务Xcode Server进行处理。在开发Mac上的Xcode中，您设置了运行在服务器上的僵尸程序。这些机器人使用存储库中的源代码处理您的应用程序，并报告结果。bot的每次运行称为集成，并且这些运行在整个应用程序的开发生命周期中定期发生<br/>
+<img src="media/15193516410111/15193516796669.png" alt=""/></p>
 
-<blockquote>
-<p>闭包 = 一个函数「或指向函数的指针」+ 该函数执行的外部的上下文变量「也就是自由变量」；<br/>
-Block 是 Objective-C 对于闭包的实现。</p>
+<h2 id="toc_0">持续集成的目标是提高软件质量，实现这一目标有多种方式：</h2>
 
-<p>其中，Block：</p>
+<p><em>快速，轻松，及早地捕捉问题。</em>每次将代码更改提交到源代码存储库，按照特定的时间表或者手动启动它们时，Bot集成都可以设置为运行。这使您可以在整个开发过程中识别代码问题，在问题发生时解决问题，并防止将较小的问题级联到较大的问题。</p>
 
-<ul>
-<li>可以嵌套定义，定义 Block 方法和定义函数方法相似</li>
-<li>Block 可以定义在方法内部或外部</li>
-<li>只有调用 Block 时候，才会执行其{}体内的代码</li>
-<li>本质是对象，使代码高聚合</li>
-</ul>
-</blockquote>
+<p><em>加强协作。</em>在持续集成工作流程中，您的整个团队（或选定的个人）可以创建机器人，触发集成，查看活动和下载构​​建。如果引入问题，代码更改导致失败的人将自动收到通知。</p>
 
-<h3 id="toc_1">Block 格式</h3>
+<p><em>扩大测试覆盖范围。</em>在本地工作时，在具有多种配置的多个设备上测试您的应用程序是一项手动和时间密集型过程。在持续集成工作流程中，它自动且简单。只需将多个设备插入服务器或将工作流配置为使用多个模拟器，相应地配置您的机器人，并让系统为您完成工作。</p>
 
-<h5 id="toc_2">1. Block的定义格式</h5>
+<p><em>随着时间的推移生成构建和测试统计。</em>在持续集成工作流程中，记录所有进度和失败。在任何时候，您都可以看到您的应用程序在开发过程中的位置以及它随着时间的推移如何成熟。</p>
 
-<pre><code>返回值类型 (^block变量名)(形参列表) = ^(形参列表) {
-
-};
-</code></pre>
-
-<p><img src="media/15240154214361/15240178321653.jpg" alt=""/></p>
-
-<h5 id="toc_3">2. Block表达式语法(等号后是表达式语法)</h5>
-
-<blockquote>
-<p>^ 返回值类型 (参数列表) {表达式}</p>
-</blockquote>
-
-<pre><code>^ int (int count) {
-        return count + 1;
-    };
-</code></pre>
-
-<p>其中，可省略部分有：返回类型(上图为省略返回类型)</p>
-
-<pre><code>^ (int count) {
-        return count + 1;
-    };
-</code></pre>
-
-<p>参数列表为空，则可省略，例：</p>
-
-<pre><code>^ {
-        NSLog(@&quot;No Parameter&quot;);
-    };
-</code></pre>
-
-<p>即表达式最简模式语法为：</p>
-
-<pre><code> ^ {表达式}
-</code></pre>
-
-<h5 id="toc_4">3. Block使用</h5>
-
-<blockquote>
-<p>1、 无参数，无返回值，声明和定义</p>
-</blockquote>
-
-<pre><code>void(^MyBlockOne)(void) = ^(void){
-
-NSLog(@&quot;无参数，无返回值&quot;);  
-
-};  
-MyBlockOne();//block的调用
-</code></pre>
-
-<blockquote>
-<p>2、有参数无返回值</p>
-</blockquote>
-
-<pre><code>void(^MyblockTwo)(int a) = ^(int a){
-
-NSLog(@&quot;@ = %d我就是block，有参数，无返回值&quot;,a);
-
-  };  
-MyblockTwo(100);
-</code></pre>
-
-<blockquote>
-<p>3、有参数有返回值</p>
-</blockquote>
-
-<pre><code>int(^MyBlockThree)(int, int) = ^(int a, int b){    
-
-  NSLog(@&quot;%d我就是block，有参数，有返回值&quot;,a + b);
-  returna + b; 
-
- };  
-MyBlockThree(12,56);
-</code></pre>
-
-<blockquote>
-<p>4、有参数有返回值</p>
-</blockquote>
-
-<pre><code>int(^MyblockFour)(void) = ^{
-    NSLog(@&quot;无参数，有返回值&quot;);
-    return45;
-  };
-MyblockFour();
-</code></pre>
-
-<blockquote>
-<p>5、实际开发中常用typedef 定义Block</p>
-</blockquote>
-
-<pre><code>//用typedef定义一个block：
-typedef int (^MyBlock)(int, int);
-
-//定义类的属性
-@property (nonatomic, copy) MyBlock myBlockOne;
-
-//使用
-self.myBlockOne = ^int (int ,int){
-    //...
-}
-
-</code></pre>
-
-<h5 id="toc_5">4. Block与外界变量</h5>
-
-<blockquote>
-<p>全局块(_NSConcreteGlobalBlock)<br/>
-栈块(_NSConcreteStackBlock)<br/>
-堆块(_NSConcreteMallocBlock) （ARC下引入外界变量）</p>
-</blockquote>
-
-<h6 id="toc_6">不使用 __block</h6>
-
-<p>1、 创建 .c 文件<br/>
-```<br/>
-int main(){</p>
-
-<pre><code>int a = 10;
-void (^block)(void) = ^{
-
-    printf(&quot;%d&quot;,a);
-    printf(&quot;test block\n&quot;);
-
-};
-block();
-return 0;
-</code></pre>
-
-<p>}<br/>
-```<br/>
-2、编译</p>
-
-<pre><code>$ gcc testBlock.c
-</code></pre>
-
-<p>生成可执行文件 a.out<br/>
-3、执行</p>
-
-<pre><code>$./a.out testBlock.c 
-</code></pre>
-
-<ol>
-<li>使用clang 生成 c++ 文件<br/></li>
-</ol>
-
-<pre><code>$ clang -rewrite-objc testBlock.c
-</code></pre>
-
-<p>c++ 文件  内容</p>
-
-<pre><code>static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  int a = __cself-&gt;a; // bound by copy
-// 生成一个新的值
-
-        printf(&quot;%d&quot;,a);
-  printf(&quot;test block\n&quot;);
-
- }
-
-//......
-
-int main(){
-
-    int a = 10;
- void (*block)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, a));
- ((void (*)(__block_impl *))((__block_impl *)block)-&gt;FuncPtr)((__block_impl *)block);
- return 0;
-}
-</code></pre>
-
-<h6 id="toc_7">使用 __block</h6>
-
-<pre><code>int main(){
-    
-    __block int a = 10;
-    void (^block)(void) = ^{
-
-        printf(&quot;%d&quot;,a);
-        printf(&quot;test block\n&quot;);
-
-    };
-    block();
-    return 0;
-}
-</code></pre>
-
-<p>步骤同上，生成 c++ 文件</p>
-
-<pre><code>
-static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
-  __Block_byref_a_0 *a = __cself-&gt;a; // bound by ref
-// 指针
-
-        printf(&quot;%d&quot;,(a-&gt;__forwarding-&gt;a));
-  printf(&quot;test block\n&quot;);
-
- }
- 
- //......
-
-int main(){
-//声明的变量由栈 copy 到堆，并将指针传递给block
-    __attribute__((__blocks__(byref))) __Block_byref_a_0 a = {(void*)0,(__Block_byref_a_0 *)&amp;a, 0, sizeof(__Block_byref_a_0), 10};
- void (*block)(void) = ((void (*)())&amp;__main_block_impl_0((void *)__main_block_func_0, &amp;__main_block_desc_0_DATA, (__Block_byref_a_0 *)&amp;a, 570425344));
- ((void (*)(__block_impl *))((__block_impl *)block)-&gt;FuncPtr)((__block_impl *)block);
- return 0;
-}
-</code></pre>
-
-<h1 id="toc_8">文章目录</h1>
-
-<ul>
-<li>
-<a href="#toc_0">Block 概念</a>
-</li>
-<li>
-<a href="#toc_1">Block 格式</a>
-<ul>
-<li>
-<ul>
-<li>
-<a href="#toc_2">1. Block的定义格式</a>
-</li>
-<li>
-<a href="#toc_3">2. Block表达式语法(等号后是表达式语法)</a>
-</li>
-<li>
-<a href="#toc_4">3. Block使用</a>
-</li>
-<li>
-<a href="#toc_5">4. Block与外界变量</a>
-<ul>
-<li>
-<a href="#toc_6">不使用 __block</a>
-</li>
-<li>
-<a href="#toc_7">使用 __block</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_8">文章目录</a>
-
-
-<p>参考：<br/>
-<a href="https://zhongjcbill.gitbooks.io/ios/oc/Block%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html">Block基本概念</a><br/>
-<a href="https://juejin.im/entry/588075132f301e00697f18e0">iOS Block 详解</a></p>
+<p>[关于iOS自动化打包的一些分享](<a href="https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ">https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ</a></p>
 
 
     
@@ -411,13 +149,16 @@ int main(){
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
+          <a href="15196148245866.html" 
+          title="Previous Post: Fastlane">&laquo; Fastlane</a>
+      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15215981447516.html" 
-          title="Next Post: 架构模式 MVC MVP MVVM">架构模式 MVC MVP MVVM &raquo;</a>
+          <a  href="15176282030413.html" 
+          title="Next Post: OpenGL简单介绍及实践">OpenGL简单介绍及实践 &raquo;</a>
       
       </p>
         </div>
