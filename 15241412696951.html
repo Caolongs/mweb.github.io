@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  Go2Shell and AppleScript - 
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html"></a></h1>
+  
+    <h2></h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div>
+	<article class="hentry" role="article">
+	<header>
+			  	<h1 class="entry-title">Go2Shell and AppleScript</h1>
+				<p class="meta"><time datetime="2018-04-19T20:34:29+08:00" pubdate data-updated="true">2018/4/19</time></p>
+			 </header>
+		  	<div class="entry-content">
+			  	<blockquote>
+<p>给Finder加上一个打开当前路径的终端的功能</p>
+
+<p>有两种实现：<br/>
+Go2Shell App 和 AppleScript</p>
+
+<p><strong>扩展：</strong></p>
+
+<p>AppleScript 实现 Go2Shell 一样的可视化打开方式</p>
+</blockquote>
+
+<h2 id="toc_0">一、 Go2Shell</h2>
+
+<h3 id="toc_1">1. 安装</h3>
+
+<p>1、Go2Shell官方安装 （推荐，因为AppStore下载的版本太低，无法打开iTerm2 -坑-）<br/>
+<a href="http://zipzapmac.com/Go2Shell">http://zipzapmac.com/Go2Shell</a> </p>
+
+<p>2、<a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">AppStore下载</a></p>
+
+<p><img src="media/15241412696951/15241416276817.jpg" alt=""/></p>
+
+<p>至此就可以打开shell，不过仅仅是打开系统默认的终端shell</p>
+
+<h3 id="toc_2">2. 进入 Preferences 的方式</h3>
+
+<pre><code>open -a Go2Shell --args config
+</code></pre>
+
+<p><img src="media/15241412696951/15241419447692.jpg" alt=""/></p>
+
+<p>iTerm2 不能打开当前文件所在目录（）</p>
+
+<h3 id="toc_3">3. 官网下载效果图(多了个 <code>&gt;_&lt;</code> 能直接打开配置)</h3>
+
+<p><img src="media/15241412696951/15241460616684.jpg" alt=""/></p>
+
+<h2 id="toc_4">二、配置 Automator 方法</h2>
+
+<h3 id="toc_5">1. 新建 Automator 服务</h3>
+
+<p>打开<code>Automator</code>，选择<code>新建</code>，选择<code>服务</code></p>
+
+<h3 id="toc_6">2. 设置 Automator 服务</h3>
+
+<h5 id="toc_7">1、 服务接受设为没有输入，位置设为<code>Finder(访达)</code></h5>
+
+<p><img src="media/15241412696951/15241426742785.jpg" alt=""/></p>
+
+<h5 id="toc_8">2、 从左侧的资源库中找出 运行 <code>AppleScript</code>，拖到右侧，然后保存为<code>Open iTerm Here</code></h5>
+
+<p><img src="media/15241412696951/15241444900342.jpg" alt=""/></p>
+
+<blockquote>
+<p>复制以下代码</p>
+
+<p>代码意思是将当前最前面的Finder地址如果获取不到，则返回桌面地址然后通知iTerm的第一个窗口新建标签并跳到这个目录去</p>
+</blockquote>
+
+<pre><code>on run {input, parameters}
+
+    tell application &quot;Finder&quot;
+
+        set pathList to (quoted form of POSIX path of (folder of the front window as alias))
+
+        set command to &quot;clear; cd &quot; &amp; pathList
+
+    end tell
+
+
+    tell application &quot;System Events&quot;
+
+        -- some versions might identify as &quot;iTerm2&quot; instead of &quot;iTerm&quot;
+
+        set isRunning to (exists (processes where name is &quot;iTerm&quot;)) or (exists (processes where name is &quot;iTerm2&quot;))
+
+    end tell
+
+
+    tell application &quot;iTerm&quot;
+
+        activate
+
+        set hasNoWindows to ((count of windows) is 0)
+
+        if isRunning and hasNoWindows then
+
+            create window with default profile
+
+        end if
+
+        select first window
+
+
+        tell the first window
+
+            if isRunning and hasNoWindows is false then
+
+                create tab with default profile
+
+            end if
+
+            tell current session to write text command
+
+        end tell
+
+    end tell
+
+
+end run
+
+
+</code></pre>
+
+<h5 id="toc_9">3、点击运行就能在 iTerm2 中打开当前目录</h5>
+
+<p><img src="media/15241412696951/15241432094154.jpg" alt=""/></p>
+
+<h5 id="toc_10">4、 设置快捷键</h5>
+
+<p>打开系统设置，再去键盘设置里改一下快捷键，然后就可以快速在Finder中通过iTerm打开当前目录了<br/>
+<img src="media/15241412696951/15241437705558.jpg" alt=""/></p>
+
+<h2 id="toc_11">三、扩展</h2>
+
+<h3 id="toc_12">Automator 创建应用</h3>
+
+<p>使用的 Automator AppleScript 时候就在想为什么使用创建的服务，好吧，换个思路创建个应用，尝试着以Go2Shell的方式按住<code>command</code>键拖到文件夹上，结果和Go2Shell实现的效果一样OK，对 Automator 的使用充满期望~~<br/>
+<img src="media/15241412696951/15241470137311.jpg" alt=""/></p>
+
+			</div>
+
+		
+	  
+		<footer>
+		 <p class="meta">
+
+			
+			<span class="categories">
+			 
+			</span>
+		    </p>
+		    <p class="meta">
+		      
+		 </p>
+	    
+		<div class="sharing">
+		  
+          
+
+          
+
+		</div>
+
+	    <p class="meta">
+	    
+	        <a class="basic-alignment left" href="15241480672826.html" 
+	        title="Previous Post: XtraFinder 系统完整性保护(SIP)">&laquo; XtraFinder 系统完整性保护(SIP)</a>
+	    
+	    
+	        <a class="basic-alignment right" href="15240395407492.html" 
+	        title="Next Post: iTerm2">iTerm2 &raquo;</a>
+	    
+	    </p>
+	  </footer>
+	</article>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="15241488811717.html">XtraFinder</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15241412696951.html">Go2Shell and AppleScript</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15240395407492.html">iTerm2</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="15240236247092.html">Alfred</a>
+		      </li>
+	     
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+
+
+
+</body>
+</html>
