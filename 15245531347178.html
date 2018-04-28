@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  组件化 - 本地私有库创建 - 
+  MonkeyDev - 
   
   </title>
  <meta name="description" content="">
@@ -202,62 +202,33 @@
             <div class="large-9 medium-9 columns">
 
  <div class="markdown-body">
-<h1>组件化 - 本地私有库创建</h1>
+<h1>MonkeyDev</h1>
 
-<h3 id="toc_0">创建子工程（测试工程）</h3>
+<blockquote>
+<p>安装 MonkeyDev <br/>
+<a href="https://github.com/AloneMonkey/MonkeyDev/wiki/%E5%AE%89%E8%A3%85">https://github.com/AloneMonkey/MonkeyDev/wiki/安装</a></p>
+</blockquote>
 
-<ul>
-<li><p><strong>方法一：</strong> 确定需要抽取的组件，那么势必需要一个将其放到一个工程中能够正常运行，常规可以直接创建一个冲程，然后将需要的组件拖入工程中，创建 <code>.spec</code> 文件：</p>
+<ol>
+<li>安装最新的theos</li>
+</ol>
 
-<pre><code>pod spec create [名称]
-</code></pre></li>
-<li><p><strong>方法二：</strong> 幸运的是 cocoapods 提供了我们快捷创建测试模板工程</p></li>
-<li><p>1.首先在当前工程目录文件中创建Lib文件，与工程目录同级，执行：</p>
-
-<pre><code>pod lib create [名称]
+<pre><code>$ sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
 </code></pre>
 
-<p>根据命令行提示操作，如下图</p></li>
-</ul>
+<ol>
+<li>安装ldid(如安装theos过程安装了ldid，跳过)</li>
+</ol>
 
-<p><img src="media/15208414821831/15208417126201.jpg" alt=""/></p>
-
-<ul>
-<li>2. 创建成功将直接打开测试工程，找到 ReplaceMe.swift 文件，将已封装的组件替换该文件</li>
-</ul>
-
-<p><img src="media/15208414821831/15208418690324.jpg" alt="" style="width:270px;"/></p>
-
-<ul>
-<li>3. 执行  pod install</li>
-</ul>
-
-<pre><code>pod install
-
+<pre><code>$ brew install ldid
 </code></pre>
 
-<p>拖入项目中的组件会自动出现在工程目录中，可进行对代码进行修改</p>
+<ol>
+<li>执行安装MonkeyDev命令</li>
+</ol>
 
-<h3 id="toc_1">主工程使用本地组件</h3>
-
-<ul>
-<li>podfile 文件配置</li>
-</ul>
-
-<p>打开主项目工程，Podfile中添加 JJTableView 本地组件（Lib文件与主工程目录同级）</p>
-
-<pre><code>pod &#39;JJTableView&#39;, :path =&gt; &#39;../Lib/JJTableView&#39;
+<pre><code>$ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
 </code></pre>
-
-<ul>
-<li>执行  pod install</li>
-</ul>
-
-<pre><code>pod install
-
-</code></pre>
-
-<p>主工程Pods工程中就会出现本地组件化的代码</p>
 
 
 </div>
@@ -269,15 +240,15 @@
   <div class="large-6 columns">
 	<div class="text-left" style="padding:15px 0px;">
 		
-	        <a href="15209234462100.html"  title="Previous Post: 组件化 - 远程私有库">&laquo; 组件化 - 远程私有库</a>
+	        <a href="15246450401949.html"  title="Previous Post: 001--初识汇编">&laquo; 001--初识汇编</a>
 	    
 	</div>
   </div>
   <div class="large-6 columns">
 	<div class="text-right" style="padding:15px 0px;">
 		
-	        <a href="15204087282870.html" 
-	        title="Next Post: Jenkins + Fastlane 持续集成自动化打包">Jenkins + Fastlane 持续集成自动化打包 &raquo;</a>
+	        <a href="15242338446694.html" 
+	        title="Next Post: Cycript 安装及使用">Cycript 安装及使用 &raquo;</a>
 	    
 	</div>
   </div>
@@ -290,7 +261,7 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		var currentURL = '15208414821831.html';
+		var currentURL = '15245531347178.html';
 		$('#side-nav a').each(function(){
 			if($(this).attr('href') == currentURL){
 				$(this).parent().addClass('active');

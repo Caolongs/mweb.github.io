@@ -47,6 +47,10 @@
         <li><label>工具</label></li>
 
           
+            <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
+          
+            <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
+          
             <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
           
             <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
@@ -105,6 +109,14 @@
           
 
       
+        <li class="divider"></li>
+        <li><label>逆向与安全</label></li>
+
+          
+            <li><a title="001--初识汇编" href="15246450401949.html">001--初识汇编</a></li>
+          
+
+      
       </ul>
     </aside>
 
@@ -121,6 +133,10 @@
 
                     
                       <li class="side-title"><span>工具</span></li>
+                        
+                          <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
+                        
+                          <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
                         
                           <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
                         
@@ -172,6 +188,12 @@
                         
 
                     
+                      <li class="side-title"><span>逆向与安全</span></li>
+                        
+                          <li><a title="001--初识汇编" href="15246450401949.html">001--初识汇编</a></li>
+                        
+
+                    
                   </ul>
                 </nav>
                 </div>
@@ -184,48 +206,42 @@
 
 	
 		<div class="markdown-body">
-		<h1>XtraFinder</h1>
+		<h1>MonkeyDev</h1>
 
-		<p><a href="https://www.trankynam.com/xtrafinder/">https://www.trankynam.com/xtrafinder/</a></p>
+		<blockquote>
+<p>安装 MonkeyDev <br/>
+<a href="https://github.com/AloneMonkey/MonkeyDev/wiki/%E5%AE%89%E8%A3%85">https://github.com/AloneMonkey/MonkeyDev/wiki/安装</a></p>
+</blockquote>
 
-<p>在早期的OS X上，只需打开XtraFinderInstaller即可安装XtraFinder。</p>
+<ol>
+<li>安装最新的theos</li>
+</ol>
 
-<p>从OS X 10.11开始，系统完整性保护会阻止代码注入（以及其他许多事情）。<br/>
-XtraFinder的工作原理是将其代码注入Finder应用程序进程。<br/>
-为了安装XtraFinder，您需要禁用系统完整性保护。<br/>
-XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
+<pre><code>$ sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+</code></pre>
 
-<p>有关系统完整性保护的更多信息，请访问此页<a href="http://www.trankynam.com/xtrafinder/sip.html">http://www.trankynam.com/xtrafinder/sip.html</a></p>
+<ol>
+<li>安装ldid(如安装theos过程安装了ldid，跳过)</li>
+</ol>
 
-<h3 id="toc_0">1、第一次安装XtraFinder的步骤</h3>
+<pre><code>$ brew install ldid
+</code></pre>
 
-<p>1.禁用系统完整性保护。<br/>
-2.打开XtraFinderInstaller安装XtraFinder。<br/>
-3.重新启用系统完整性保护。</p>
+<ol>
+<li>执行安装MonkeyDev命令</li>
+</ol>
 
-<h3 id="toc_1">2、更新XtraFinder</h3>
-
-<p>您不需要重复安装过程。<br/>
-只需将XtraFinder复制到/ Applications目录即可。</p>
-
-<h3 id="toc_2">3、无需打开XtraFinderInstaller即可手动安装</h3>
-
-<p>1.将<code>Extra</code>目录中的<code>XtraFinderInjector.osax</code>复制到<code>/System/Library/ScriptingAdditions</code><br/>
-2.将<code>XtraFinder</code>复制到<code>/Applications</code></p>
-
-<h3 id="toc_3">4、禁用系统完整性保护的步骤</h3>
-
-<p>1.通过重新启动计算机并在启动时按住<code>Command和R</code>键启动到恢复操作系统。<br/>
-2.从 Utilities 菜单启动 Terminal。<br/>
-3.输入以下命令：<code>csrutil disable</code><br/>
-4.重新启动电脑。</p>
-
-<h3 id="toc_4">5、将系统完整性保护恢复到原始状态：</h3>
-
-<p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
+<pre><code>$ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
+</code></pre>
 
 
 		</div>
+	
+
+ 
+	
+
+ 
 	
 
  

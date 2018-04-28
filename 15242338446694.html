@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  组件化 - 本地私有库创建 - 
+  Cycript 安装及使用 - 
   
   </title>
  <meta name="description" content="">
@@ -202,62 +202,85 @@
             <div class="large-9 medium-9 columns">
 
  <div class="markdown-body">
-<h1>组件化 - 本地私有库创建</h1>
+<h1>Cycript 安装及使用</h1>
 
-<h3 id="toc_0">创建子工程（测试工程）</h3>
+<blockquote>
+<p>Cycript允许开发人员通过交互式控制台，使用Objective-C ++和JavaScript语法的混合，在iOS或Mac OS X上检测和修改正在运行的应用程序。</p>
+</blockquote>
 
-<ul>
-<li><p><strong>方法一：</strong> 确定需要抽取的组件，那么势必需要一个将其放到一个工程中能够正常运行，常规可以直接创建一个冲程，然后将需要的组件拖入工程中，创建 <code>.spec</code> 文件：</p>
+<h3 id="toc_0">1. 安装 cycript</h3>
 
-<pre><code>pod spec create [名称]
-</code></pre></li>
-<li><p><strong>方法二：</strong> 幸运的是 cocoapods 提供了我们快捷创建测试模板工程</p></li>
-<li><p>1.首先在当前工程目录文件中创建Lib文件，与工程目录同级，执行：</p>
+<p>下载 SDK ，将下载好的文件解压到 <code>磁盘/opt</code>目录下<br/>
+<a href="http://www.cycript.org/">http://www.cycript.org/</a></p>
 
-<pre><code>pod lib create [名称]
+<p><img src="media/15242338446694/15242351239079.jpg" alt=""/></p>
+
+<h3 id="toc_1">2. 配置环境变量</h3>
+
+<h5 id="toc_2">1、 创建或打开 <code>.bash_profile</code> 文件</h5>
+
+<p><code>cd</code> 到当前用户目录下 <code>cd ~</code> ，执行：</p>
+
+<pre><code>$ vim .bash_profile
 </code></pre>
 
-<p>根据命令行提示操作，如下图</p></li>
-</ul>
+<h5 id="toc_3">2、 增加cycript的绝对路径</h5>
 
-<p><img src="media/15208414821831/15208417126201.jpg" alt=""/></p>
-
-<ul>
-<li>2. 创建成功将直接打开测试工程，找到 ReplaceMe.swift 文件，将已封装的组件替换该文件</li>
-</ul>
-
-<p><img src="media/15208414821831/15208418690324.jpg" alt="" style="width:270px;"/></p>
-
-<ul>
-<li>3. 执行  pod install</li>
-</ul>
-
-<pre><code>pod install
-
+<pre><code>export cycript_path=&quot;/opt/cycript_0.9.594&quot;
+PATH=$PATH:$cycript_path
 </code></pre>
 
-<p>拖入项目中的组件会自动出现在工程目录中，可进行对代码进行修改</p>
+<h5 id="toc_4">3、 更新刚配置的环境变量</h5>
 
-<h3 id="toc_1">主工程使用本地组件</h3>
-
-<ul>
-<li>podfile 文件配置</li>
-</ul>
-
-<p>打开主项目工程，Podfile中添加 JJTableView 本地组件（Lib文件与主工程目录同级）</p>
-
-<pre><code>pod &#39;JJTableView&#39;, :path =&gt; &#39;../Lib/JJTableView&#39;
+<pre><code>$ source .bash_profile 
 </code></pre>
 
-<ul>
-<li>执行  pod install</li>
-</ul>
+<p>此外，打开<code>vim .zshrc</code> 将 <code>.bash_profile</code> 加入 （适用iterm2 zsh组合）<code>source .bash_profile</code></p>
 
-<pre><code>pod install
+<h5 id="toc_5">4、 验证配置是否成功，若终端输出 <code>cy#</code> 表示成功</h5>
 
+<pre><code>$ cycript
+# cy
 </code></pre>
 
-<p>主工程Pods工程中就会出现本地组件化的代码</p>
+<h3 id="toc_6">3. 使用</h3>
+
+<h5 id="toc_7">1、安装 <a href="https://github.com/AloneMonkey/MonkeyDev/wiki/%E5%AE%89%E8%A3%85">MonkeyDev</a> 运行app</h5>
+
+<h5 id="toc_8">2、使用<code>Cycript</code>连接到已运行手机上的app</h5>
+
+<pre><code>cycript [-c] [-p &lt;pid|name&gt;] [-r &lt;host:port&gt;] [&lt;script&gt; [&lt;arg&gt;...]]
+
+例如：
+cycript -r 10.10.3.145
+</code></pre>
+
+<h5 id="toc_9">3、 命令语法使用</h5>
+
+<p><a href="http://www.cycript.org/manual/#4dd1ca6b-2bd5-48e4-a0ee-06b0947880f5">manual</a></p>
+
+<h3 id="toc_10">4. 问题</h3>
+
+<h5 id="toc_11">1、执行<code>$ cycript</code>出现以下情况：</h5>
+
+<pre><code>dyld: Library not loaded: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib
+  Referenced from: /opt/cycript_0.9.594/Cycript.lib/cycript-apl
+  Reason: image not found
+</code></pre>
+
+<p>此情况为电脑的 ruby 版本太高 大于 <code>2.0</code><br/>
+查看ruby版本 <code>$ ruby -v</code></p>
+
+<p>解决： 创建Ruby2.0版本文件，并将2.3版本文件拷贝到2.0中</p>
+
+<pre><code>$ sudo mkdir -p /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/
+$ sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib
+</code></pre>
+
+<h5 id="toc_12">2、<code>sudo mkdir</code> 出现权限问题，关闭SIP,关闭详情请参考 <a href="https://caolongs.github.io/2018/04/XtraFinder-%E7%B3%BB%E7%BB%9F%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4(SIP)/">系统完整性保护(SIP)</a></h5>
+
+<pre><code>mkdir: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib: Operation not permitted
+</code></pre>
 
 
 </div>
@@ -269,15 +292,15 @@
   <div class="large-6 columns">
 	<div class="text-left" style="padding:15px 0px;">
 		
-	        <a href="15209234462100.html"  title="Previous Post: 组件化 - 远程私有库">&laquo; 组件化 - 远程私有库</a>
+	        <a href="15245531347178.html"  title="Previous Post: MonkeyDev">&laquo; MonkeyDev</a>
 	    
 	</div>
   </div>
   <div class="large-6 columns">
 	<div class="text-right" style="padding:15px 0px;">
 		
-	        <a href="15204087282870.html" 
-	        title="Next Post: Jenkins + Fastlane 持续集成自动化打包">Jenkins + Fastlane 持续集成自动化打包 &raquo;</a>
+	        <a href="15241488811717.html" 
+	        title="Next Post: XtraFinder">XtraFinder &raquo;</a>
 	    
 	</div>
   </div>
@@ -290,7 +313,7 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		var currentURL = '15208414821831.html';
+		var currentURL = '15242338446694.html';
 		$('#side-nav a').each(function(){
 			if($(this).attr('href') == currentURL){
 				$(this).parent().addClass('active');
