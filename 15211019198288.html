@@ -8,17 +8,23 @@
   OpenGL ES - GLSL - 
   
   </title>
- <meta name="description" content="">
- <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,34 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html"></a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; </span>
@@ -41,170 +70,75 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>工具</label></li>
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
 
-          
-            <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-          
-            <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-          
-            <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-          
-            <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-          
-            <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-          
-            <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-          
-            <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>iOS</label></li>
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
 
-          
-            <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>架构</label></li>
-
-          
-            <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-          
-            <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-          
-            <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>CI</label></li>
-
-          
-            <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-          
-            <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-          
-            <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-          
-            <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>OpenGL</label></li>
-
-          
-            <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-          
-            <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-          
-            <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>逆向与安全</label></li>
-
-          
-            <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>OpenGL ES - GLSL</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/3/15</span>
 
-                    
-                      <li class="side-title"><span>工具</span></li>
-                        
-                          <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-                        
-                          <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-                        
-                          <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-                        
-                          <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-                        
-                          <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-                        
-                          <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-                        
-                          <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-                        
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+           
+         
+          <span class="comments">
+            
 
-                    
-                      <li class="side-title"><span>iOS</span></li>
-                        
-                          <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-                        
+            
+          </span>
 
-                    
-                      <li class="side-title"><span>架构</span></li>
-                        
-                          <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-                        
-                          <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-                        
-                          <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-                        
+        </div>
+      </div><!-- article -->
 
-                    
-                      <li class="side-title"><span>CI</span></li>
-                        
-                          <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-                        
-                          <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-                        
-                          <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-                        
-                          <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>OpenGL</span></li>
-                        
-                          <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-                        
-                          <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-                        
-                          <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>逆向与安全</span></li>
-                        
-                          <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-                        
-
-                    
-                  </ul>
-                </nav>
-                </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- <div class="markdown-body">
-<h1>OpenGL ES - GLSL</h1>
-
-<p>不采用GLKBaseEffect，使用编译链接自定义的着色器（shader）。用简单的glsl语言来实现顶点、片元着色器，并图形进行简单的变换。</p>
+      <div class="article-content">
+      <p>不采用GLKBaseEffect，使用编译链接自定义的着色器（shader）。用简单的glsl语言来实现顶点、片元着色器，并图形进行简单的变换。</p>
 
 <p><img src="media/15211019198288/OpenGL%20ES%20-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E7%9D%80%E8%89%B2%E5%99%A8-.png" alt="OpenGL ES -自定义的着色器-"/></p>
 
@@ -227,20 +161,17 @@
 <ol>
 <li>创建图层</li>
 <li><p>设置放大倍数</p>
-
-<pre><code>[self setContentScaleFactor:[[UIScreen mainScreen]scale]];
+<pre><code class="language-text">[self setContentScaleFactor:[[UIScreen mainScreen]scale]];
 </code></pre></li>
 <li><p>将图层设为不透明（默认是透明的）</p>
-
-<pre><code>self.myEagLayer.opaque = YES;
+<pre><code class="language-text">self.myEagLayer.opaque = YES;
 </code></pre></li>
 <li><p>设置 <code>drawableProperties</code> 属性,这里设置不维持渲染内容以及颜色格式为RGBA8</p>
-
-<pre><code>self.myEagLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:false],kEAGLDrawablePropertyRetainedBacking,kEAGLColorFormatRGBA8,kEAGLDrawablePropertyColorFormat,nil];
+<pre><code class="language-text">self.myEagLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:false],kEAGLDrawablePropertyRetainedBacking,kEAGLColorFormatRGBA8,kEAGLDrawablePropertyColorFormat,nil];
 </code></pre></li>
 </ol>
 
-<pre><code>/************************************************************************/
+<pre><code class="language-text">/************************************************************************/
 /* Keys for EAGLDrawable drawableProperties dictionary                  */
 /*                                                                      */
 /* kEAGLDrawablePropertyRetainedBacking:                                */
@@ -261,7 +192,6 @@
 <ul>
 <li>kEAGLDrawablePropertyRetainedBacking: 表示绘图表面显示后，是否保留其内容。这个key的值，是一个通过NSNumber包装的bool值。如果是false，则显示内容后不能依赖于相同的内容，ture表示显示后内容不变。一般只有在需要内容保存不变的情况下，才建议设置使用,因为会导致性能降低、内存使用量增减。一般设置为flase.</li>
 <li>kEAGLDrawablePropertyColorFormat: 可绘制表面的内部颜色缓存区格式，这个key对应的值是一个NSString指定特定颜色缓存区对象。默认是kEAGLColorFormatRGBA8
-
 <ul>
 <li>kEAGLColorFormatRGBA8：32位RGBA的颜色，4*8=32位</li>
 <li>kEAGLColorFormatRGB565：16位RGB的颜色，</li>
@@ -273,30 +203,25 @@
 
 <ol>
 <li><p>指定OpenGL ES 渲染API版本，我们使用2.0</p>
-
-<pre><code>EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2;
+<pre><code class="language-text">EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2;
 </code></pre></li>
 <li><p>创建图形上下文</p>
-
-<pre><code>EAGLContext *context = [[EAGLContext alloc] initWithAPI:api];
+<pre><code class="language-text">EAGLContext *context = [[EAGLContext alloc] initWithAPI:api];
 </code></pre></li>
 <li><p>判断是否创建成功</p>
-
-<pre><code>if (!context) {
-    NSLog(@&quot;Create context failed!&quot;);
-    return;
+<pre><code class="language-text">if (!context) {
+    NSLog(@&quot;Create context failed!&quot;);<br/>
+    return;<br/>
 }
 </code></pre></li>
 <li><p>设置图形上下文</p>
-
-<pre><code>if (![EAGLContext setCurrentContext:context]) {
-    NSLog(@&quot;setCurrentContext failed!&quot;);
-    return;
+<pre><code class="language-text">if (![EAGLContext setCurrentContext:context]) {
+    NSLog(@&quot;setCurrentContext failed!&quot;);<br/>
+    return;<br/>
 }
 </code></pre></li>
 <li><p>将局部context，变成全局的</p>
-
-<pre><code>self.myContext = context;
+<pre><code class="language-text">self.myContext = context;
 </code></pre></li>
 </ol>
 
@@ -305,16 +230,13 @@
 <ol>
 <li><p>导入框架#import <OpenGLES/ES2/gl.h></p></li>
 <li><p>创建2个帧缓存区，渲染缓存区，帧缓存区</p>
-
-<pre><code> @property (nonatomic , assign) GLuint myColorRenderBuffer;
+<pre><code class="language-text"> @property (nonatomic , assign) GLuint myColorRenderBuffer;
  @property (nonatomic , assign) GLuint myColorFrameBuffer;
 </code></pre></li>
 <li><p>清空缓存区 </p>
-
-<pre><code>glDeleteBuffers(1, &amp;_myColorRenderBuffer);
-self.myColorRenderBuffer = 0;
-
-glDeleteBuffers(1, &amp;_myColorFrameBuffer);
+<pre><code class="language-text">glDeleteBuffers(1, &amp;_myColorRenderBuffer);
+self.myColorRenderBuffer = 0;<br/>
+glDeleteBuffers(1, &amp;_myColorFrameBuffer);<br/>
 self.myColorFrameBuffer = 0;
 </code></pre></li>
 </ol>
@@ -323,28 +245,22 @@ self.myColorFrameBuffer = 0;
 
 <ol>
 <li><p>定义一个缓存区</p>
-
-<pre><code>GLuint buffer;
+<pre><code class="language-text">GLuint buffer;
 </code></pre></li>
 <li><p>申请一个缓存区标志</p>
-
-<pre><code>glGenRenderbuffers(1, &amp;buffer);
-//同 glGenRenderbuffers(1, &amp;buffer);
-
-//赋值
+<pre><code class="language-text">glGenRenderbuffers(1, &amp;buffer);
+//同 glGenRenderbuffers(1, &amp;buffer);<br/>
+//赋值<br/>
 self.myColorRenderBuffer = buffer;
 </code></pre></li>
 <li><p>将标识符绑定到GL_RENDERBUFFER</p>
-
-<pre><code>glBindRenderbuffer(GL_RENDERBUFFER, self.myColorRenderBuffer);
+<pre><code class="language-text">glBindRenderbuffer(GL_RENDERBUFFER, self.myColorRenderBuffer);
 </code></pre></li>
 <li><p>myColorRenderBuffer渲染缓存区分配存储空间</p>
-
-<pre><code>[self.myContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:self.myEagLayer];
+<pre><code class="language-text">[self.myContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:self.myEagLayer];
 </code></pre>
-
-<pre><code>注意：frame buffer仅仅是管理者，不需要分配空间；
-render buffer的存储空间的分配，对于不同的render buffer，使用不同的API进行分配，
+<pre><code class="language-text">注意：frame buffer仅仅是管理者，不需要分配空间；
+render buffer的存储空间的分配，对于不同的render buffer，使用不同的API进行分配，<br/>
 而只有分配空间的时候，render buffer句柄才确定其类型
 </code></pre></li>
 </ol>
@@ -353,25 +269,19 @@ render buffer的存储空间的分配，对于不同的render buffer，使用不
 
 <ol>
 <li><p>定义一个缓存区</p>
-
-<pre><code>GLuint buffer;
+<pre><code class="language-text">GLuint buffer;
 </code></pre></li>
 <li><p>申请一个缓存区标志</p>
-
-<pre><code>glGenRenderbuffers(1, &amp;buffer);
-
-//赋值
+<pre><code class="language-text">glGenRenderbuffers(1, &amp;buffer);
+//赋值<br/>
 self.myColorFrameBuffer = buffer;
 </code></pre></li>
 <li><p>将标识符绑定到GL_FRAMEBUFFER</p>
-
-<pre><code>glBindFramebuffer(GL_FRAMEBUFFER, self.myColorFrameBuffer);
+<pre><code class="language-text">glBindFramebuffer(GL_FRAMEBUFFER, self.myColorFrameBuffer);
 </code></pre></li>
 <li><p>renderbuffer跟framebuffer进行绑定,将_myColorRenderBuffer 通过glFramebufferRenderbuffer函数绑定到GL_COLOR_ATTACHMENT0上。</p>
-
-<pre><code>glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, self.myColorRenderBuffer);
+<pre><code class="language-text">glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, self.myColorRenderBuffer);
 </code></pre>
-
 <p>//接下来，可以调用OpenGL ES进行绘制处理，最后则需要在EGALContext的OC方法进行最终的渲染绘制。这里渲染的color buffer,这个方法会将buffer渲染到CALayer上。- (BOOL)presentRenderbuffer:(NSUInteger)target;</p></li>
 </ol>
 
@@ -379,61 +289,47 @@ self.myColorFrameBuffer = buffer;
 
 <ol>
 <li><p>设置颜色、设置视口大小</p>
-
-<pre><code>//设置清屏颜色
-glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
-
-//清除屏幕
-glClear(GL_COLOR_BUFFER_BIT);
-
-CGFloat scale = [[UIScreen mainScreen]scale];
-
-//设置视口大小
+<pre><code class="language-text">//设置清屏颜色
+glClearColor(0.0f, 1.0f, 0.0f, 1.0f);<br/>
+//清除屏幕<br/>
+glClear(GL_COLOR_BUFFER_BIT);<br/>
+CGFloat scale = [[UIScreen mainScreen]scale];<br/>
+//设置视口大小<br/>
 glViewport(self.frame.origin.x * scale, self.frame.origin.y * scale, self.frame.size.width * scale, self.frame.size.height * scale);
-
 </code></pre></li>
 <li><p>读取顶点着色程序、片元着色程序</p>
-
-<pre><code>NSString *vertFile = [[NSBundle mainBundle]pathForResource:@&quot;shaderv&quot; ofType:@&quot;vsh&quot;];
+<pre><code class="language-text">NSString *vertFile = [[NSBundle mainBundle]pathForResource:@&quot;shaderv&quot; ofType:@&quot;vsh&quot;];
 NSString *fragFile = [[NSBundle mainBundle]pathForResource:@&quot;shaderf&quot; ofType:@&quot;fsh&quot;];
 </code></pre></li>
 <li><p>加载shader</p>
-
-<pre><code>self.myPrograme = [self loadShaders:vertFile Withfrag:fragFile];//见附
+<pre><code class="language-text">self.myPrograme = [self loadShaders:vertFile Withfrag:fragFile];//见附
 </code></pre></li>
 <li><p>链接</p>
-
-<pre><code>glLinkProgram(self.myPrograme);
-GLint linkStatus;
-//获取链接状态
-glGetProgramiv(self.myPrograme, GL_LINK_STATUS, &amp;linkStatus);
-if (linkStatus == GL_FALSE) {
-    GLchar message[512];
-    glGetProgramInfoLog(self.myPrograme, sizeof(message), 0, &amp;message[0]);
-    NSString *messageString = [NSString stringWithUTF8String:message];
-    NSLog(@&quot;Program Link Error:%@&quot;,messageString);
-    return;
+<pre><code class="language-text">glLinkProgram(self.myPrograme);
+GLint linkStatus;<br/>
+//获取链接状态<br/>
+glGetProgramiv(self.myPrograme, GL_LINK_STATUS, &amp;linkStatus);<br/>
+if (linkStatus == GL_FALSE) {<br/>
+    GLchar message[512];<br/>
+    glGetProgramInfoLog(self.myPrograme, sizeof(message), 0, &amp;message[0]);<br/>
+    NSString *messageString = [NSString stringWithUTF8String:message];<br/>
+    NSLog(@&quot;Program Link Error:%@&quot;,messageString);<br/>
+    return;<br/>
 }
-
 </code></pre></li>
 <li><p>使用program</p>
-
-<pre><code>glUseProgram(self.myPrograme);
+<pre><code class="language-text">glUseProgram(self.myPrograme);
 </code></pre></li>
 <li><p>设置顶点、纹理坐标</p>
-
-<pre><code>...
+<pre><code class="language-text">...
 </code></pre></li>
 <li><p>处理顶点数据</p>
-
-<pre><code>glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
+<pre><code class="language-text">glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
 </code></pre></li>
 <li><p>处理纹理数据</p>
-
-<pre><code>glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*5, (float *)NULL + 3);
+<pre><code class="language-text">glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*5, (float *)NULL + 3);
 </code></pre></li>
 <li><p>加载纹理</p>
-
 <ul>
 <li><p>获取图片的CGImageRef</p></li>
 <li><p>读取图片的大小，宽和高</p></li>
@@ -449,9 +345,7 @@ if (linkStatus == GL_FALSE) {
 </ul></li>
 <li><p>获取shader里面的变量, 模型视图变换传值</p></li>
 <li><p>绘制并显示缓存数据 presentRenderbuffer </p>
-
-<pre><code>glDrawArrays(GL_TRIANGLES, 0, 6);
-
+<pre><code class="language-text">glDrawArrays(GL_TRIANGLES, 0, 6);
 [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
 </code></pre></li>
 </ol>
@@ -462,17 +356,15 @@ if (linkStatus == GL_FALSE) {
 <li>frame buffer 和 render buffer 关系</li>
 </ol>
 
-<pre><code>buffer分为frame buffer 和 render buffer2个大类。其中frame buffer 相当于render buffer的管理者。frame buffer object即称FBO，常用于离屏渲染缓存等。render buffer则又可分为3类。colorBuffer、depthBuffer、stencilBuffer。
+<pre><code class="language-text">buffer分为frame buffer 和 render buffer2个大类。其中frame buffer 相当于render buffer的管理者。frame buffer object即称FBO，常用于离屏渲染缓存等。render buffer则又可分为3类。colorBuffer、depthBuffer、stencilBuffer。
 </code></pre>
 
 <ol>
 <li><p>加载shader</p>
-
 <ul>
 <li>定义2个零时着色器对象</li>
 <li>创建program</li>
 <li>编译顶点着色程序、片元着色器程序
-
 <ul>
 <li>读取文件路径字符串</li>
 <li>创建一个shader（根据type类型）</li>
@@ -484,7 +376,7 @@ if (linkStatus == GL_FALSE) {
 </ul></li>
 </ol>
 
-<pre><code>-(GLuint)loadShaders:(NSString *)vert Withfrag:(NSString *)frag {
+<pre><code class="language-text">-(GLuint)loadShaders:(NSString *)vert Withfrag:(NSString *)frag {
     //定义2个零时着色器对象
     GLuint verShader, fragShader;
     //创建program
@@ -509,7 +401,7 @@ if (linkStatus == GL_FALSE) {
 }
 </code></pre>
 
-<pre><code>//链接shader
+<pre><code class="language-text">//链接shader
 - (void)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file{
     
     //读取文件路径字符串
@@ -536,7 +428,7 @@ if (linkStatus == GL_FALSE) {
 <li>设置纹理</li>
 </ol>
 
-<pre><code>//设置纹理
+<pre><code class="language-text">//设置纹理
 - (GLuint)setupTexture:(NSString *)fileName {
     //1、获取图片的CGImageRef
     CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
@@ -668,75 +560,209 @@ if (linkStatus == GL_FALSE) {
 
 
 
-</div>
+    
 
-<br /><br />
-<hr />
+      </div>
 
-<div class="row clearfix">
-  <div class="large-6 columns">
-	<div class="text-left" style="padding:15px 0px;">
-		
-	        <a href="15212766930412.html"  title="Previous Post: OpenGL ES - - GLKit（GLKBaseEffect）">&laquo; OpenGL ES - - GLKit（GLKBaseEffect）</a>
-	    
-	</div>
-  </div>
-  <div class="large-6 columns">
-	<div class="text-right" style="padding:15px 0px;">
-		
-	        <a href="15209234462100.html" 
-	        title="Next Post: 组件化 - 远程私有库">组件化 - 远程私有库 &raquo;</a>
-	    
-	</div>
-  </div>
-</div>
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15212766930412.html" 
+          title="Previous Post: OpenGL ES - - GLKit（GLKBaseEffect）">&laquo; OpenGL ES - - GLKit（GLKBaseEffect）</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15209234462100.html" 
+          title="Next Post: 组件化 - 远程私有库">组件化 - 远程私有库 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
 
-<div class="row">
-<div style="padding:0px 0.93em;" class="share-comments">
+          
 
-</div>
-</div>
-<script type="text/javascript">
-	$(function(){
-		var currentURL = '15211019198288.html';
-		$('#side-nav a').each(function(){
-			if($(this).attr('href') == currentURL){
-				$(this).parent().addClass('active');
-			}
-		});
-	});
-</script>  
-</div></div>
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
 
 
-<div class="page-bottom">
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     
+
 
 
   </body>

@@ -8,17 +8,23 @@
   工具 - 
   
   </title>
- <meta name="description" content="">
- <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,34 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html"></a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; </span>
@@ -41,174 +70,249 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>工具</label></li>
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
 
-          
-            <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-          
-            <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-          
-            <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-          
-            <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-          
-            <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-          
-            <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-          
-            <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>iOS</label></li>
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
 
-          
-            <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>架构</label></li>
-
-          
-            <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-          
-            <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-          
-            <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>CI</label></li>
-
-          
-            <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-          
-            <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-          
-            <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-          
-            <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>OpenGL</label></li>
-
-          
-            <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-          
-            <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-          
-            <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>逆向与安全</label></li>
-
-          
-            <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15254163602054.html">
+                
+                  <h1>ShadowSocks 配置及BBR加速</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>ShadowSocks势必先要后买VPS，本人目前使用的是 <a href="https://www.vultr.com/?ref=7305309">Vultr</a>, 购买流程此文不再赘述。</p>
 
-                    
-                      <li class="side-title"><span>工具</span></li>
-                        
-                          <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-                        
-                          <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-                        
-                          <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-                        
-                          <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-                        
-                          <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-                        
-                          <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-                        
-                          <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-                        
+<h2 id="toc_0">SSH 登录 VPS</h2>
 
-                    
-                      <li class="side-title"><span>iOS</span></li>
-                        
-                          <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-                        
+<p>登录远程vps可使用Vultr提供网页的<code>View Console</code>(体验太差)，或使用ssh客户端工具进行登录。<br/>
+此处以Mac终端登录为例：</p>
 
-                    
-                      <li class="side-title"><span>架构</span></li>
-                        
-                          <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-                        
-                          <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-                        
-                          <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-                        
+<p>打开终端,登录远程服务器，回车，输入yes确认是否连接，然后输入密码</p>
 
-                    
-                      <li class="side-title"><span>CI</span></li>
-                        
-                          <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-                        
-                          <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-                        
-                          <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-                        
-                          <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-                        
+<pre><code class="language-text">$ ssh root@108.61.219.99
+</code></pre>
 
-                    
-                      <li class="side-title"><span>OpenGL</span></li>
-                        
-                          <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-                        
-                          <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-                        
-                          <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-                        
+<p><code>Username</code>、<code>IP Address</code>可见创建的服务器详情</p>
 
-                    
-                      <li class="side-title"><span>逆向与安全</span></li>
-                        
-                          <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-                        
+<h2 id="toc_1">VPS安装ShadowSocks</h2>
 
-                    
-                  </ul>
-                </nav>
+<h4 id="toc_2">1. 输入以下命令</h4>
+
+<pre><code class="language-text">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
+chmod +x shadowsocks-all.sh
+./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log
+</code></pre>
+
+<h4 id="toc_3">2. 选择Shadowsocks server，此处本人使用的是ShadowsocksR</h4>
+
+<pre><code class="language-text">Which Shadowsocks server you&#39;d select:
+1) Shadowsocks-Python
+2) ShadowsocksR
+3) Shadowsocks-Go
+4) Shadowsocks-libev
+Please enter a number (Default Shadowsocks-Python):2
+
+You choose = ShadowsocksR
+
+Please enter password for ShadowsocksR
+(Default password: teddysun.com):
+
+</code></pre>
+
+<h4 id="toc_4">3. 配置信息</h4>
+
+<p>根据提示配置<code>Password</code>、<code>Port</code>、<code>Protocol</code>、<code>obfs</code>、<code>Encryption Method</code></p>
+
+<pre><code class="language-text">Congratulations, ShadowsocksR server install completed!
+Your Server IP        :  108.61.0.0
+Your Server Port      :  9999
+Your Password         :  .......
+Your Protocol         :  origin
+Your obfs             :  plain
+Your Encryption Method:  aes-256-cfb
+
+Your QR Code: (For ShadowsocksR Windows, Android clients only)
+ ssr://MTA4LjYxLjIxOS45OTo5OTk5O.......
+Your QR Code has been saved as a PNG file path:
+ /root/shadowsocks_r_qr.png
+
+Welcome to visit: https://teddysun.com/486.html
+Enjoy it!
+</code></pre>
+
+<h4 id="toc_5">4. shadowsocks 常用命令</h4>
+
+<h5 id="toc_6">卸载方法</h5>
+
+<pre><code class="language-text">$ ./shadowsocks-all.sh uninstall
+</code></pre>
+
+<h5 id="toc_7">启动脚本(ShadowsocksR 版)：</h5>
+
+<pre><code class="language-text">/etc/init.d/shadowsocks-r start | stop | restart | status
+</code></pre>
+
+<h5 id="toc_8">多开端口</h5>
+
+<ul>
+<li>找到配置文件<code>/etc/shadowsocks-r/config.json</code>或（<code>/etc/shadowsocks.json</code>）,修改如下：</li>
+</ul>
+
+<pre><code class="language-text">{
+    &quot;server_port&quot;:9998,
+    &quot;password&quot;:&quot;123456&quot;,
+}
+
+改为
+{
+    &quot;port_password&quot;:{
+        &quot;9998&quot;:&quot;password1&quot;,
+        &quot;9999&quot;:&quot;password2&quot;
+     },
+}
+</code></pre>
+
+<ul>
+<li>检测某个端口是否开启,返回<code>yes</code>说明已开启</li>
+</ul>
+
+<pre><code class="language-text">$ firewall-cmd --query-port=9998/tcp --zone=public #查询9998端口是否开启
+</code></pre>
+
+<ul>
+<li>开启某端口代码</li>
+</ul>
+
+<pre><code class="language-text">firewall-cmd --zone=public --add-port=9998/tcp --permanent #添加9998端口
+</code></pre>
+
+<ul>
+<li>最后，重启VPS服务器<code>reboot</code></li>
+</ul>
+
+<h4 id="toc_9">5. BBR 脚本</h4>
+
+<p>使用root用户登录，运行以下命令：</p>
+
+<pre><code class="language-text">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh
+</code></pre>
+
+<p>验证方法</p>
+
+<pre><code class="language-text">$ uname -r
+# 查看内核版本，显示为最新版就表示 OK 了
+# ————————————
+$ sysctl net.ipv4.tcp_available_congestion_control
+# 返回值一般为：
+# net.ipv4.tcp_available_congestion_control = bbr cubic reno
+# ————————————
+$ sysctl net.ipv4.tcp_congestion_control
+# 返回值一般为：
+# net.ipv4.tcp_congestion_control = bbr
+# ————————————
+$ sysctl net.core.default_qdisc
+# 返回值一般为：
+# net.core.default_qdisc = fq
+# ————————————
+$ lsmod | grep bbr
+# 返回值有 tcp_bbr 模块即说明bbr已启动。
+</code></pre>
+
+<h2 id="toc_10">安装 ShadowsocksR 客户端</h2>
+
+<p><a href="https://github.com/qinyuhang/ShadowsocksX-NG-R/releases">MAC版ShadowsocksX-NG-R</a></p>
+
+<p>下载ShadowsocksR配置服务器设置，填写相关信息</p>
+
+<h2 id="toc_11">Chrome插件—SwitchyOmega</h2>
+
+<p><a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?utm_source=chrome-ntp-icon">SwitchyOmega</a></p>
+
+<p>.......</p>
+
+<h2 id="toc_12">参考</h2>
+
+<p><a href="https://www.diycode.cc/topics/738">轻松在 VPS 搭建 Shadowsocks 翻墙 </a><br/>
+<a href="https://teddysun.com/486.html">Shadowsocks 一键安装脚本（四合一）</a><br/>
+<a href="https://teddysun.com/489.html">一键安装最新内核并开启 BBR 脚本</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/4</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- 
-
-
-	
-		<div class="markdown-body">
-		<h1>MonkeyDev</h1>
-
-		<blockquote>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15245531347178.html">
+                
+                  <h1>MonkeyDev</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
 <p>安装 MonkeyDev <br/>
 <a href="https://github.com/AloneMonkey/MonkeyDev/wiki/%E5%AE%89%E8%A3%85">https://github.com/AloneMonkey/MonkeyDev/wiki/安装</a></p>
 </blockquote>
@@ -217,78 +321,925 @@
 <li>安装最新的theos</li>
 </ol>
 
-<pre><code>$ sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+<pre><code class="language-text">$ sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
 </code></pre>
 
 <ol>
 <li>安装ldid(如安装theos过程安装了ldid，跳过)</li>
 </ol>
 
-<pre><code>$ brew install ldid
+<pre><code class="language-text">$ brew install ldid
 </code></pre>
 
 <ol>
 <li>执行安装MonkeyDev命令</li>
 </ol>
 
-<pre><code>$ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
+<pre><code class="language-text">$ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
 </code></pre>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15242338446694.html">
+                
+                  <h1>Cycript 安装及使用</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>Cycript允许开发人员通过交互式控制台，使用Objective-C ++和JavaScript语法的混合，在iOS或Mac OS X上检测和修改正在运行的应用程序。</p>
+</blockquote>
+
+<h3 id="toc_0">1. 安装 cycript</h3>
+
+<p>下载 SDK ，将下载好的文件解压到 <code>磁盘/opt</code>目录下<br/>
+<a href="http://www.cycript.org/">http://www.cycript.org/</a></p>
+
+<p><img src="media/15242338446694/15242351239079.jpg" alt=""/></p>
+
+<h3 id="toc_1">2. 配置环境变量</h3>
+
+<h5 id="toc_2">1、 创建或打开 <code>.bash_profile</code> 文件</h5>
+
+<p><code>cd</code> 到当前用户目录下 <code>cd ~</code> ，执行：</p>
+
+<pre><code class="language-text">$ vim .bash_profile
+</code></pre>
+
+<h5 id="toc_3">2、 增加cycript的绝对路径</h5>
+
+<pre><code class="language-text">export cycript_path=&quot;/opt/cycript_0.9.594&quot;
+PATH=$PATH:$cycript_path
+</code></pre>
+
+<h5 id="toc_4">3、 更新刚配置的环境变量</h5>
+
+<pre><code class="language-text">$ source .bash_profile 
+</code></pre>
+
+<p>此外，打开<code>vim .zshrc</code> 将 <code>.bash_profile</code> 加入 （适用iterm2 zsh组合）<code>source .bash_profile</code></p>
+
+<h5 id="toc_5">4、 验证配置是否成功，若终端输出 <code>cy#</code> 表示成功</h5>
+
+<pre><code class="language-text">$ cycript
+# cy
+</code></pre>
+
+<h3 id="toc_6">3. 使用</h3>
+
+<h5 id="toc_7">1、安装 <a href="https://github.com/AloneMonkey/MonkeyDev/wiki/%E5%AE%89%E8%A3%85">MonkeyDev</a> 运行app</h5>
+
+<h5 id="toc_8">2、使用<code>Cycript</code>连接到已运行手机上的app</h5>
+
+<pre><code class="language-text">cycript [-c] [-p &lt;pid|name&gt;] [-r &lt;host:port&gt;] [&lt;script&gt; [&lt;arg&gt;...]]
+
+例如：
+cycript -r 10.10.3.145
+</code></pre>
+
+<h5 id="toc_9">3、 命令语法使用</h5>
+
+<p><a href="http://www.cycript.org/manual/#4dd1ca6b-2bd5-48e4-a0ee-06b0947880f5">manual</a></p>
+
+<h3 id="toc_10">4. 问题</h3>
+
+<h5 id="toc_11">1、执行<code>$ cycript</code>出现以下情况：</h5>
+
+<pre><code class="language-text">dyld: Library not loaded: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib
+  Referenced from: /opt/cycript_0.9.594/Cycript.lib/cycript-apl
+  Reason: image not found
+</code></pre>
+
+<p>此情况为电脑的 ruby 版本太高 大于 <code>2.0</code><br/>
+查看ruby版本 <code>$ ruby -v</code></p>
+
+<p>解决： 创建Ruby2.0版本文件，并将2.3版本文件拷贝到2.0中</p>
+
+<pre><code class="language-text">$ sudo mkdir -p /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/
+$ sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib
+</code></pre>
+
+<h5 id="toc_12">2、<code>sudo mkdir</code> 出现权限问题，关闭SIP,关闭详情请参考 <a href="https://caolongs.github.io/2018/04/XtraFinder-%E7%B3%BB%E7%BB%9F%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4(SIP)/">系统完整性保护(SIP)</a></h5>
+
+<pre><code class="language-text">mkdir: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib: Operation not permitted
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15241488811717.html">
+                
+                  <h1>XtraFinder</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><a href="https://www.trankynam.com/xtrafinder/">https://www.trankynam.com/xtrafinder/</a></p>
+
+<p>在早期的OS X上，只需打开XtraFinderInstaller即可安装XtraFinder。</p>
+
+<p>从OS X 10.11开始，系统完整性保护会阻止代码注入（以及其他许多事情）。<br/>
+XtraFinder的工作原理是将其代码注入Finder应用程序进程。<br/>
+为了安装XtraFinder，您需要禁用系统完整性保护。<br/>
+XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
+
+<p>有关系统完整性保护的更多信息，请访问此页<a href="http://www.trankynam.com/xtrafinder/sip.html">http://www.trankynam.com/xtrafinder/sip.html</a></p>
+
+<h3 id="toc_0">1、第一次安装XtraFinder的步骤</h3>
+
+<p>1.禁用系统完整性保护。<br/>
+2.打开XtraFinderInstaller安装XtraFinder。<br/>
+3.重新启用系统完整性保护。</p>
+
+<h3 id="toc_1">2、更新XtraFinder</h3>
+
+<p>您不需要重复安装过程。<br/>
+只需将XtraFinder复制到/ Applications目录即可。</p>
+
+<h3 id="toc_2">3、无需打开XtraFinderInstaller即可手动安装</h3>
+
+<p>1.将<code>Extra</code>目录中的<code>XtraFinderInjector.osax</code>复制到<code>/System/Library/ScriptingAdditions</code><br/>
+2.将<code>XtraFinder</code>复制到<code>/Applications</code></p>
+
+<h3 id="toc_3">4、禁用系统完整性保护的步骤</h3>
+
+<p>1.通过重新启动计算机并在启动时按住<code>Command和R</code>键启动到恢复操作系统。<br/>
+2.从 Utilities 菜单启动 Terminal。<br/>
+3.输入以下命令：<code>csrutil disable</code><br/>
+4.重新启动电脑。</p>
+
+<h3 id="toc_4">5、将系统完整性保护恢复到原始状态：</h3>
+
+<p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15241480672826.html">
+                
+                  <h1>XtraFinder 系统完整性保护(SIP)</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><a href="http://www.trankynam.com/xtrafinder/sip.html">XtraFinder 系统完整性保护原文</a>（译）</p>
+
+<h3 id="toc_0">1、关于OS X 10.11中的系统完整性保护</h3>
+
+<p><a href="https://support.apple.com/en-us/HT204899">苹果的文章</a>。<br/>
+系统完整性保护阻止代码注入（以及其他许多事情）。</p>
+
+<p>XtraFinder的工作原理是将其代码注入Finder应用程序进程。</p>
+
+<h3 id="toc_1">2、如何让XtraFinder在OS X 10.11中工作</h3>
+
+<p>您需要部分禁用系统完整性保护。</p>
+
+<p>我不鼓励您禁用系统完整性保护。它会让你的电脑不安全。</p>
+
+<h3 id="toc_2">3、如何部分禁用系统完整性保护</h3>
+
+<p>参考这篇<a href="https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html">苹果的文章</a>。</p>
+
+<p>按着这些次序：</p>
+
+<h5 id="toc_3">1. 通过重新启动计算机并在启动时按住<code>Command+R</code>键启动到恢复操作系统。</h5>
+
+<h5 id="toc_4">2. 从 Utilities 菜单启动 Terminal。</h5>
+
+<h5 id="toc_5">3. 输入以下命令：<code>csrutil enable --without debug</code></h5>
+
+<h5 id="toc_6">4. 重新启动您的计算机。</h5>
+
+<h3 id="toc_7">4、“csrutil enable --without debug” 命令的作用是什么？</h3>
+
+<p>它允许代码注入。这意味着XtraFinder可以将其代码注入Finder应用程序进程。</p>
+
+<h3 id="toc_8">5、如何将系统完整性保护恢复到原始状态</h3>
+
+<p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
+
+<p>完全禁用SIP <code>csrutil disable</code><br/>
+启用SIP <code>csrutil enable</code></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15241412696951.html">
+                
+                  <h1>Go2Shell and AppleScript</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<blockquote>
+<p>给Finder加上一个打开当前路径的终端的功能</p>
+
+<p>有两种实现：<br/>
+Go2Shell App 和 AppleScript</p>
+
+<p><strong>扩展：</strong></p>
+
+<p>AppleScript 实现 Go2Shell 一样的可视化打开方式</p>
+</blockquote>
+
+<h2 id="toc_0">一、 Go2Shell</h2>
+
+<h3 id="toc_1">1. 安装</h3>
+
+<p>1、Go2Shell官方安装 （推荐，因为AppStore下载的版本太低，无法打开iTerm2 -坑-）<br/>
+<a href="http://zipzapmac.com/Go2Shell">http://zipzapmac.com/Go2Shell</a> </p>
+
+<p>2、<a href="https://itunes.apple.com/cn/app/go2shell/id445770608?mt=12">AppStore下载</a></p>
+
+<p><img src="media/15241412696951/15241416276817.jpg" alt=""/></p>
+
+<p>至此就可以打开shell，不过仅仅是打开系统默认的终端shell</p>
+
+<h3 id="toc_2">2. 进入 Preferences 的方式</h3>
+
+<pre><code class="language-text">open -a Go2Shell --args config
+</code></pre>
+
+<p><img src="media/15241412696951/15241419447692.jpg" alt=""/></p>
+
+<p>iTerm2 不能打开当前文件所在目录（）</p>
+
+<h3 id="toc_3">3. 官网下载效果图(多了个 <code>&gt;_&lt;</code> 能直接打开配置)</h3>
+
+<p><img src="media/15241412696951/15241460616684.jpg" alt=""/></p>
+
+<h2 id="toc_4">二、配置 Automator 方法</h2>
+
+<h3 id="toc_5">1. 新建 Automator 服务</h3>
+
+<p>打开<code>Automator</code>，选择<code>新建</code>，选择<code>服务</code></p>
+
+<h3 id="toc_6">2. 设置 Automator 服务</h3>
+
+<h5 id="toc_7">1、 服务接受设为没有输入，位置设为<code>Finder(访达)</code></h5>
+
+<p><img src="media/15241412696951/15241426742785.jpg" alt=""/></p>
+
+<h5 id="toc_8">2、 从左侧的资源库中找出 运行 <code>AppleScript</code>，拖到右侧，然后保存为<code>Open iTerm Here</code></h5>
+
+<p><img src="media/15241412696951/15241444900342.jpg" alt=""/></p>
+
+<blockquote>
+<p>复制以下代码</p>
+
+<p>代码意思是将当前最前面的Finder地址如果获取不到，则返回桌面地址然后通知iTerm的第一个窗口新建标签并跳到这个目录去</p>
+</blockquote>
+
+<pre><code class="language-text">on run {input, parameters}
+
+    tell application &quot;Finder&quot;
+
+        set pathList to (quoted form of POSIX path of (folder of the front window as alias))
+
+        set command to &quot;clear; cd &quot; &amp; pathList
+
+    end tell
+
+
+    tell application &quot;System Events&quot;
+
+        -- some versions might identify as &quot;iTerm2&quot; instead of &quot;iTerm&quot;
+
+        set isRunning to (exists (processes where name is &quot;iTerm&quot;)) or (exists (processes where name is &quot;iTerm2&quot;))
+
+    end tell
+
+
+    tell application &quot;iTerm&quot;
+
+        activate
+
+        set hasNoWindows to ((count of windows) is 0)
+
+        if isRunning and hasNoWindows then
+
+            create window with default profile
+
+        end if
+
+        select first window
+
+
+        tell the first window
+
+            if isRunning and hasNoWindows is false then
+
+                create tab with default profile
+
+            end if
+
+            tell current session to write text command
+
+        end tell
+
+    end tell
+
+
+end run
+
+
+</code></pre>
+
+<h5 id="toc_9">3、点击运行就能在 iTerm2 中打开当前目录</h5>
+
+<p><img src="media/15241412696951/15241432094154.jpg" alt=""/></p>
+
+<h5 id="toc_10">4、 设置快捷键</h5>
+
+<p>打开系统设置，再去键盘设置里改一下快捷键，然后就可以快速在Finder中通过iTerm打开当前目录了<br/>
+<img src="media/15241412696951/15241437705558.jpg" alt=""/></p>
+
+<h2 id="toc_11">三、扩展</h2>
+
+<h3 id="toc_12">Automator 创建应用</h3>
+
+<p>使用的 Automator AppleScript 时候就在想为什么使用创建的服务，好吧，换个思路创建个应用，尝试着以Go2Shell的方式按住<code>command</code>键拖到文件夹上，结果和Go2Shell实现的效果一样OK，对 Automator 的使用充满期望~~<br/>
+<img src="media/15241412696951/15241470137311.jpg" alt=""/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15240395407492.html">
+                
+                  <h1>iTerm2</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>强大的 Mac OS 终端利器，跟着教程走了一遍。</p>
+
+<h3 id="toc_0">1. 安装 iTerm2</h3>
+
+<p>下载地址：<a href="https://www.iterm2.com/downloads.html">https://www.iterm2.com/downloads.html</a><br/>
+下载的是压缩文件，解压后是执行程序文件，你可以直接双击，或者直接将它拖到 Applications 目录下。</p>
+
+<p>或者你可以直接使用 Homebrew 进行安装：</p>
+
+<pre><code class="language-text">$ brew cask install iterm2
+</code></pre>
+
+<h3 id="toc_1">2. 配置 iTerm2 主题</h3>
+
+<p>iTerm2 最常用的主题是 Solarized Dark theme，下载地址：<a href="http://ethanschoonover.com/solarized">http://ethanschoonover.com/solarized</a></p>
+
+<p>下载的是压缩文件，你先解压一下，然后打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后 <code>Profiles -&gt; Colors -&gt; Color Presets -&gt; Import</code>，选择刚才解压的<code>solarized-&gt;iterm2-colors-solarized-&gt;Solarized Dark.itermcolors</code>文件，导入成功，最后选择 Solarized Dark 主题，就可以了。<br/>
+<img src="media/15240236247092/15240328372916.jpg" alt=""/></p>
+
+<h3 id="toc_2">3. 配置 Oh My Zsh</h3>
+
+<p>Oh My Zsh 是对主题的进一步扩展，地址：<a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a></p>
+
+<p>一键安装：</p>
+
+<pre><code class="language-text">$ sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</code></pre>
+
+<p>安装好之后，需要把 Zsh 设置为当前用户的默认 Shell（这样新建标签的时候才会使用 Zsh）：</p>
+
+<pre><code class="language-text">$ chsh -s /bin/zsh
+</code></pre>
+
+<p>然后，我们编辑<code>vim ~/.zshrc</code>文件，将主题配置修改为<code>ZSH_THEME=&quot;agnoster&quot;</code>。</p>
+
+<p><img src="media/15240236247092/15240328878602.jpg" alt=""/><br/>
+<code>agnoster</code>是比较常用的 zsh 主题之一，你可以挑选你喜欢的主题，zsh 主题列表：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">https://github.com/robbyrussell/oh-my-zsh/wiki/themes</a></p>
+
+<h3 id="toc_3">4. 配置 Meslo 字体</h3>
+
+<p>使用上面的主题，需要 Meslo 字体支持，要不然会出现乱码的情况，字体下载地址：<a href="https://github.com/powerline/fonts/blob/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf">Meslo LG M Regular for Powerline.ttf</a></p>
+
+<p>下载好之后，直接在 Mac OS 中安装即可。</p>
+
+<p>然后打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后<code>Profiles -&gt; Text -&gt; Font -&gt; Chanage Font，选择 Meslo LG M Regular for Powerline</code> 字体。<br/>
+<img src="media/15240236247092/15240335911662.jpg" alt=""/></p>
+
+<p>效果：<br/>
+<img src="media/15240236247092/15240336572945.jpg" alt=""/></p>
+
+<h3 id="toc_4">5. 声明高亮</h3>
+
+<p>特殊命令和错误命令，会有高亮显示。</p>
+
+<p>使用 Homebrew 安装：</p>
+
+<pre><code class="language-text">$ brew install zsh-syntax-highlighting
+</code></pre>
+
+<p>安装成功之后，编辑<code>vim ~/.zshrc</code>文件，在最后一行增加下面配置：</p>
+
+<pre><code class="language-text">source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+</code></pre>
+
+<p><img src="media/15240236247092/15240338613185.jpg" alt=""/></p>
+
+<p>特殊命令和错误命令，会有高亮显示效果：<br/>
+<img src="media/15240236247092/15240346220825.jpg" alt=""/></p>
+
+<h3 id="toc_5">6. 自动建议填充</h3>
+
+<p>这个功能是非常实用的，可以方便我们快速的敲命令。</p>
+
+<p>配置步骤，先克隆<code>zsh-autosuggestions</code>项目，到指定目录：</p>
+
+<pre><code class="language-text">$ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+</code></pre>
+
+<p>然后编辑<code>vim ~/.zshrc</code>文件，找到plugins配置，增加<code>zsh-autosuggestions</code>插件。<br/>
+<img src="media/15240236247092/15240340214194.jpg" alt=""/><br/>
+<mark>注：</mark>上面声明高亮，如果配置不生效的话，在plugins配置，再增加zsh-syntax-highlighting插件试试。<br/>
+有时候因为自动填充的颜色和背景颜色很相似，以至于自动填充没有效果，我们可以手动更改下自动填充的颜色配置</p>
+
+<h3 id="toc_6">7. 左右键跳转</h3>
+
+<p>主要是按住<code>option + → or ←</code>键，在命令的开始和结尾跳转切换，原本是不生效的，需要手动开启下。</p>
+
+<p>打开 iTerm2，按<code>Command + ,</code>键，打开 Preferences 配置界面，然后<code>Profiles → Keys → Load Preset... → Natural Text Editing</code>，就可以了。</p>
+
+<h3 id="toc_7">8. iTerm2 快速隐藏和显示</h3>
+
+<p>这个功能也非常使用，就是通过快捷键，可以快速的隐藏和打开 iTerm2，示例配置（<code>Commond + .</code>）：<br/>
+<img src="media/15240236247092/15240344213280.jpg" alt=""/></p>
+
+<h3 id="toc_8">9. iTerm2 隐藏用户名和主机名</h3>
+
+<p>有时候我们的用户名和主机名太长，比如我的<code>caolongjian@caolongjiandeMacBook-Pro</code>，终端显示的时候会很不好看（上面图片中可以看到），我们可以手动去除。</p>
+
+<p>编辑<code>vim ~/.zshrc</code>文件，增加<code>DEFAULT_USER=&#39;caolongjian&#39;</code>配置，示例：</p>
+
+<p><img src="media/15240236247092/15240353400543.jpg" alt=""/><br/>
+注意： 使用单引号 或者 DEFAULT_USER 放在 ZSH_THEME上面 否则 DEFAULT_USER 不生效<br/>
+<img src="media/15240236247092/15240357531048.jpg" alt=""/></p>
+
+<p>效果：<br/>
+<img src="media/15240236247092/15240358493334.jpg" alt=""/></p>
+
+<h3 id="toc_9">10. iTerm2 配置代理</h3>
+
+<p>编辑~ vim ~/.zshrc，增加下面配置（使用的 shadowsocks）：</p>
+
+<pre><code class="language-text"># proxy list
+alias proxy=&#39;export all_proxy=socks5://127.0.0.1:1086&#39;
+alias unproxy=&#39;unset all_proxy&#39;
+</code></pre>
+
+<p>iTerm2 需要新建标签页，才有效果：</p>
+
+<pre><code class="language-text">$ proxy
+$ curl ip.cn
+当前 IP：185.225.14.5 来自：美国
+
+$ unproxy
+$ curl ip.cn
+当前 IP：115.236.186.130 来自：浙江省杭州市 电信
+</code></pre>
+
+<h3 id="toc_10">11. iTerm2 快捷命令</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">命令</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">command + t</td>
+<td style="text-align: left">新建标签</td>
+</tr>
+<tr>
+<td style="text-align: left">command + w</td>
+<td style="text-align: left">关闭标签</td>
+</tr>
+<tr>
+<td style="text-align: left">command + 数字 command + 左右方向键</td>
+<td style="text-align: left">切换标签</td>
+</tr>
+<tr>
+<td style="text-align: left">command +</td>
+<td style="text-align: left">enter 切换全屏</td>
+</tr>
+<tr>
+<td style="text-align: left">command + f</td>
+<td style="text-align: left">查找</td>
+</tr>
+<tr>
+<td style="text-align: left">command + d</td>
+<td style="text-align: left">垂直分屏</td>
+</tr>
+<tr>
+<td style="text-align: left">command + shift + d</td>
+<td style="text-align: left">水平分屏</td>
+</tr>
+<tr>
+<td style="text-align: left">command + option +</td>
+<td style="text-align: left">方向键</td>
+</tr>
+<tr>
+<td style="text-align: left">command + [ 或 command + ]</td>
+<td style="text-align: left">切换屏幕</td>
+</tr>
+<tr>
+<td style="text-align: left">command + ;</td>
+<td style="text-align: left">查看历史命令</td>
+</tr>
+<tr>
+<td style="text-align: left">command + shift + h</td>
+<td style="text-align: left">查看剪贴板历史</td>
+</tr>
+<tr>
+<td style="text-align: left">ctrl + u</td>
+<td style="text-align: left">清除当前行</td>
+</tr>
+<tr>
+<td style="text-align: left">ctrl + l</td>
+<td style="text-align: left">清屏</td>
+</tr>
+<tr>
+<td style="text-align: left">ctrl + a</td>
+<td style="text-align: left">到行首</td>
+</tr>
+<tr>
+<td style="text-align: left">ctrl + e</td>
+<td style="text-align: left">到行尾</td>
+</tr>
+<tr>
+<td style="text-align: left">ctrl + f/b</td>
+<td style="text-align: left">前进后退</td>
+</tr>
+<tr>
+<td style="text-align: left">ctrl + p</td>
+<td style="text-align: left">上一条命令</td>
+</tr>
+<tr>
+<td style="text-align: left">ctrl + r</td>
+<td style="text-align: left">搜索命令历史</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_11">参考</h3>
+
+<p><a href="http://www.cnblogs.com/xishuai/p/mac-iterm2.html">Mac OS 终端利器 iTerm2</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15240236247092.html">
+                
+                  <h1>Alfred</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>强大的只能搜索软件，w安全可以替代OS X自带的Spotlight</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     
+
 
 
   </body>

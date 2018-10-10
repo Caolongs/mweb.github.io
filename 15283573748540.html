@@ -1,0 +1,450 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  iOS逆向-砸壳（Clutch & dumpdecrypted） - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>iOS逆向-砸壳（Clutch & dumpdecrypted）</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/6/7</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html'>逆向与安全</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <blockquote>
+<p>MachO文件 -&gt; 苹果加密 -&gt; 加壳文件</p>
+
+<p>加壳文件 -&gt; 苹果解密 -&gt; MachO文件（DYLD）</p>
+
+<p>解密过程：</p>
+
+<ol>
+<li>DRM（数字版权管理）检查</li>
+<li>找到合适结构进行解密</li>
+<li>使用DYLD加载解密的MachO</li>
+</ol>
+</blockquote>
+
+<h2 id="toc_0">砸壳工具：</h2>
+
+<p>Clutch 静态砸壳<br/>
+dumpdecrypted 动态加壳</p>
+
+<p>静态砸壳：调用系统的解密程序<br/>
+动态砸壳：得到系统解密后的MachO文件</p>
+
+<h2 id="toc_1">Clutch 静态砸壳</h2>
+
+<p>前提条件：手机已越狱</p>
+
+<h3 id="toc_2">1. 下载安装Clutch到手机</h3>
+
+<p>github下载 <a href="https://github.com/KJCracks/Clutch/releases">Clutch</a> 并命名为 <code>Clutch</code></p>
+
+<h3 id="toc_3">2. 将该文件拷贝到设备（手机）中</h3>
+
+<pre><code class="language-text">scp ./build/Clutch root@&lt;your.device.ip&gt;:/usr/bin/Clutch
+    
+若有端口映射
+scp -P 2222 ./build/Clutch root@localhost:/usr/bin/Clutch
+</code></pre>
+
+<h3 id="toc_4">3. Clutch 增加可执行权限</h3>
+
+<pre><code class="language-text"># chmod +x Clutch
+</code></pre>
+
+<h3 id="toc_5">4. 使用</h3>
+
+<pre><code class="language-text">Clutch [OPTIONS]
+-b --binary-dump     Only dump binary files from specified bundleID
+-d --dump            Dump specified bundleID into .ipa file
+-i --print-installed Print installed application
+--clean              Clean /var/tmp/clutch directory
+--version            Display version and exit
+-? --help            Display this help and exit
+</code></pre>
+
+<ul>
+<li><p><code>$ Clutch i</code>列出可砸壳应用</p>
+<pre><code class="language-text">1: 微信 &lt;com.tencent.xin&gt;
+2: ....
+</code></pre></li>
+<li><p>砸壳</p>
+<pre><code class="language-text"># Clutch -d [标示或bundleID]
+如：<br/>
+Clutch -d 1
+</code></pre>
+<p>成功后可看见砸壳后的文件</p></li>
+</ul>
+
+<h2 id="toc_6">dumpdecrypted 动态加壳</h2>
+
+<h3 id="toc_7">1. 下载并执行</h3>
+
+<p>github <a href="https://github.com/stefanesser/dumpdecrypted">dumpdecrypted</a> <code>clone and Download</code></p>
+
+<p>当前文件夹下执行<code>make</code></p>
+
+<pre><code class="language-text">$ make
+</code></pre>
+
+<p>生成 <code>dumpdecrypted.dylib</code> 和 <code>dumpdecrypted.o</code> 文件</p>
+
+<h3 id="toc_8">2. 将动态库<code>.dylib</code>从本地拷贝到手机上</h3>
+
+<pre><code class="language-text">scp dumpdecrypted.dylib root@&lt;your.device.ip&gt;:~/
+    
+若有端口映射
+scp -P 2222 ./build/Clutch root@localhost:~/
+</code></pre>
+
+<h3 id="toc_9">3. 将动态库<code>.dylib</code>依附到要砸壳的app进程中</h3>
+
+<p>利用 <code>DYLD</code> 环境变量 DYLD_INSERT_LIBRARIES=</p>
+
+<pre><code class="language-text"># DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib [进程路径]
+
+如：
+DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/.../WeChat.app/WeChat
+</code></pre>
+
+<p>注：进程路径可通过 <code>ps -A</code> 查看</p>
+
+<h3 id="toc_10">4. ipa包</h3>
+
+<p>执行之后 当前目录下 <code>ls</code> 得到 <code>WeChat.decrypted</code>可执行文件<br/>
+其他文件可在<code>/var/mobile/.../WeChat.app</code>拷贝组合成砸壳后的ipa包</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15271533818539.html" 
+          title="Next Post: Mac上搭建直播服务器 Nginx+HLS">Mac上搭建直播服务器 Nginx+HLS &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

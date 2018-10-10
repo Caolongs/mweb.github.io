@@ -1,0 +1,553 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  OpenGL 常见概念性理解整理 - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>OpenGL 常见概念性理解整理</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/5/15</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <h3 id="toc_0">什么叫光栅化（Rasterize/rasteriztion）？</h3>
+
+<p>栅格化或者像素化，就是把矢量图形转化成像素点儿的过程</p>
+
+<p>我们屏幕上显示的画面都是由像素组成，而三维物体都是点线面构成的。要让点线面，变成能在屏幕上显示的像素，就需要Rasterize这个过程。就是从矢量的点线面的描述，变成像素的描述</p>
+
+<h3 id="toc_1">图元是什么？</h3>
+
+<p>图元可以理解为组成图形的基本单元<br/>
+ 比如点、线、三角形。 我们可以通过一系列函数或顶点数据帮助我们实现多种多样的图形。</p>
+
+<h3 id="toc_2">什么叫管线？</h3>
+
+<p>管线(pipeline),可以理解为渲染流水线。<strong>管线，实际上指的是一堆原始图形数据途经一个输送管道，期间经过各种变化处理最终出现在屏幕的过程</strong>。<br/>
+图形渲染管线可以被划分为两个主要部分：第一部分把你的3D坐标转换为2D坐标，第二部分是把2D坐标转变为实际的有颜色的像素。</p>
+
+<h3 id="toc_3">什么叫固定管线？</h3>
+
+<p>可以简单理解为渲染图像的这个过程，我们只能通过调用GLShaderManager类的固定管线效果实现我们一系列的着色器处理。</p>
+
+<h3 id="toc_4">什么可编程管线？</h3>
+
+<p>可以简单理解， 在我们处理图形的过程，我们必须使用顶点着色器和片元着色过程。我们可以才有GLSL自行编写着色器程序，来执行这个过程的事情。</p>
+
+<h3 id="toc_5">顶点着色器调⽤次数与⽚元着⾊器调⽤次数与什么有关?谁⽐较多?</h3>
+
+<p>片元着⾊色器次数比较多!<br/>
+顶点着色器调⽤次数与顶点数量相关，<br/>
+⽚元着色器调用与像素多少相关</p>
+
+<h3 id="toc_6">为什么需要对三维空间的顶点进行坐标空间转换?</h3>
+
+<p>输⼊到计算机当中一系列三维坐标的点,但是我们看到的屏<br/>
+幕是二维坐标点.所以需要转换<br/>
+ObjectSpace(物体空间/模型空间)-&gt; WorldSpace(世界空<br/>
+间)-&gt;EyeSpace(观察空间)-&gt;ClicpAndProjectSpace(屏幕<br/>
+空间)</p>
+
+<h3 id="toc_7">在OpenGL 中有5种坐标系。</h3>
+
+<p>1.局部坐标系(物体空间)<br/>
+2.世界空间<br/>
+3.观察空间(视觉空间)<br/>
+4.裁剪空间<br/>
+5.屏幕空间</p>
+
+<p>这是一个顶点最终转化到片段之前需要经历的所有不同的状态变化。</p>
+
+<p>那这些变换通过什么？<br/>
+比如模型、观察、投影三个矩阵的。<br/>
+<img src="media/15263712692654/15264383184522.jpg" alt=""/></p>
+
+<h3 id="toc_8">背面剔除和深度测试使用场景</h3>
+
+<p>背面剔除是为了解决自身图片背部可见问题<br/>
+深度测试是为了解决图形重叠的问题</p>
+
+<h3 id="toc_9">Shader</h3>
+
+<p><strong>Shader</strong>，中⽂名，着色器。着⾊器其实就是一段在GPU运行的程序（图形硬件设计所执行的一类特殊的函数，可以理解为图像处理单元（GPU）编译的一种小型程序）。<br/>
+我们平时的程序，是在CPU运行。由于GPU的硬件设计结构与CPU有着很大的不同，所以GPU需要一些新的编程语言</p>
+
+<h3 id="toc_10">术语理解</h3>
+
+<p><strong>渲染</strong>:表示计算机从模型创建最终图像的过程。OpenGL 只是一种基于光栅化的系统。<br/>
+<strong>模型（场景对象）</strong>：通过几何图元（点、线、三角形）来构建的。<br/>
+<strong>着色器</strong>，它是图形硬件设计所执行的一类特殊的函数。可以理解为图像处理单元（GPU）编译的一种小型程序。<br/>
+<strong>四种不同的着色阶段（shander stage）</strong>，其中最常用的包括顶点着色器（vertex shader）以及片元着色器，前者用于处理顶点数据，后者用于处理光栅化后的片元数据。所有OpenGL程序都需要用到这两类着色器<br/>
+<strong>帧缓存（framebuffer）</strong>，像素（pixel），是显示器上最小的可见单元。计算机系统将所有的像素保存到帧缓存当中，后者是有图形硬件设备管理的一块独立内存区域，可以直接映射到最终的显示设备上</p>
+
+<h3 id="toc_11">OpenGL 渲染图像的OpenGL 程序需要执行的操作：</h3>
+
+<ul>
+<li>从OpenGL的几何图元中设置数据，用于构建形状。</li>
+<li>使用不同的着色器（shader）对输入的图元数据执行计算操作，判断它们的位置、颜色，以及其他渲染属性。</li>
+<li>将输入图元的数学描述转化为与屏幕位置对应的像素片元（fragment）。这一步也称为光栅化（rasterization）。</li>
+<li>最后，针对光栅化过程产生的每个片元，执行片元着色器（fragment shader），从而决定这个片元的最终颜色和位置。</li>
+<li>如果有必要，还需要对每个片元执行一些额外的操作，例如判断片元对应的对象是否可见，或者将片元的颜色与当前屏幕位置的颜色进行融合。</li>
+</ul>
+
+<h3 id="toc_12">OpenGL 常见流程</h3>
+
+<p><img src="media/15262868956417/15262888985785.jpg" alt=""/></p>
+
+<ul>
+<li>顶点着色器 和 片元着色器是必需的。细分和几何着色器是可选的捕捉。</li>
+<li>OpenGL 需要将所有的数据都保存到缓存对象中（buffer object）</li>
+</ul>
+
+<h3 id="toc_13">屏幕渲染⽅式</h3>
+
+<h4 id="toc_14">On-Screen Rendering(当前屏幕渲染)</h4>
+
+<p>指的是GPU的渲染操作是在当前用于显示的屏幕缓存区中进行的。</p>
+
+<h4 id="toc_15">Off-Screen Rendering(离幕渲染)</h4>
+
+<p>指的是GPU在当前屏幕缓存区以外新开辟一个缓存区进行渲染操作</p>
+
+<p>一般情况下，OpenGL ES 会将应用提供到渲染服务的动画直接渲染显示(使用基本的渲染的流程) 但对于一些复杂的图像动画的渲染，并不能够直接渲染叠加显示出来。而是需要根据 <code>Command Buffer</code> 分通道进⾏行渲染再组合。这个组合过程中，就有些渲染通道是不会直接显示出来的。标记此次渲染需要更多的渲染通道和合并步骤，⽽这些没有直接渲染显示在屏幕上的通道就是离屏渲染通道。</p>
+
+<h4 id="toc_16">离屏渲染为什么会卡顿?</h4>
+
+<p>离屏渲染需要更多的渲染通道，而不同的渲染通道间切换需要消耗⼀定的时间，这个时间内GPU会闲置。当通道数量足够时，对性能也会较大的影响。</p>
+
+<h3 id="toc_17">离屏渲染的体现</h3>
+
+<h4 id="toc_18">1、相⽐于当前屏幕渲染，离屏渲染的代价相对⽽言较高。主要有以下2个原因:</h4>
+
+<p>1.创建新的缓存区<br/>
+2.上下文切换</p>
+
+<h4 id="toc_19">2、那些情况会使⽤离屏渲染(off-Screen Render)?</h4>
+
+<ol>
+<li>drawRect</li>
+<li>layer.shouldRasterize = true; </li>
+<li>有mask或者阴影(layer.makesToBounds) shouldRasterize(光栅化)、masks(遮罩)、shadows(阴影) edge antialiasing(抗锯⻮齿)、group opacity(不不透明)</li>
+<li>Text(UILabel,CATextLayer,CoreText)</li>
+</ol>
+
+<h2 id="toc_20">参照</h2>
+
+<p><a href="https://www.jianshu.com/p/fac6c39deec7">OpenGL 绘制基础图形</a></p>
+
+<p>简书 MissCC： <a href="https://www.jianshu.com/u/1b4c832fb2ca">简书 MissCC</a></p>
+
+<h2 id="toc_21">目录</h2>
+
+<ul>
+<li>
+<a href="#toc_0">什么叫光栅化（Rasterize/rasteriztion）？</a>
+</li>
+<li>
+<a href="#toc_1">图元是什么？</a>
+</li>
+<li>
+<a href="#toc_2">什么叫管线？</a>
+</li>
+<li>
+<a href="#toc_3">什么叫固定管线？</a>
+</li>
+<li>
+<a href="#toc_4">什么可编程管线？</a>
+</li>
+<li>
+<a href="#toc_5">顶点着色器调⽤次数与⽚元着⾊器调⽤次数与什么有关?谁⽐较多?</a>
+</li>
+<li>
+<a href="#toc_6">为什么需要对三维空间的顶点进行坐标空间转换?</a>
+</li>
+<li>
+<a href="#toc_7">在OpenGL 中有5种坐标系。</a>
+</li>
+<li>
+<a href="#toc_8">背面剔除和深度测试使用场景</a>
+</li>
+<li>
+<a href="#toc_9">Shader</a>
+</li>
+<li>
+<a href="#toc_10">术语理解</a>
+</li>
+<li>
+<a href="#toc_11">OpenGL 渲染图像的OpenGL 程序需要执行的操作：</a>
+</li>
+<li>
+<a href="#toc_12">OpenGL 常见流程</a>
+</li>
+<li>
+<a href="#toc_13">屏幕渲染⽅式</a>
+<ul>
+<li>
+<a href="#toc_14">On-Screen Rendering(当前屏幕渲染)</a>
+</li>
+<li>
+<a href="#toc_15">Off-Screen Rendering(离幕渲染)</a>
+</li>
+<li>
+<a href="#toc_16">离屏渲染为什么会卡顿?</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_17">离屏渲染的体现</a>
+<ul>
+<li>
+<a href="#toc_18">1、相⽐于当前屏幕渲染，离屏渲染的代价相对⽽言较高。主要有以下2个原因:</a>
+</li>
+<li>
+<a href="#toc_19">2、那些情况会使⽤离屏渲染(off-Screen Render)?</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_20">参照</a>
+<ul>
+<li>
+<a href="#toc_21">目录</a>
+</li>
+</ul>
+
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15263715509093.html" 
+          title="Previous Post: Open GL - GLSL着色器语言">&laquo; Open GL - GLSL着色器语言</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15263696340511.html" 
+          title="Next Post: OpenGL FrameBuffer Objects,RenderBuffer Objects and Textures">OpenGL FrameBuffer Objects,RenderBuffer Objects and Textures &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

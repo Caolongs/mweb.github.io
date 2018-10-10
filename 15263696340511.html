@@ -1,0 +1,366 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  OpenGL FrameBuffer Objects,RenderBuffer Objects and Textures - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>OpenGL FrameBuffer Objects,RenderBuffer Objects and Textures</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/5/15</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <h3 id="toc_0">RenderBuffer</h3>
+
+<blockquote>
+<p>A renderbuffer object is a 2D image buffer allocated by the application. The renderbuffer can be used to allocate and store color, depth, or stencil values and can be used as a color, depth, or stencil attachment in a framebuffer object. A renderbuffer is similar to an off-screen window system provided drawable surface, such as a pbuffer. A renderbuffer, however, cannot be directly used as a GL texture.</p>
+
+<p>渲染缓冲区对象是由应用程序分配的2D图像缓冲区。渲染缓冲区可用于分配和存储颜色，深度或模板值，并可用作帧缓冲区对象中的颜色，深度或模板附件。渲染缓冲器类似于提供可绘制表面的离屏窗口系统，例如pbuffer。但是，渲染缓冲区不能直接用作GL纹理。</p>
+</blockquote>
+
+<h3 id="toc_1">FrameBuffer</h3>
+
+<blockquote>
+<p>A framebuffer object (often referred to as an FBO) is a collection of color, depth, and stencil buffer attachment points; state that describes properties such as the size and format of the color, depth, and stencil buffers attached to the FBO; and the names of the texture and renderbuffer objects attached to the FBO. Various 2D images can be attached to the color attachment point in the framebuffer object. These include a renderbuffer object that stores color values, a mip-level of a 2D texture or a cubemap face, or even a mip-level of a 2D slice in a 3D texture. Similarly, various 2D images contain- ing depth values can be attached to the depth attachment point of an FBO. These can include a renderbuffer, a mip-level of a 2D texture or a cubemap face that stores depth values. The only 2D image that can be attached to the stencil attachment point of an FBO is a renderbuffer object that stores stencil values.</p>
+
+<p>⼀个 frameBuffer 对象(通常被称为⼀个FBO)。是一个收集颜色、深度和模板缓存区的附着点。描述属性的状态，例如颜⾊、深度和模板缓存区的大小和格式，都关联到FBO(Frame Buffer Object)。并且纹理的名字和 renderBuffer 对象也都是关联于FBO。各种各样的2D图形能够被附着framebuffer对象的颜色附着点。它们包含了renderbuffer对象存储的颜⾊色值、⼀个2D纹理或⽴方体贴图。或者⼀一个mip-level的二维切面在 3D纹理。同样，各种各样的2D图形包含了当时的深度值可以附加到⼀个FBO的深度附着点中去。唯⼀的⼆维图像，能够附着在FBO的模板附着点，是一个renderbuffer对象存储模板值。</p>
+</blockquote>
+
+<p><img src="media/15263696340511/15263708418675.jpg" alt="FrameBuffer Objects,RenderBuffer Objects and Textures"/></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15263712692654.html" 
+          title="Previous Post: OpenGL 常见概念性理解整理">&laquo; OpenGL 常见概念性理解整理</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15263628382501.html" 
+          title="Next Post: OpenGL 与 OpenGL ES">OpenGL 与 OpenGL ES &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

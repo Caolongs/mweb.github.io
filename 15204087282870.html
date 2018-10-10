@@ -8,17 +8,23 @@
   Jenkins + Fastlane 持续集成自动化打包 - 
   
   </title>
- <meta name="description" content="">
- <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,34 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html"></a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; </span>
@@ -41,170 +70,75 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>工具</label></li>
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
 
-          
-            <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-          
-            <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-          
-            <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-          
-            <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-          
-            <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-          
-            <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-          
-            <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>iOS</label></li>
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
 
-          
-            <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>架构</label></li>
-
-          
-            <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-          
-            <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-          
-            <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>CI</label></li>
-
-          
-            <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-          
-            <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-          
-            <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-          
-            <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>OpenGL</label></li>
-
-          
-            <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-          
-            <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-          
-            <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>逆向与安全</label></li>
-
-          
-            <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Jenkins + Fastlane 持续集成自动化打包</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/3/7</span>
 
-                    
-                      <li class="side-title"><span>工具</span></li>
-                        
-                          <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-                        
-                          <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-                        
-                          <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-                        
-                          <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-                        
-                          <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-                        
-                          <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-                        
-                          <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-                        
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='CI.html'>CI</a></span>
+           
+         
+          <span class="comments">
+            
 
-                    
-                      <li class="side-title"><span>iOS</span></li>
-                        
-                          <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-                        
+            
+          </span>
 
-                    
-                      <li class="side-title"><span>架构</span></li>
-                        
-                          <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-                        
-                          <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-                        
-                          <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-                        
+        </div>
+      </div><!-- article -->
 
-                    
-                      <li class="side-title"><span>CI</span></li>
-                        
-                          <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-                        
-                          <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-                        
-                          <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-                        
-                          <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>OpenGL</span></li>
-                        
-                          <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-                        
-                          <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-                        
-                          <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>逆向与安全</span></li>
-                        
-                          <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-                        
-
-                    
-                  </ul>
-                </nav>
-                </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- <div class="markdown-body">
-<h1>Jenkins + Fastlane 持续集成自动化打包</h1>
-
-<blockquote>
+      <div class="article-content">
+      <blockquote>
 <p>本文使用 Jenkins 与 Fastlane 结合使用自动编译打包至蒲公英</p>
 </blockquote>
 
@@ -220,21 +154,21 @@
 <li>1. 命令行安装</li>
 </ul>
 
-<pre><code>brew install jenkins 
+<pre><code class="language-text">brew install jenkins 
 
 
 </code></pre>
 
 <p><code>若无homebrew，安装homebrew</code></p>
 
-<pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+<pre><code class="language-text">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 </code></pre>
 
 <ul>
 <li>2. 官网下载安装</li>
 </ul>
 
-<pre><code>https://jenkins.io/
+<pre><code class="language-text">https://jenkins.io/
 </code></pre>
 
 <p>使用 homebrew 安装成功，显示启动Jenkins方法，如下图<br/>
@@ -244,7 +178,7 @@
 
 <h4 id="toc_2">1. 启动Jenkins</h4>
 
-<pre><code>```
+<pre><code class="language-text">```
 $ jenkins
 
 ```
@@ -252,7 +186,7 @@ $ jenkins
 
 <h4 id="toc_3">2. 访问 <a href="http://localhost:8080/">http://localhost:8080/</a></h4>
 
-<pre><code>```
+<pre><code class="language-text">```
 2.1 弹出Jenkins安装界面，会让你输入安全密码,输入完成之后选择默认安装。
 （密码会在终端log日志中打印出来）
 
@@ -262,7 +196,7 @@ $ jenkins
 
 <h4 id="toc_4">3. 安装插件</h4>
 
-<pre><code>创建账户之后会弹出插件安装选项，默认安装或选择安装，可根据需要自行选择
+<pre><code class="language-text">创建账户之后会弹出插件安装选项，默认安装或选择安装，可根据需要自行选择
 
 GitLab插件
 在可选插件中选择GitLab和Gitlab Hook进行安装。
@@ -285,16 +219,12 @@ Xcode插件
 <li><p>配置源码管理，点击 Add 按钮，选择 Jenkins 填写仓库用户名、密码（或其他方式）<br/>
 <img src="media/15204087282870/15204128400804.jpg" alt="" style="width:895px;"/></p></li>
 <li><p>配置构建 - 上传至蒲公英</p>
-
 <ol>
 <li>输入项目中 fastlane 命令</li>
 </ol>
-
-<pre><code>fastlane beta_pgyer
+<pre><code class="language-text">fastlane beta_pgyer
 </code></pre>
-
 <p><img src="media/15204087282870/15204130038565.jpg" alt="" style="width:936px;"/>   </p>
-
 <ol>
 <li><p>与工作区对应关系如下：（否则构建 Execte shell 添加 cd ../  找到fastlane对应目录）<br/>
 <img src="media/15204087282870/15204132526762.jpg" alt="" style="width:704px;"/>   </p></li>
@@ -313,27 +243,19 @@ Xcode插件
 
 <ul>
 <li><p>Xcode 插件方式</p>
-
 <p>安装 Xcode 插件， 构建选项中会出现Xcode，具体配置信息可自行尝试<br/>
 <img src="media/15204087282870/15204142313802.jpg" alt="" style="width:574px;"/>   </p></li>
 <li><p>jenkins与fastlane分工</p>
-
 <p>jenkins配置项目相关参数，fastlane在fastfile脚本中使用。</p>
-
 <p>例如：在jenkins构建时添加参数：scheme，configuration，version，build</p>
-
 <p>然后在Execute Shell中使用命令：</p>
-
-<pre><code>fastlane beta_pgyer scheme:${scheme} configuration:${configuration}     version:${version} build:${build}
+<pre><code class="language-text">fastlane beta_pgyer scheme:${scheme} configuration:${configuration}     version:${version} build:${build}
 </code></pre>
-
 <p>项目中Fastfile中可以这么使用：</p>
-
-<pre><code>lane :beta_pgyer do |options|
-#这样就可以获取到jenkins中传入的scheme，configuration，version，build的值
-#获取方式：options[:scheme]，options[:configuration]，options[: version]，  options[: build]
+<pre><code class="language-text">lane :beta_pgyer do |options|
+#这样就可以获取到jenkins中传入的scheme，configuration，version，build的值<br/>
+#获取方式：options[:scheme]，options[:configuration]，options[: version]，  options[: build]<br/>
 end
-
 </code></pre></li>
 </ul>
 
@@ -377,75 +299,209 @@ end
 
 
 
-</div>
+    
 
-<br /><br />
-<hr />
+      </div>
 
-<div class="row clearfix">
-  <div class="large-6 columns">
-	<div class="text-left" style="padding:15px 0px;">
-		
-	        <a href="15208414821831.html"  title="Previous Post: 组件化 - 本地私有库创建">&laquo; 组件化 - 本地私有库创建</a>
-	    
-	</div>
-  </div>
-  <div class="large-6 columns">
-	<div class="text-right" style="padding:15px 0px;">
-		
-	        <a href="15196291080319.html" 
-	        title="Next Post: FastLane - 上传到蒲公英">FastLane - 上传到蒲公英 &raquo;</a>
-	    
-	</div>
-  </div>
-</div>
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15208414821831.html" 
+          title="Previous Post: 组件化 - 本地私有库创建">&laquo; 组件化 - 本地私有库创建</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15196291080319.html" 
+          title="Next Post: FastLane - 上传到蒲公英">FastLane - 上传到蒲公英 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
 
-<div class="row">
-<div style="padding:0px 0.93em;" class="share-comments">
+          
 
-</div>
-</div>
-<script type="text/javascript">
-	$(function(){
-		var currentURL = '15204087282870.html';
-		$('#side-nav a').each(function(){
-			if($(this).attr('href') == currentURL){
-				$(this).parent().addClass('active');
-			}
-		});
-	});
-</script>  
-</div></div>
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
 
 
-<div class="page-bottom">
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     
+
 
 
   </body>

@@ -8,17 +8,23 @@
   iOS - 
   
   </title>
- <meta name="description" content="">
- <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,34 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html"></a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; </span>
@@ -41,174 +70,363 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>工具</label></li>
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
 
-          
-            <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-          
-            <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-          
-            <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-          
-            <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-          
-            <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-          
-            <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-          
-            <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>iOS</label></li>
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
 
-          
-            <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>架构</label></li>
-
-          
-            <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-          
-            <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-          
-            <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>CI</label></li>
-
-          
-            <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-          
-            <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-          
-            <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-          
-            <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>OpenGL</label></li>
-
-          
-            <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-          
-            <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-          
-            <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>逆向与安全</label></li>
-
-          
-            <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15264578086555.html">
+                
+                  <h1>RunLoop</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>Runloop 是和线程紧密相关的一个基础组件，是很多线程有关功能的幕后功臣。尽管在平常使用中几乎不太会直接用到，理解 Runloop 有利于我们更加深入地理解 iOS 的多线程模型。</p>
 
-                    
-                      <li class="side-title"><span>工具</span></li>
-                        
-                          <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-                        
-                          <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-                        
-                          <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-                        
-                          <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-                        
-                          <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-                        
-                          <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-                        
-                          <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-                        
+<p><strong>目的</strong>：保住当前线程的生命,监听事件：触摸、时钟、网络等</p>
 
-                    
-                      <li class="side-title"><span>iOS</span></li>
-                        
-                          <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-                        
+<h2 id="toc_0">RunLoop基本概念</h2>
 
-                    
-                      <li class="side-title"><span>架构</span></li>
-                        
-                          <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-                        
-                          <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-                        
-                          <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-                        
+<p>RunLoop是什么？顾名思义，说白了就是一种循环，只不过它这种循环比较高级。一般的while循环会导致CPU进入忙等待状态，而Runloop则是一种“闲”等待，这部分可以类比Linux下的epoll。当没事件时，Runloop会进入休眠状态，有事件发生时，Runloop会去找对应的Handler处理事件。Runloop可以让线程在需要做事的时候忙起来，不需要的话就让线程休眠。<br/>
+<img src="media/15264578086555/15264592711244.png" alt=""/></p>
 
-                    
-                      <li class="side-title"><span>CI</span></li>
-                        
-                          <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-                        
-                          <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-                        
-                          <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-                        
-                          <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-                        
+<p>图中展示了Runloop在线程中的作用：从 input source 和 timer source 接受事件，然后在线程中处理事件。</p>
 
-                    
-                      <li class="side-title"><span>OpenGL</span></li>
-                        
-                          <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-                        
-                          <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-                        
-                          <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-                        
+<h2 id="toc_1">Runloop 与线程</h2>
 
-                    
-                      <li class="side-title"><span>逆向与安全</span></li>
-                        
-                          <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-                        
+<p>Runloop 和线程是绑定在一起的。每个线程（包括主线程）都有一个对应的Runloop对象。我们并不能自己创建Runloop对象，但是可以获取到系统提供的Runloop对象。<br/>
+主线程的 Runloop 会在应用启动的时候完成启动，其他线程的 Runloop 默认并不会启动，需要我们手动启动。</p>
 
-                    
-                  </ul>
-                </nav>
+<h2 id="toc_2">Input Source 和 Timer Source</h2>
+
+<p>这两个都是 Runloop 时间的来源，其中<strong>Input Source</strong> 又可以分为三类</p>
+
+<ul>
+<li>Port-Base Source，系统底层的Port时间，例如CFSocketRef，在应用层基本用不到</li>
+<li>Custom Input Source，用户手动创建的Source</li>
+<li>Cocoa Perform Selector Source，Cacoa提供的的performSelector系列方法，也是一种事件源</li>
+</ul>
+
+<p>按照函数调用栈,Source可分为 <code>Source0</code> 和 <code>Source1</code>。其中 <code>Source1</code> 为系统内核事件, <code>Source0</code>即非<code>Source1</code></p>
+
+<p>例如：创建事件源</p>
+
+<pre><code class="language-text">    //队列
+    dispatch_queue_t queue = dispatch_get_global_queue(0,0);
+    //创建一个定时器!!
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    //设置定时器
+    dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1000000000, 0);
+    dispatch_source_set_event_handler(self.timer, ^{
+        NSLog(@&quot;-------%@&quot;,[NSThread currentThread]);
+    });
+    //启动定时器
+    dispatch_resume(self.timer);
+</code></pre>
+
+<p><strong>Timer Source</strong> 顾名思义就是指定时器事件了。例如：<code>NStimer</code> 创建定时器</p>
+
+<h2 id="toc_3">Runloop Observer</h2>
+
+<p>Runloop 通过监控Source来决定有没有任务要做，除此之外，我们还可以用Runloop Observer 可以监控下面的 runloop 事件：</p>
+
+<ul>
+<li>The entrance to the run loop.</li>
+<li>When the run loop is about to process a timer.</li>
+<li>When the run loop is about to process an input source.</li>
+<li>When the run loop is about to go to sleep.</li>
+<li>When the run loop has woken up, but before it has processed the event that woke it up.</li>
+<li>The exit from the run loop.</li>
+</ul>
+
+<p>通过Runloop Observer 可以实现卡顿优化，如：TableView滑动中加载多张大图<br/>
+<strong>思路</strong>：每次Runloop循环,只渲染一张大图<br/>
+<strong>步骤</strong>:<br/>
+ 1.监听Runloop的循环<br/>
+ 2.将加载大图的代码!放在一个数组里面<br/>
+ 3.每次Runloop循环,取出一个加载大图的任务执行</p>
+
+<pre><code class="language-text"> #pragma mark - &lt;CFRunloop&gt;
+
+- (void)addTasks:(runloopBlock)task{
+    [self.tasks addObject:task];
+    if (self.tasks.count &gt; 18) {
+        [self.tasks removeObjectAtIndex:0];
+    }
+}
+
+- (void)addRunloopObserver{
+    //获取Runloop
+     CFRunLoopRef runloop = CFRunLoopGetCurrent();
+    //定义一个context
+    CFRunLoopObserverContext context = {
+        0,
+        (__bridge void *)(self),
+        &amp;CFRetain,
+        &amp;CFRelease,
+        NULL
+    };
+    
+    //定义观察者
+    static CFRunLoopObserverRef runloopObserver;
+    runloopObserver = CFRunLoopObserverCreate(NULL, kCFRunLoopBeforeWaiting, YES, 0, &amp;callBack, &amp;context);
+    
+    //添加观察者
+    CFRunLoopAddObserver(runloop, runloopObserver, kCFRunLoopCommonModes);
+    
+    //C里面 一旦creat new copy
+    CFRelease(runloopObserver);
+}
+
+void callBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info){
+    ViewController * vc = (__bridge ViewController *)info;
+    if(vc.tasks.count == 0){
+        return;
+    }
+    runloopBlock block = vc.tasks.firstObject;
+    block();
+    [vc.tasks removeObjectAtIndex:0];
+}
+</code></pre>
+
+<h2 id="toc_4">Runloop Mode</h2>
+
+<p>在监视与被监视中， Runloop 要处理的事情还挺复杂的。为了让Runloop 能专心处理自己关心的那部分事情，引入了Runloop Mode 概念。<br/>
+<img src="media/15264578086555/15264592902617.png" alt=""/></p>
+
+<p>如图所示， Runloop Model 实际上是Source、Timer 和 Observer 的集合，不同的Model 把不同组的 Source、 Timer 和 Observer 隔绝开来。Runloop 在某个时刻只能跑在一个 Mode 下，处理这一个 Model 种种的 Source，Timer 和 Observer。<br/>
+苹果文档中提到的 Mode 有五个，分别是：</p>
+
+<ul>
+<li>NSDefaultRunLoopMode</li>
+<li>NSConnectionReplyModel</li>
+<li>NSModalPanelRunLoopMode</li>
+<li>NSEventTrackingRunLoopMode</li>
+<li>NSRunLoopCommonModes</li>
+</ul>
+
+<p>iOS中公开暴露出来的只有 NSDefaultRunLoopMode 和 NSRunLoopCommonMode.NSRunLoopCommonMode实际上是一个Mode的集合，默认包括 NSDefaultRunLoopMode  和 NSEventTrackingRunLoopMode</p>
+
+<h2 id="toc_5">与 RunLoop 相关的坑</h2>
+
+<p>日常开发中，与 runloop 接触最近的可能就是NSTimerle。一个 Timer一次只能加入到一个 RunLoop中。我们日常使用的时候，通常就是加入到当前的runLoop的default model中，而ScrollView 在用户滑动的时候，主线程RunLoop会转到NSTrackingRunLoopMode。er这个时候，Timer就不会运行。<br/>
+有如下两种解决方案：</p>
+
+<ul>
+<li>第一种：设置RunLoop Mode，例如NSTimer，我们指定它<br/>
+运行于NSRunLoopCommonModes，这是一个Mode的集<br/>
+合。注册到这个Mode下后，无论当前runLoop运行哪个<br/>
+mode，时间都能得到执行。</li>
+<li>第二种：另一种解决Timer的方法是，我们在另一个线程执行和处理Timer事件，然后在主线程更新UI。</li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15264570316513.html">
+                
+                  <h1>Runtime</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">一、基本概念</h2>
 
- 
+<ol>
+<li>RunTime简称运行时,就是系统在运行的时候的一些机制，其中最主要的是消息机制。</li>
+<li>对于C语言，函数的调用在编译的时候会决定调用哪个函数，编译完成之后直接顺序执行，无任何二义性。</li>
+<li>OC的函数调用成为消息发送。属于动态调用过程。在编译的时候并不能决定真正调用哪个函数（事实证明，在编译阶段，OC可以调用任何函数，即使这个函数并未实现，只要申明过就不会报错。而C语言在编译阶段就会报错）。</li>
+<li>只有在真正运行的时候才会根据函数的名称找 到对应的函数来调用。</li>
+</ol>
+
+<h2 id="toc_1">二、Runtime - 消息机制</h2>
+
+<pre><code class="language-text">#import &lt;objc/message.h&gt;
+</code></pre>
+
+<p>底层函数调用都是通过消息发送的 <code>objc_msgSend</code></p>
+
+<p>例如：</p>
+
+<pre><code class="language-text">Person * p = [[Person alloc] init];
+
+Person * p = objc_msgSend([Person class], @selector(alloc));
+Person * p = objc_msgSend(objc_getClass(&quot;Person&quot;), sel_registerName(&quot;alloc&quot;));
+
+p = [p init];
+p = objc_msgSend(p, sel_registerName(&quot;init&quot;));
+
+[p eatWith:@&quot;food&quot;];
+objc_msgSend(p, sel_registerName(&quot;eatWith:&quot;),@&quot;food&quot;);
+
+</code></pre>
+
+<p>验证：clang 编辑器,生成 main.cpp 文件</p>
+
+<pre><code class="language-text">$ clang -rewrite-objc main.m
+</code></pre>
+
+<h2 id="toc_2">三、Runtime - 运行时机制</h2>
+
+<pre><code class="language-text">&lt;Objc/runtime.h&gt;
+</code></pre>
+
+<p>苹果提供的一套C语言的API，可以再OC编译运行的阶段，动态的改变操作</p>
+
+<p><strong>SEL</strong> 方法编号<br/>
+<strong>IMP</strong> 方法实现（本质是函数指针）<br/>
+在OC中我们调用方法都是通过消息机制，给某个对象发送编号消息，通过SEL 可以找到对应的IMP<br/>
+SEL 和 IMP是一一对应的关系</p>
+
+<p>编程思想：<strong>面向切面编程（AOP）</strong> 核心的技术就是用到了HOOK（钩子）思想<br/>
+改变原来的方法调用顺序</p>
+
+<h2 id="toc_3">三、常见的作用</h2>
+
+<ol>
+<li>动态的添加对象的成员变量和方法</li>
+<li>动态交换两个方法的实现（Method Swizzling）</li>
+<li>实现分类也可以添加属性</li>
+<li>实现NSCoding的自动归档和解档</li>
+<li>实现字典转模型的自动转换</li>
+</ol>
+
+<hr/>
+
+<h2 id="toc_4">runtime 相关定义</h2>
+
+<pre><code class="language-text">/// 描述类中的一个方法
+typedef struct objc_method *Method;
+
+/// 实例变量
+typedef struct objc_ivar *Ivar;
+
+/// 类别Category
+typedef struct objc_category *Category;
+
+/// 类中声明的属性
+typedef struct objc_property *objc_property_t;
 
 
-	
-		<div class="markdown-body">
-		<h1>Block用法和实现原理</h1>
+//类在runtime中的表示
+struct objc_class {
+    Class isa;//指针，顾名思义，表示是一个什么，
+    //实例的isa指向类对象，类对象的isa指向元类
 
-		<h3 id="toc_0">Block 概念</h3>
+#if !__OBJC2__
+    Class super_class;  //指向父类
+    const char *name;  //类名
+    long version;
+    long info;
+    long instance_size
+    struct objc_ivar_list *ivars //成员变量列表
+    struct objc_method_list **methodLists; //方法列表
+    struct objc_cache *cache;//缓存
+    //一种优化，调用过的方法存入缓存列表，下次调用先找缓存
+    struct objc_protocol_list *protocols //协议列表
+    #endif
+} OBJC2_UNAVAILABLE;
+/* Use `Class` instead of `struct objc_class *` */
+
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15240154214361.html">
+                
+                  <h1>Block用法和实现原理</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">Block 概念</h3>
 
 <blockquote>
 <p>闭包 = 一个函数「或指向函数的指针」+ 该函数执行的外部的上下文变量「也就是自由变量」；<br/>
@@ -228,7 +446,7 @@ Block 是 Objective-C 对于闭包的实现。</p>
 
 <h5 id="toc_2">1. Block的定义格式</h5>
 
-<pre><code>返回值类型 (^block变量名)(形参列表) = ^(形参列表) {
+<pre><code class="language-text">返回值类型 (^block变量名)(形参列表) = ^(形参列表) {
 
 };
 </code></pre>
@@ -241,28 +459,28 @@ Block 是 Objective-C 对于闭包的实现。</p>
 <p>^ 返回值类型 (参数列表) {表达式}</p>
 </blockquote>
 
-<pre><code>^ int (int count) {
+<pre><code class="language-text">^ int (int count) {
         return count + 1;
     };
 </code></pre>
 
 <p>其中，可省略部分有：返回类型(上图为省略返回类型)</p>
 
-<pre><code>^ (int count) {
+<pre><code class="language-text">^ (int count) {
         return count + 1;
     };
 </code></pre>
 
 <p>参数列表为空，则可省略，例：</p>
 
-<pre><code>^ {
+<pre><code class="language-text">^ {
         NSLog(@&quot;No Parameter&quot;);
     };
 </code></pre>
 
 <p>即表达式最简模式语法为：</p>
 
-<pre><code> ^ {表达式}
+<pre><code class="language-text"> ^ {表达式}
 </code></pre>
 
 <h5 id="toc_4">3. Block使用</h5>
@@ -271,7 +489,7 @@ Block 是 Objective-C 对于闭包的实现。</p>
 <p>1、 无参数，无返回值，声明和定义</p>
 </blockquote>
 
-<pre><code>void(^MyBlockOne)(void) = ^(void){
+<pre><code class="language-text">void(^MyBlockOne)(void) = ^(void){
 
 NSLog(@&quot;无参数，无返回值&quot;);  
 
@@ -283,7 +501,7 @@ MyBlockOne();//block的调用
 <p>2、有参数无返回值</p>
 </blockquote>
 
-<pre><code>void(^MyblockTwo)(int a) = ^(int a){
+<pre><code class="language-text">void(^MyblockTwo)(int a) = ^(int a){
 
 NSLog(@&quot;@ = %d我就是block，有参数，无返回值&quot;,a);
 
@@ -295,7 +513,7 @@ MyblockTwo(100);
 <p>3、有参数有返回值</p>
 </blockquote>
 
-<pre><code>int(^MyBlockThree)(int, int) = ^(int a, int b){    
+<pre><code class="language-text">int(^MyBlockThree)(int, int) = ^(int a, int b){    
 
   NSLog(@&quot;%d我就是block，有参数，有返回值&quot;,a + b);
   returna + b; 
@@ -308,7 +526,7 @@ MyBlockThree(12,56);
 <p>4、有参数有返回值</p>
 </blockquote>
 
-<pre><code>int(^MyblockFour)(void) = ^{
+<pre><code class="language-text">int(^MyblockFour)(void) = ^{
     NSLog(@&quot;无参数，有返回值&quot;);
     return45;
   };
@@ -319,7 +537,7 @@ MyblockFour();
 <p>5、实际开发中常用typedef 定义Block</p>
 </blockquote>
 
-<pre><code>//用typedef定义一个block：
+<pre><code class="language-text">//用typedef定义一个block：
 typedef int (^MyBlock)(int, int);
 
 //定义类的属性
@@ -342,44 +560,43 @@ self.myBlockOne = ^int (int ,int){
 
 <h6 id="toc_6">不使用 __block</h6>
 
-<p>1、 创建 .c 文件<br/>
-```<br/>
-int main(){</p>
+<p>1、 创建 .c 文件</p>
 
-<pre><code>int a = 10;
-void (^block)(void) = ^{
+<pre><code class="language-text">int main(){
+    
+    int a = 10;
+    void (^block)(void) = ^{
 
-    printf(&quot;%d&quot;,a);
-    printf(&quot;test block\n&quot;);
+        printf(&quot;%d&quot;,a);
+        printf(&quot;test block\n&quot;);
 
-};
-block();
-return 0;
+    };
+    block();
+    return 0;
+}
 </code></pre>
 
-<p>}<br/>
-```<br/>
-2、编译</p>
+<p>2、编译</p>
 
-<pre><code>$ gcc testBlock.c
+<pre><code class="language-text">$ gcc testBlock.c
 </code></pre>
 
 <p>生成可执行文件 a.out<br/>
 3、执行</p>
 
-<pre><code>$./a.out testBlock.c 
+<pre><code class="language-text">$./a.out testBlock.c 
 </code></pre>
 
 <ol>
 <li>使用clang 生成 c++ 文件<br/></li>
 </ol>
 
-<pre><code>$ clang -rewrite-objc testBlock.c
+<pre><code class="language-text">$ clang -rewrite-objc testBlock.c
 </code></pre>
 
 <p>c++ 文件  内容</p>
 
-<pre><code>static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+<pre><code class="language-text">static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
   int a = __cself-&gt;a; // bound by copy
 // 生成一个新的值
 
@@ -401,7 +618,7 @@ int main(){
 
 <h6 id="toc_7">使用 __block</h6>
 
-<pre><code>int main(){
+<pre><code class="language-text">int main(){
     
     __block int a = 10;
     void (^block)(void) = ^{
@@ -417,7 +634,7 @@ int main(){
 
 <p>步骤同上，生成 c++ 文件</p>
 
-<pre><code>
+<pre><code class="language-text">
 static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
   __Block_byref_a_0 *a = __cself-&gt;a; // bound by ref
 // 指针
@@ -485,43 +702,213 @@ int main(){
 <a href="https://zhongjcbill.gitbooks.io/ios/oc/Block%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html">Block基本概念</a><br/>
 <a href="https://juejin.im/entry/588075132f301e00697f18e0">iOS Block 详解</a></p>
 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
 
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
 		</div>
-	
+	</div><!-- large 8 -->
 
-  
-  
-</div></div>
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
 
 
-<div class="page-bottom">
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     
+
 
 
   </body>

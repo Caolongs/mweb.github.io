@@ -8,17 +8,23 @@
   组件化 - 远程私有库 - 
   
   </title>
- <meta name="description" content="">
- <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
     <link rel="stylesheet" href="asset/css/foundation.min.css" />
     <link rel="stylesheet" href="asset/css/docs.css" />
-
     <script src="asset/js/vendor/modernizr.js"></script>
     <script src="asset/js/vendor/jquery.js"></script>
-    <script src="asset/highlightjs/highlight.pack.js"></script>
-    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
   </head>
   <body class="antialiased hide-extras">
     
@@ -28,11 +34,34 @@
 
 <nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-<div id="header">
-    <h1><a href="index.html"></a></h1>
-</div>
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
 
 </nav>
+
         <nav class="tab-bar show-for-small">
   <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
     <span> &nbsp; </span>
@@ -41,170 +70,75 @@
 
 <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-      <li><a href="index.html">Home</a></li>
-      
-        <li class="divider"></li>
-        <li><label>工具</label></li>
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
 
-          
-            <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-          
-            <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-          
-            <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-          
-            <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-          
-            <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-          
-            <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-          
-            <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-          
+    <li><label>Categories</label></li>
 
-      
-        <li class="divider"></li>
-        <li><label>iOS</label></li>
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
 
-          
-            <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>架构</label></li>
-
-          
-            <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-          
-            <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-          
-            <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>CI</label></li>
-
-          
-            <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-          
-            <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-          
-            <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-          
-            <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>OpenGL</label></li>
-
-          
-            <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-          
-            <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-          
-            <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-          
-
-      
-        <li class="divider"></li>
-        <li><label>逆向与安全</label></li>
-
-          
-            <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-          
-
-      
       </ul>
     </aside>
 
 <a class="exit-off-canvas" href="#"></a>
 
+
         <section id="main-content" role="main" class="scroll-container">
+        
+       
 
-          <div class="row">
-            <div class="large-3 medium-3 columns">
-              <div class="hide-for-small">
-                <div class="sidebar">
-                <nav>
-                  <ul id="side-nav" class="side-nav">
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>组件化 - 远程私有库</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/3/13</span>
 
-                    
-                      <li class="side-title"><span>工具</span></li>
-                        
-                          <li><a title="MonkeyDev" href="15245531347178.html">MonkeyDev</a></li>
-                        
-                          <li><a title="Cycript 安装及使用" href="15242338446694.html">Cycript 安装及使用</a></li>
-                        
-                          <li><a title="XtraFinder" href="15241488811717.html">XtraFinder</a></li>
-                        
-                          <li><a title="XtraFinder 系统完整性保护(SIP)" href="15241480672826.html">XtraFinder 系统完整性保护(SIP)</a></li>
-                        
-                          <li><a title="Go2Shell and AppleScript" href="15241412696951.html">Go2Shell and AppleScript</a></li>
-                        
-                          <li><a title="iTerm2" href="15240395407492.html">iTerm2</a></li>
-                        
-                          <li><a title="Alfred" href="15240236247092.html">Alfred</a></li>
-                        
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='%E6%9E%B6%E6%9E%84.html'>架构</a></span>
+           
+         
+          <span class="comments">
+            
 
-                    
-                      <li class="side-title"><span>iOS</span></li>
-                        
-                          <li><a title="Block用法和实现原理" href="15240154214361.html">Block用法和实现原理</a></li>
-                        
+            
+          </span>
 
-                    
-                      <li class="side-title"><span>架构</span></li>
-                        
-                          <li><a title="架构模式 MVC MVP MVVM" href="15215981447516.html">架构模式 MVC MVP MVVM</a></li>
-                        
-                          <li><a title="组件化 - 远程私有库" href="15209234462100.html">组件化 - 远程私有库</a></li>
-                        
-                          <li><a title="组件化 - 本地私有库创建" href="15208414821831.html">组件化 - 本地私有库创建</a></li>
-                        
+        </div>
+      </div><!-- article -->
 
-                    
-                      <li class="side-title"><span>CI</span></li>
-                        
-                          <li><a title="Jenkins + Fastlane 持续集成自动化打包" href="15204087282870.html">Jenkins + Fastlane 持续集成自动化打包</a></li>
-                        
-                          <li><a title="FastLane - 上传到蒲公英" href="15196291080319.html">FastLane - 上传到蒲公英</a></li>
-                        
-                          <li><a title="Fastlane" href="15196148245866.html">Fastlane</a></li>
-                        
-                          <li><a title="Continuous Integration in Xcode" href="15193516410111.html">Continuous Integration in Xcode</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>OpenGL</span></li>
-                        
-                          <li><a title="OpenGL ES - - GLKit（GLKBaseEffect）" href="15212766930412.html">OpenGL ES - - GLKit（GLKBaseEffect）</a></li>
-                        
-                          <li><a title="OpenGL ES - GLSL" href="15211019198288.html">OpenGL ES - GLSL</a></li>
-                        
-                          <li><a title="OpenGL简单介绍及实践" href="15176282030413.html">OpenGL简单介绍及实践</a></li>
-                        
-
-                    
-                      <li class="side-title"><span>逆向与安全</span></li>
-                        
-                          <li><a title="初识汇编" href="15246450401949.html">初识汇编</a></li>
-                        
-
-                    
-                  </ul>
-                </nav>
-                </div>
-              </div>
-            </div>
-            <div class="large-9 medium-9 columns">
-
- <div class="markdown-body">
-<h1>组件化 - 远程私有库</h1>
-
-<p>远程私有库相对于本地私有库多了许多配置，对 <code>.spec</code> 文件的配置就显得尤为重要了许多</p>
+      <div class="article-content">
+      <p>远程私有库相对于本地私有库多了许多配置，对 <code>.spec</code> 文件的配置就显得尤为重要了许多</p>
 
 <p>首先，一般采用pod库的形式来集成的远程私有库就需要我们对 cocoapods 的工作有一定的认识。</p>
 
@@ -217,7 +151,7 @@
 <li><p>本地创建私有库索引仓库</p></li>
 </ol>
 
-<pre><code>pod repo add ChuangSpecs http://10.10.1.18/caolongjian/ChuangSpecs.git
+<pre><code class="language-text">pod repo add ChuangSpecs http://10.10.1.18/caolongjian/ChuangSpecs.git
 </code></pre>
 
 <p><strong>注意：</strong> 若使用 <code>git@10.10.1.18:caolongjian/ChuangSpecs.git</code> 需配置SSH</p>
@@ -232,10 +166,10 @@
 
 <p>并将本地的仓库和远程的仓库进行关联</p>
 
-<pre><code>git remote add origin http://10.10.1.18/caolongjian/JJTableView.git
+<pre><code class="language-text">git remote add origin http://10.10.1.18/caolongjian/JJTableView.git
 </code></pre>
 
-<pre><code>git push -u origin master
+<pre><code class="language-text">git push -u origin master
 </code></pre>
 
 <p><strong>注意：</strong> 第一次push的时候,加上-u参数,Git就会把本地的master分支和远程的master分支进行关联起来,以后的push操作就不再需要加上-u参数了</p>
@@ -246,7 +180,7 @@
 
 <h4 id="toc_3">1. 校验一下我们.spec文件是否合法</h4>
 
-<pre><code>pod lib lint
+<pre><code class="language-text">pod lib lint
 </code></pre>
 
 <p>若发现如下 n 多错误，请根据WARN 修改（泪奔，一开始忽略了警告，直接修改ERROR）默认Swift3.2 验证，代码是在Swift4.0下编写运行 </p>
@@ -263,13 +197,13 @@
 
 <h4 id="toc_4">2. tag 标签</h4>
 
-<pre><code>git tag 0.1.0
+<pre><code class="language-text">git tag 0.1.0
 git push --tags
 </code></pre>
 
 <h4 id="toc_5">3. 校验远程 .spec文件是否合法</h4>
 
-<pre><code>pod spec lint
+<pre><code class="language-text">pod spec lint
 </code></pre>
 
 <p><img src="media/15209234462100/15209979433502.jpg" alt=""/></p>
@@ -278,7 +212,7 @@ git push --tags
 
 <p>我们要将 JJTableView.podspec 提交到我们的远程私有索引库(ChuangSpecs)当中去，使用pod repo push [远程私有索引库名称] [框架名称的描述文件]</p>
 
-<pre><code>$ pod repo push ChuangSpecs JJTableView.podspec
+<pre><code class="language-text">$ pod repo push ChuangSpecs JJTableView.podspec
 </code></pre>
 
 <p><img src="media/15209234462100/15209981574964.jpg" alt=""/></p>
@@ -297,16 +231,13 @@ git push --tags
 <ol>
 <li><p>配置 podfile 文件<br/>
 默认指定源是Cocoapods的官方索引库，需要添加自己的远程私有库</p>
-
 <ul>
 <li><p>添加source，记得默认源也要添加上</p>
-
-<pre><code>source &#39;https://github.com/CocoaPods/Specs.git&#39;
+<pre><code class="language-text">source &#39;https://github.com/CocoaPods/Specs.git&#39;
 source &#39;http://10.10.1.18/caolongjian/ChuangSpecs.git&#39;
 </code></pre></li>
 <li><p>pod &#39;JJTableView&#39;</p>
-
-<pre><code>#pod &#39;JJTableView&#39;, :path =&gt; &#39;../Lib/JJTableView&#39;
+<pre><code class="language-text">#pod &#39;JJTableView&#39;, :path =&gt; &#39;../Lib/JJTableView&#39;
 pod &#39;JJTableView&#39;, &#39;0.1.4&#39;
 </code></pre></li>
 </ul></li>
@@ -329,7 +260,7 @@ pod &#39;JJTableView&#39;, &#39;0.1.4&#39;
 <li><p>多级目录提交, 多文件之间尽量不要相互依赖</p></li>
 </ul>
 
-<pre><code>s.subspec &#39;CellKit&#39; do |cellKit|
+<pre><code class="language-text">s.subspec &#39;CellKit&#39; do |cellKit|
     cellKit.source_files = &#39;JJTableView/Classes/JJTableView/CellKit/**/*&#39;
     cellKit.public_header_files = &#39;Pod/Classes/**/*.h&#39;
     cellKit.dependency &#39;AFNetworking&#39;, &#39;~&gt; 2.3&#39;
@@ -385,75 +316,209 @@ end
 
 
 
-</div>
+    
 
-<br /><br />
-<hr />
+      </div>
 
-<div class="row clearfix">
-  <div class="large-6 columns">
-	<div class="text-left" style="padding:15px 0px;">
-		
-	        <a href="15211019198288.html"  title="Previous Post: OpenGL ES - GLSL">&laquo; OpenGL ES - GLSL</a>
-	    
-	</div>
-  </div>
-  <div class="large-6 columns">
-	<div class="text-right" style="padding:15px 0px;">
-		
-	        <a href="15208414821831.html" 
-	        title="Next Post: 组件化 - 本地私有库创建">组件化 - 本地私有库创建 &raquo;</a>
-	    
-	</div>
-  </div>
-</div>
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15211019198288.html" 
+          title="Previous Post: OpenGL ES - GLSL">&laquo; OpenGL ES - GLSL</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15208414821831.html" 
+          title="Next Post: 组件化 - 本地私有库创建">组件化 - 本地私有库创建 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
 
-<div class="row">
-<div style="padding:0px 0.93em;" class="share-comments">
+          
 
-</div>
-</div>
-<script type="text/javascript">
-	$(function(){
-		var currentURL = '15209234462100.html';
-		$('#side-nav a').each(function(){
-			if($(this).attr('href') == currentURL){
-				$(this).parent().addClass('active');
-			}
-		});
-	});
-</script>  
-</div></div>
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
 
 
-<div class="page-bottom">
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
   <div class="row">
-  <hr />
-  <div class="small-9 columns">
-  <p class="copyright">Copyright &copy; 2015
+   <p class="copyright">Copyright &copy; 2015
 Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
 Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
-  </div>
-  <div class="small-3 columns">
-  <p class="copyright text-right"><a href="#header">TOP</a></p>
-  </div>
-   
   </div>
 </div>
 
         </section>
       </div>
     </div>
+
+  
     
-    
+
     <script src="asset/js/foundation.min.js"></script>
-    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
     <script>
       $(document).foundation();
-
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
      
     </script>
+
     
+
 
 
   </body>

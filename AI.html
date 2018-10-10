@@ -1,0 +1,525 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  AI - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15262794243261.html">
+                
+                  <h1>Core ML-Vision</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">Vison 与 Core ML 的关系</h2>
+
+<p>Vision 是 Apple 在 WWDC 2017 推出的图像识别框架。</p>
+
+<p>Core ML 是 Apple 在 WWDC 2017 推出的机器学习框架。</p>
+
+<p><img src="media/15262794243261/15262794673272.jpg" alt=""/></p>
+
+<p>Core ML的作用就是将一个Core ML模型，转换成我们的App工程可以直接使用的对象,就是可以看做是一个模型的转换器。</p>
+
+<p>Vision在这里的角色，就是相当于一个用于识别Core ML模型的一个角色.</p>
+
+<ul>
+<li><p>Core ML可以看做一个模型的转换器，可以将一个 ML Model 格式的模型文件自动生成一些类和方法，可以直接使用这些类去做分析，让我们更简单的在app中使用训练好的模型。</p></li>
+<li><p>Vision本身就是能对图片做分析，他自带了针对很多检测的功能，相当于内置了一些Model，另外Vision也能使用一个你设置好的其它的Core ML Model来对图进行分析。</p></li>
+<li><p>Vision就是建立在Core ML层之上的，使用Vision其实还是用到了Core ML，只是没有显式地直接写Core ML的代码而已。</p></li>
+</ul>
+
+<h3 id="toc_1">应用场景</h3>
+
+<ul>
+<li><p>Face Detection and Recognition（人脸检测和识别）</p></li>
+<li><p>Machine Learning Image Analysis（机器学习图像分析）</p></li>
+<li><p>Barcode Detection（条码检测）</p></li>
+<li><p>Image Alignment Analysis（图像对齐分析）</p></li>
+<li><p>Text Detection（文本检测）</p></li>
+<li><p>Horizon Detection（地平线检测）</p></li>
+<li><p>Object Detection and Tracking（对象检测和跟踪）</p></li>
+</ul>
+
+<h2 id="toc_2">Vison 的使用 与结构图</h2>
+
+<p>Vision使用中的角色有： Request，RequestHandler，results和results中的Observation数组。</p>
+
+<p>Request类型： 有很多种，比如图中列出的 人脸识别、特征识别、文本识别、二维码识别等。</p>
+
+<p><img src="media/15262794243261/15262795595758.jpg" alt=""/></p>
+
+<pre><code class="language-text">// 转换CIImage
+        let cgImage = image.cgImage!
+        
+        // 创建处理requestHandler
+        let detectRequestHandler = VNImageRequestHandler(cgImage: cgImage)
+        
+        // 设置回调
+        let completionHandler: VNRequestCompletionHandler = { (request: VNRequest, error: Error?) in
+            self.handleImageWithType(type: type, image: image, observations: request.results!, complete: complete)
+        }
+
+        // 创建Request
+　　　　　var detectRequest = VNDetectFaceRectanglesRequest.init(completionHandler: completionHandler)//面部轮廓
+
+　　　　　//var detectRequest = VNDetectFaceRectanglesRequest.init(completionHandler: completionHandler)//面部特征
+　　　　// 发送请求 
+　　　　try? detectRequestHandler.perform([detectRequest])
+</code></pre>
+
+<pre><code class="language-text">// 转换CIImage
+        let cgImage = image.cgImage!
+        
+        // 创建处理requestHandler
+        let detectRequestHandler = VNImageRequestHandler(cgImage: cgImage)
+        
+        // 设置回调
+        let completionHandler: VNRequestCompletionHandler = { (request: VNRequest, error: Error?) in
+            self.handleImageWithType(type: type, image: image, observations: request.results!, complete: complete)
+        }
+
+        // 创建Request
+　　　　　var detectRequest = VNDetectFaceRectanglesRequest.init(completionHandler: completionHandler)//面部轮廓
+
+　　　　　//var detectRequest = VNDetectFaceRectanglesRequest.init(completionHandler: completionHandler)//面部特征
+　　　　// 发送请求 
+　　　　try? detectRequestHandler.perform([detectRequest])
+</code></pre>
+
+<pre><code class="language-text">// 处理人脸特征回调
+    class func faceLandmarks(observations: [VNFaceObservation], image: UIImage, complete: detectImageHandler) -&gt; Void {
+        
+        for faceObversion in observations {
+            // 获取细节特征
+            let landmarks: VNFaceLandmarks2D = faceObversion.landmarks!
+            
+            //...
+                
+        }
+    }
+</code></pre>
+
+<pre><code class="language-text">// 处理人脸特征回调
+    class func faceLandmarks(observations: [VNFaceObservation], image: UIImage, complete: detectImageHandler) -&gt; Void {
+        
+        for faceObversion in observations {
+            // 获取细节特征
+            let landmarks: VNFaceLandmarks2D = faceObversion.landmarks!
+            
+            //...
+                
+        }
+    }
+</code></pre>
+
+<p>项目代码：<a href="https://github.com/Caolongs/CoreML-Vision">CoreML-Vision </a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/14</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='AI.html'>AI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15262781134516.html">
+                
+                  <h1>Core ML</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>Core ML 大大降低了开发者在苹果设备上使用机器学习技术预测模型的门槛和成本。苹果制定了自己的模型文件格式，统一的格式和全新的 API 设计使得 Core ML 支持苹果生态下多个平台。</p>
+
+<p><img src="media/15262781134516/15262781536717.jpg" alt=""/></p>
+
+<p><strong>performance primitives</strong> : Acccelerate and BNNS、Metal Performance Shaders。前者用于图形学以及数学上的大规模计算，后者用于优化加速图形渲染。</p>
+
+<p><strong>ML Framework</strong>: Core ML主要有两个职责：导入机器学习模型；生成对应的OC或Swift代码。</p>
+
+<p><strong>Domain Specific</strong>: Vision主要用于图片分析。NLP主要用于自然语义分析。</p>
+
+<p>最上层是应用层，有了下面三层的基础，应用层就可以做很多事情，如人脸识别、手写文字理解、文字情感分析、自动翻译等。</p>
+
+<h2 id="toc_0">Core ML应用创建过程</h2>
+
+<h3 id="toc_1">1、拿到模型模型导入到项目</h3>
+
+<p>　　最简单的获取方式是在<a href="https://developer.apple.com/machine-learning/">苹果官网下载</a>，具体是在Model模块中，该模块下有Places205-GoogLeNet、ResNet50、Inception V3、 VGG6等模型。当然也可以自己训练模型。另外苹果也提供了转换器（Core ML Tools），该转换器是基于Python实现的，可用它把训练出来的模型转为适配Core ML的模型。在文章的最后我会介绍如何使用Core ML Tools进行模型转换。<br/>
+　　</p>
+
+<h3 id="toc_2">2、模型导入到项目</h3>
+
+<p>将模型导入到项目中。然后点击会出现下图所示状态。大小（Size）是 App 性能的一个重要指标，输入（Input）输出（Output）决定了如何使用这个模型。下图的输入是一张图片，输出有两个值，一个是最有可能的图片物体结果，为 String 类型；另一个是所有可能的物体类型以及对应的可能性，为 String 对应 Dobule 的 Dictionary 类型。</p>
+
+<p><img src="media/15262781134516/15262782982692.jpg" alt=""/></p>
+
+<h3 id="toc_3">3、生成代码并编程</h3>
+
+<p>这个示例中我选择苹果官网提供的图像识别MobileNet作为模型。照片的选择主要是通过UIImagePickerController这个类实现。<br/>
+demo地址：<a href="https://github.com/Caolongs/CoreMLClassifier">CoreMLClassifier</a></p>
+
+<p>关键代码：</p>
+
+<pre><code class="language-text">private func modelOutput() -&gt; MobileNetOutput {
+        guard let image = imageView.image else {
+            fatalError(&quot;No image specified.&quot;)
+        }
+        let scaledImage = image.scaleImage(newSize: CGSize.init(width: 224.0, height: 224.0))
+        let buffer = scaledImage!.buffer()!
+        guard let output = try? model.prediction(image: buffer) else {
+            fatalError(&quot;Prediction process failed.&quot;)
+        }
+        return output
+    }
+
+
+private func diplayDesc() {
+        let output = modelOutput()
+        let probability = Int(output.classLabelProbs[output.classLabel]! * 100)
+        descLabel.text = &quot;I&#39;m \(probability)% sure it&#39;s a \(output.classLabel)! &quot;
+    }
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/14</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='AI.html'>AI</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

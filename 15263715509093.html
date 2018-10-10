@@ -1,0 +1,501 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Open GL - GLSL着色器语言 - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Open GL - GLSL着色器语言</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/5/15</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>GLSL(OpenGL Shading Language) 是一个以C语言为基础的高阶着色语言</p>
+
+<h2 id="toc_0">作用</h2>
+
+<p>可用于 OpenGL 可编程管线<br/>
+能够让你对OpenGL渲染其中的一些着色环节来自定义（如顶点着色器，片元着色器）<br/>
+类似UIVIewController的自定义控件</p>
+
+<p>固定管线<br/>
+相当于已经封装了的高级API，让你通过传递参数来实现效果</p>
+
+<h2 id="toc_1">自定义环节</h2>
+
+<ul>
+<li>顶点着色器： 处理每个顶点，确定位置以及变换</li>
+<li>片元着色器： 片元</li>
+</ul>
+
+<h2 id="toc_2">GLSL 数据类型</h2>
+
+<ul>
+<li>void – 用于没有返回值的函式</li>
+<li>bool – 条件类型，其值可以是真或假</li>
+<li>int – 带负号整数</li>
+<li>float – 浮点数</li>
+<li>vec2 – 2 个浮点数组成的向量</li>
+<li>vec3 – 3 个浮点数组成的向量</li>
+<li>vec4 – 4 个浮点数组成的向量</li>
+<li>bvec2 – 2 个布尔组成的向量</li>
+<li>bvec3 – 3 个布尔组成的向量</li>
+<li>bvec4 – 4 个布尔组成的向量</li>
+<li>ivec2 – 2 个整数组成的向量</li>
+<li>ivec3 – 3 个整数组成的向量</li>
+<li>ivec4 – 4 个整数组成的向量</li>
+<li>mat2 – 浮点数的 2X2 矩阵</li>
+<li>mat3 – 浮点数的 3X3 矩阵</li>
+<li>mat4 – 浮点数的 4X4 矩阵</li>
+<li>sampler1D – 用来存取一维纹理的句柄（handle）（或：操作，作名词解。）</li>
+<li>sampler2D – 用来存取二维纹理的句柄</li>
+<li>sampler3D – 用来存取三维纹理的句柄</li>
+<li>samplerCube – 用来存取立方映射纹理的句柄</li>
+<li>sampler1Dshadow – 用来存取一维深度纹理的句柄</li>
+<li>sampler2Dshadow – 用来存取二维深度纹理的句柄</li>
+</ul>
+
+<h2 id="toc_3">存储修饰符</h2>
+
+<p><strong>1. 常量修饰符 const</strong></p>
+
+<pre><code class="language-text">1. 任何使用const声明的变量在其所属的着色器中均是只读的。
+2. const 用来修饰任何基本数据类型
+3. const 不能用来修饰包含数组的数组、结构体
+</code></pre>
+
+<p><strong>2. Attribute</strong></p>
+
+<pre><code class="language-text">1. 用于修饰声明通过OpenGL ES 应用程序传递顶点着色器的变量值，在其他任何非顶点着⾊器的着色器程序中声明attribute变量是错误的
+</code></pre>
+
+<p><strong>3. Uniform</strong></p>
+
+<pre><code class="language-text">1. ⽤来修饰那些被整个图元在被处理过程中保持不变的全局变量
+2. 所有uniform变量都是只读的
+3. uniform修饰符可以和任意基本数据类型一起使用，或者包含基本数据类型元素的数组和结构体
+</code></pre>
+
+<p><strong>4. Varying</strong></p>
+
+<pre><code class="language-text">1. varying变量提供了顶点着⾊器，⽚元着色器和二者通讯控制模块之间的接口
+2. 顶点着⾊器计算每个顶点的值(颜⾊，纹理坐标等)并将它们写到 varying 变量中。顶点着⾊器也会从 varying 变量中读值，获取和它写入相同的值
+3. ⽚元着⾊器会读取varying变量的值，并且被读取的值将会作为插值器，作为图元中片元位置的一个功能信息。varying 变量对于⽚元着⾊器来说是只读的。
+</code></pre>
+
+<h2 id="toc_4">精度修饰符</h2>
+
+<p><strong>highp</strong>：  浮点数的范围 (-2<sup>62</sup> - 2<sup>62)</sup> ，整型范围 (-2<sup>16</sup> - 2<sup>16)</sup><br/>
+<strong>mediump</strong>：浮点数的范围 (-2<sup>14</sup> - 2<sup>14)，</sup> 整型范围 (-2<sup>10</sup> - 2<sup>10)</sup><br/>
+<strong>lowp</strong>：   浮点数的范围 (-2,2)，         整型范围(-2<sup>8</sup> - 2<sup>8)</sup></p>
+
+<h2 id="toc_5">官方的shader范例:</h2>
+
+<h3 id="toc_6">Vertex Shader:</h3>
+
+<pre><code class="language-text">uniform mat4 mvp_matrix; //透视矩阵 * 视图矩阵 * 模型变换矩阵
+uniform mat3 normal_matrix; //法线变换矩阵(用于物体变换后法线跟着变换)
+uniform vec3 ec_light_dir; //光照方向
+attribute vec4 a_vertex; // 顶点坐标
+attribute vec3 a_normal; //顶点法线
+attribute vec2 a_texcoord; //纹理坐标
+varying float v_diffuse; //法线与入射光的夹角
+varying vec2 v_texcoord; //2d纹理坐标
+void main(void)
+{
+ //归一化法线
+ vec3 ec_normal = normalize(normal_matrix * a_normal);
+ //v_diffuse 是法线与光照的夹角.根据向量点乘法则,当两向量长度为1是 乘积即cosθ值
+ v_diffuse = max(dot(ec_light_dir, ec_normal), 0.0);
+ v_texcoord = a_texcoord;
+ gl_Position = mvp_matrix * a_vertex;
+}
+</code></pre>
+
+<h3 id="toc_7">Fragment Shader:</h3>
+
+<pre><code class="language-text">precision mediump float;
+uniform sampler2D t_reflectance;
+uniform vec4 i_ambient;
+varying float v_diffuse;
+varying vec2 v_texcoord;
+void main (void)
+{
+ vec4 color = texture2D(t_reflectance, v_texcoord);
+ //这里分解开来是 color*vec3(1,1,1)*v_diffuse + color*i_ambient
+ //色*光*夹角cos + 色*环境光
+ gl_FragColor = color*(vec4(v_diffuse) + i_ambient);
+}
+</code></pre>
+
+<h2 id="toc_8">目录</h2>
+
+<ul>
+<li>
+<a href="#toc_0">作用</a>
+</li>
+<li>
+<a href="#toc_1">自定义环节</a>
+</li>
+<li>
+<a href="#toc_2">GLSL 数据类型</a>
+</li>
+<li>
+<a href="#toc_3">存储修饰符</a>
+</li>
+<li>
+<a href="#toc_4">精度修饰符</a>
+</li>
+<li>
+<a href="#toc_5">官方的shader范例:</a>
+<ul>
+<li>
+<a href="#toc_6">Vertex Shader:</a>
+</li>
+<li>
+<a href="#toc_7">Fragment Shader:</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">目录</a>
+</li>
+</ul>
+
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15263723434422.html" 
+          title="Previous Post: OpenGL - 渲染过程">&laquo; OpenGL - 渲染过程</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15263712692654.html" 
+          title="Next Post: OpenGL 常见概念性理解整理">OpenGL 常见概念性理解整理 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

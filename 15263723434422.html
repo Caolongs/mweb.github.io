@@ -1,0 +1,517 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  OpenGL - 渲染过程 - 
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site: ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li id=""><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+        <li><a target="_blank" href="https://github.com/Caolongs">Alongs</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
+        
+            <li><a href="%E6%9E%B6%E6%9E%84.html">架构</a></li>
+        
+            <li><a href="CI.html">CI</a></li>
+        
+            <li><a href="OpenGL.html">OpenGL</a></li>
+        
+            <li><a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html">逆向与安全</a></li>
+        
+            <li><a href="AI.html">AI</a></li>
+        
+            <li><a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html">音视频</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>OpenGL - 渲染过程</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/5/15</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='OpenGL.html'>OpenGL</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <h2 id="toc_0">一、基本图形硬件流水线设计</h2>
+
+<p><img src="media/15263723434422/15263724067540.jpg" alt=""/><br/>
+<mark>应⽤用程序层 -&gt; 硬件抽象层 -&gt; 硬件层</mark></p>
+
+<p><strong>应⽤层</strong>: 游戏和应⽤用层软件开发⼈人员为主体，通过调⽤用API进行上层开发，不需要考虑移植性问题。 <br/>
+<strong>硬件抽象层</strong>: 抽象出硬件的加速功能，进行有利于应用层开发的封装，并向应⽤层开发API <br/>
+<strong>硬件层</strong>: 将硬件驱动提供给抽象层，以实现抽象层加速功能的有效性。</p>
+
+<h2 id="toc_1">二、渲染流水线的具体流程</h2>
+
+<h3 id="toc_2">1、应⽤层</h3>
+
+<p>应⽤程序层主要与内存，CPU打交道，诸如碰撞检测，场景图监理，视锥裁剪等经典算法在此阶段执行。在阶段的末端，几何体的数据(顶点坐标，法向量，纹理坐标，纹理)等通过数据总线传送到图形硬件</p>
+
+<h3 id="toc_3">2、硬件抽象层</h3>
+
+<p>在这⼀层，我们目前使用的是DirectX与OpenGL。对于这⼀部分，主要是⼀些API等的调⽤</p>
+
+<h3 id="toc_4">3、硬件层</h3>
+
+<p>硬件层在渲染流水线中最为复杂，也最为重要。可编程渲染流水线与固定渲染流水线的区别在于是否对着色器进⾏编程。<br/>
+  ⾸先我们先了解固定渲染流水线它主要分为以下几个阶段:<br/>
+  顶点变换 -&gt; 图元转配与光栅化 -&gt; ⽚段纹理映射和着色 -&gt; 光栅化操作</p>
+
+<h2 id="toc_5">三、硬件层—固定渲染管线流程图</h2>
+
+<p><img src="media/15263723434422/15263732132633.jpg" alt=""/></p>
+
+<p><strong>光栅化(Rasterization)</strong>:将顶点数据转换为片元的过程! 将具体的图转化为一个个栅格组成的图像的作⽤<br/>
+⽚元中每个一个元素对于帧缓存区的一个像素; 光栅化其实是一个将几何图元变成一个二维图像的过程!!<br/>
+光栅化的过程就是为了产出⽚元</p>
+
+<h2 id="toc_6">四、硬件层—可编程渲染流水线流程图</h2>
+
+<p><img src="media/15263723434422/15263733597135.jpg" alt=""/></p>
+
+<h2 id="toc_7">五、GPU 图形渲染管线</h2>
+
+<p><img src="media/15263723434422/15263734882629.jpg" alt=""/></p>
+
+<p><strong>应用程序阶段</strong><br/>
+主要是⾼级编程语言开发,C,OC,C++ <br/>
+输出:通过数据总线,把几何体的数据(顶点坐标\法线\纹理理坐标\纹理理)等传送到GPU上</p>
+
+<p><strong>⼏何阶段</strong><br/>
+输入:应⽤程序末端的内容 <br/>
+负责任务:顶点坐标变换,光照,裁剪,投影,屏幕映射 <br/>
+输出:经过变换和投影之后的屏幕坐标,颜⾊,纹理坐标</p>
+
+<p><strong>光栅化阶段</strong><br/>
+见上</p>
+
+<h3 id="toc_8">光栅化操作</h3>
+
+<p>这⼀步我们将会对其进行各种测试，⽽假如它通过了所有的测试，⽚段将会显示在屏幕上<br/>
+<img src="media/15263723434422/15263750349578.jpg" alt=""/></p>
+
+<p><strong>抖动显示</strong>:一种能够使用较少的颜色种类模拟较多颜色的显示模式</p>
+
+<h3 id="toc_9">⼏何处理阶段</h3>
+
+<p>几何阶段主要负责大部分多边形操作和顶点操作，包括顶点着色、坐标变换、生成图元、投影、<br/>
+ 裁剪、屏幕映射等过程，其中顶点着色、坐标变换由顶点着色器完成</p>
+
+<ol>
+<li><strong>顶点着⾊器</strong> </li>
+<li><strong>⽣成图元</strong>： 顶点数组或索引数组经由顶点着色程序生成三角形的组合</li>
+<li><strong>投影</strong>： 透视投影，平行投影</li>
+<li><strong>裁切</strong>： 仅保留视景体内部的图元进行渲染</li>
+<li><strong>屏幕映射</strong>： 这个阶段是不可配置也不可编程的。主要用来实现图元的坐标转换到屏幕坐标</li>
+</ol>
+
+<h2 id="toc_10">六、其他</h2>
+
+<h3 id="toc_11">Shader</h3>
+
+<p><strong>Shader</strong>，中⽂名，着色器。着⾊器其实就是一段在GPU运行的程序。我们平时的程序，是在CPU运行。由于GPU的硬件设计结构与CPU有着很大的不同，所以GPU需要一些新的编程语言</p>
+
+<p>渲染流水线分为两种，其中一种为<strong>可编程渲染流水线</strong>。另外一种为<strong>固定渲染流水线</strong>。(也称可编程管线或固定管线，管线就是流⽔线的意思)。渲染流⽔线可否编程，取决于程序猿能否在顶点着色器以及⽚段着色器上进⾏行编码。⽽现在的渲染流水线，基本都是可编程的，当然，它们也支持固定渲染流水线的功能</p>
+
+<h3 id="toc_12">CPU 与 GPU 之间的关系</h3>
+
+<p>GPU具有⾼并行的结构，所以在处理图形数据和复杂算法比CPU更加有效率</p>
+
+<p><img src="media/15263723434422/15263738384864.jpg" alt=""/></p>
+
+<p>CPU在执行任务的时候，⼀个时刻只会处理⼀个数据，不存在真正意义上的并行，⽽GPU则有多个处理器核，在⼀个时刻可以并行处理多个数据</p>
+
+<h3 id="toc_13">三维坐标转变为二维屏幕坐标的过程</h3>
+
+<p><img src="media/15263723434422/15263754091644.jpg" alt=""/></p>
+
+<p>MC是建模坐标系，WC是世界坐标系，VC是观察坐标系，PC是投影坐标系，NPC是规格化投影坐标系，DC是设备坐标系</p>
+
+<h3 id="toc_14">坐标系详细概念</h3>
+
+<ul>
+<li><strong>世界坐标系</strong> 坐标系统主要⽤于计算机图形场景中的所有图形对象的空间定位和定义</li>
+<li><strong>局部坐标系</strong> 独立于世界坐标系来定义物体几何特性</li>
+<li><strong>观察坐标系</strong> 观察坐标系通常是以视点的位置为原点，通过⽤户指定的一个向上的观察向量来定义整个坐标系统，观察坐标系主要⽤于从观察者的角度对整个世界坐标系内的对象进行重新定位和描述，从而简化⼏何物体在投影面的成像的数学推导和计算</li>
+<li><strong>投影坐标系</strong> 物体从世界坐标描述转换到观察坐标后，可将三维物体投影到二维表面上，即投影到虚拟摄像机的胶片上，这个过程就是投影变换。以胶片中心为参考原点的空间坐标系称为投影坐标系，物体在投影坐标系中的坐标称为投影坐标。</li>
+<li><strong>设备坐标系</strong> 是图形设备上采用的与具体设备相关的坐标系。设备坐标系一般采⽤用整数坐标，其坐标范围由具体设备的分辨率决定。设备坐标系上的⼀个点一般对应图形设备上的一个像素。由于具体设备的限制，设备坐标系的坐标范围一般是有限的。</li>
+<li><strong>规格化设备坐标系</strong> 是为了避免设备相关性而定义的一种虚拟的设备坐标系。规格化坐标系的坐标范围一般从0到1，也有的是从-1到+1。采用规格化设备坐标系的好处是屏蔽了具体设备的分辨率，使得图形处理理能够尽量避开对具体设备坐标的考虑。实际图形处理时，先将世界坐标转换成对应的规格化设备坐标，然后再将规格化设备坐标映射到具体的设备坐标上去。</li>
+<li><strong>屏幕坐标系统</strong> 也称设备坐标系统，它主要⽤于某⼀特殊的计算机图形显示设备(如光栅显示器)的表⾯的点的定义，在多数情况下，对于每一个具体的显示设备，都有一个单独的坐标系统，在定义了成像窗口的情况下，可进一步在屏幕坐标系统中定义称为视图区(view port)的有界区域，视图区中的成像即为实际所观察到的。</li>
+</ul>
+
+<h2 id="toc_15">参照</h2>
+
+<p>简书 MissCC： <a href="https://www.jianshu.com/u/1b4c832fb2ca">简书 MissCC</a></p>
+
+<ul>
+<li>
+<a href="#toc_0">一、基本图形硬件流水线设计</a>
+</li>
+<li>
+<a href="#toc_1">二、渲染流水线的具体流程</a>
+<ul>
+<li>
+<a href="#toc_2">1、应⽤层</a>
+</li>
+<li>
+<a href="#toc_3">2、硬件抽象层</a>
+</li>
+<li>
+<a href="#toc_4">3、硬件层</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_5">三、硬件层—固定渲染管线流程图</a>
+</li>
+<li>
+<a href="#toc_6">四、硬件层—可编程渲染流水线流程图</a>
+</li>
+<li>
+<a href="#toc_7">五、GPU 图形渲染管线</a>
+<ul>
+<li>
+<a href="#toc_8">光栅化操作</a>
+</li>
+<li>
+<a href="#toc_9">⼏何处理阶段</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_10">六、其他</a>
+<ul>
+<li>
+<a href="#toc_11">Shader</a>
+</li>
+<li>
+<a href="#toc_12">CPU 与 GPU 之间的关系</a>
+</li>
+<li>
+<a href="#toc_13">三维坐标转变为二维屏幕坐标的过程</a>
+</li>
+<li>
+<a href="#toc_14">坐标系详细概念</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_15">参照</a>
+</li>
+</ul>
+
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15264570316513.html" 
+          title="Previous Post: Runtime">&laquo; Runtime</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15263715509093.html" 
+          title="Next Post: Open GL - GLSL着色器语言">Open GL - GLSL着色器语言 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1></h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Caolongs" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
+        
+            <a href="%E6%9E%B6%E6%9E%84.html"><strong>架构</strong></a>
+        
+            <a href="CI.html"><strong>CI</strong></a>
+        
+            <a href="OpenGL.html"><strong>OpenGL</strong></a>
+        
+            <a href="%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html"><strong>逆向与安全</strong></a>
+        
+            <a href="AI.html"><strong>AI</strong></a>
+        
+            <a href="%E9%9F%B3%E8%A7%86%E9%A2%91.html"><strong>音视频</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15283573748540.html">iOS逆向-砸壳（Clutch & dumpdecrypted）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264613640203.html">Logos语法</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15264578086555.html">RunLoop</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>
