@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  加密（哈希、AES、RSA） - 
+  浅谈iOS中的全局变量和static全局变量 - 
   
   </title>
   
@@ -120,14 +120,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>加密（哈希、AES、RSA）</h1>
+          <h1>浅谈iOS中的全局变量和static全局变量</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2018/5/3</span>
+          <span class="date">2018/10/17</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html'>逆向与安全</a></span>
+              <span class="posted-in"><a href='iOS.html'>iOS</a></span>
            
          
           <span class="comments">
@@ -140,276 +140,41 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h3 id="toc_0">一、哈希（散列）函数</h3>
-
-<ul>
-<li>MD5 </li>
-<li>SHA1 </li>
-<li>SHA256/512</li>
-<li>HMAC</li>
-</ul>
-
-<h4 id="toc_1">特点：</h4>
-
-<ul>
-<li>算法公开</li>
-<li>对不同数据加密结果是定长的!32位字符!!</li>
-<li>信息摘要(加密之后的数据是不可逆!!)</li>
-</ul>
-
-<h4 id="toc_2">应用：</h4>
-
-<ul>
-<li>一般用来做密码加密!</li>
-<li>版权问题，MD5值!</li>
-<li>搜索引擎</li>
-<li>云盘秒传（服务器上只要有这个文件,那么用户可以实现秒传）</li>
-<li>签名验证 (信息+信息MD5发送给服务器)</li>
-<li>HMAC （可用于设备锁）</li>
-</ul>
+      <p>场景：创建一个工具类，定义了一个静态全局变量，如何释放的问题？</p>
 
 <blockquote>
-<p>较为安全的hash登录加密方案：<br/>
-（HMAC+<code>网络时间戳</code>).MD5</p>
+<p>在C语言里面，静态全局变量是存储在全局内存区（或是静态存储区），而且内存的分配是在程序运行前分配了，释放是在程序运行结束由系统自动释放，并不需要我们调用析构方法。那么OC开发中得全局静态变量也是一致的。 所以我们没有必要去管理我们的全局静态变量，在delloc方法里面也不需要去释放内存，因为系统会自动帮助我们释放静态变量。  </p>
 </blockquote>
 
-<h4 id="toc_3">终端</h4>
-
-<p>Mac系统有一个开源的密码库openssl，几乎集成所有的加密算法<br/>
-opsenssl是一个最具说服力的标准</p>
+<h2 id="toc_0">内存划分：</h2>
 
 <ul>
-<li>计算MD5加密</li>
+<li><strong>栈区</strong>：内存管理由系统控制，存储的为非静态的局部变量，例如：函数参数，在函数中生命的对象的指针等。当系统的栈区大小不够分配时， 系统会提示栈溢出。</li>
+<li><strong>堆区</strong>：内存管理由程序控制，存储的为malloc , new ,alloc出来的对象。
+如果程序没有控制释放，那么在程序结束时，由系统释放。但在程序运行过程中，会出现内存泄露、内存溢出问题。分配方式类似于链表</li>
+<li><strong>全局存储区（静态存储区）</strong>：全局变量、静态变量会存储在此区域。事实上全局变量也是静态的，因此，也叫全局静态存储区。
+存储方式： 初始化的全局变量跟静态变量放在一片区域，未初始化的全局变量与静态变量放在相邻的另一片区域。<br/>
+程序结束后由系统释放。</li>
+<li><strong>文字常量区</strong>：在程序中使用的常量存储在此区域。程序结束后，由系统释放。在程序中使用的常量，都会到文字常量区获取。</li>
+<li><strong>程序代码区</strong>：存放函数体的二进制代码。
+运行程序就是执行代码，代码要执行就要加载进内存。</li>
 </ul>
 
-<pre><code class="language-text">$ md5 -s &quot;string&quot;
-</code></pre>
+<h2 id="toc_1">全局变量与全局静态变量的区别：</h2>
 
 <ul>
-<li>计算SHA1散列结果</li>
+<li>(a）若程序由一个源文件构成时，全局变量与全局静态变量没有区别。 </li>
+<li>(b)若程序由多个源文件构成时，全局变量与全局静态变量不同：全局静态变量使得该变量成为定义该变量的源文件所独享，即：全局静态变量对组成该程序的其它源文件是无效的。 </li>
+<li>(c)具有外部链接的静态；可以在所有源文件里调用；除了本文件，其他文件可以通过extern的方式引用。</li>
 </ul>
 
-<pre><code class="language-text">$ echo -n &quot;string&quot; | openssl sha -sha1
-</code></pre>
+<h2 id="toc_2">静态全局变量的作用：</h2>
 
 <ul>
-<li>计算SHA256散列结果</li>
+<li>(a)不必担心其它源文件使用相同变量名，彼此相互独立。 </li>
+<li>(b)在某源文件中定义的静态全局变量不能被其他源文件使用或修改。 </li>
+<li>(c) 只能在本文件中使用！具有内部链接的静态；不允许在其他文件里调用。</li>
 </ul>
-
-<pre><code class="language-text">$ echo -n &quot;string&quot; | openssl sha -sha256
-</code></pre>
-
-<ul>
-<li>计算SHA 512散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ echo -n &quot;string&quot; | openssl sha -sha512
-</code></pre>
-
-<hr/>
-
-<ul>
-<li>计算HMAC MD5散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ echo -n &quot;string&quot; | openssl dgst -md5 -hmac &quot;key&quot;
-</code></pre>
-
-<ul>
-<li>计算HMAC SHA1散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ echo -n &quot;string&quot; | openssl sha -sha1 -hmac &quot;key&quot;
-</code></pre>
-
-<ul>
-<li>计算HMAC SHA256散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ echo -n &quot;string&quot; | openssl sha -sha256 -hmac &quot;key&quot;
-</code></pre>
-
-<ul>
-<li>计算HMAC SHA512散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ echo -n &quot;string&quot; | openssl sha -sha512 -hmac &quot;key&quot;
-</code></pre>
-
-<hr/>
-
-<ul>
-<li>计算文件的MD5散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ md5 file.dat
-</code></pre>
-
-<ul>
-<li>计算文件的SHA1散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ openssl sha -sha1 file.dat
-</code></pre>
-
-<ul>
-<li>计算文件的SHA256散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ openssl sha -sha256 file.dat
-</code></pre>
-
-<ul>
-<li>计算文件的SHA512散列结果</li>
-</ul>
-
-<pre><code class="language-text">$ openssl sha -sha512 file.dat
-</code></pre>
-
-<h3 id="toc_4">二、对称加密算法（传统加密算法）</h3>
-
-<p>加密和解密都是同一个密钥</p>
-
-<ul>
-<li>DES   目前几乎不用，强度不够</li>
-<li>3DES  使用3个密钥,对相同的数据执行三次加密,强度增强</li>
-<li>AES   高级密码标准,苹果钥匙串访问</li>
-</ul>
-
-<h4 id="toc_5">每个对称加密算法有两种加密方式</h4>
-
-<ul>
-<li>1. ECB加密： 电子代码本，就是简单的将数据拆包，每一块独立加密</li>
-<li>2. CBC（密码块链）加密： 也是独立加密一块数据，但是第二块数据和第一块数据有密切的联系</li>
-</ul>
-
-<h4 id="toc_6">终端</h4>
-
-<pre><code class="language-text">/**
- *  终端测试指令
- *
- *  DES(ECB)加密
- *  $ echo -n hello | openssl enc -des-ecb -K 616263 -nosalt | base64
- *
- *  DES(CBC)加密
- *  $ echo -n hello | openssl enc -des-cbc -iv 0102030405060708 -K 616263 -nosalt | base64
- *
- *  AES(ECB)加密
- *  $ echo -n hello | openssl enc -aes-128-ecb -K 616263 -nosalt | base64
- *
- *  AES(CBC)加密
- *  $ echo -n hello | openssl enc -aes-128-cbc -iv 0102030405060708 -K 616263 -nosalt | base64
- *
- *  DES(ECB)解密
- *  $ echo -n HQr0Oij2kbo= | base64 -D | openssl enc -des-ecb -K 616263 -nosalt -d
- *
- *  DES(CBC)解密
- *  $ echo -n alvrvb3Gz88= | base64 -D | openssl enc -des-cbc -iv 0102030405060708 -K 616263 -nosalt -d
- *
- *  AES(ECB)解密
- *  $ echo -n d1QG4T2tivoi0Kiu3NEmZQ== | base64 -D | openssl enc -aes-128-ecb -K 616263 -nosalt -d
- *
- *  AES(CBC)解密
- *  $ echo -n u3W/N816uzFpcg6pZ+kbdg== | base64 -D | openssl enc -aes-128-cbc -iv 0102030405060708 -K 616263 -nosalt -d
- *
- *  提示：
- *      1&gt; 加密过程是先加密，再base64编码
- *      2&gt; 解密过程是先base64解码，再解密
- */
-</code></pre>
-
-<h4 id="toc_7">iOS 加密核心函数</h4>
-
-<pre><code class="language-text">CCCryptorStatus CCCrypt(
-    CCOperation op,         /* 加密/解密 */
-    CCAlgorithm alg,        /* 加密算法 */
-    CCOptions options,      /* CBC/ECB */
-    const void *key,        /* 加密密钥 */
-    size_t keyLength,       /* 密钥长度 */
-    const void *iv,         /* iv初始化向量 */
-    const void *dataIn,     /* 加密的数据 */
-    size_t dataInLength,    /* 加密的数据长度  */
-    void *dataOut,          /* 密文的缓冲区 */
-    size_t dataOutAvailable,/* 缓冲区的大小 */
-    size_t *dataOutMoved)   /* 加密结果的大小 */                                     
-</code></pre>
-
-<h3 id="toc_8">三、非对称加密算法（现在加密算法）</h3>
-
-<p>私钥加密 公钥解密<br/>
-公钥加密 私钥解密</p>
-
-<ul>
-<li>终端生成密钥</li>
-</ul>
-
-<p>生成私钥：</p>
-
-<pre><code class="language-text">$ openssl genrsa -out private.pem 512
-</code></pre>
-
-<p>生成公钥：</p>
-
-<pre><code class="language-text">$ openssl rsa -in private.pem -out public.pem -pubout
-</code></pre>
-
-<ul>
-<li>算法</li>
-</ul>
-
-<blockquote>
-<ol>
-<li>选两个质数 p 和 q，相乘得出一个大整数n，例如 p = 61，q = 53，n = pq = 3233</li>
-<li>选 1-n 间的随便一个质数e，例如 e = 17</li>
-<li>经过一系列数学公式，算出一个数字 d，满足:
-<ul>
-<li>通过 n 和 e 这两个数据一组数据进行数学运算后，可以通过 n 和 d 去反解运算，反过来也可以。</li>
-<li>如果只知道 n 和 e，要推导出 d，需要知道 p 和 q，也就是要需要把 n 因数分解。</li>
-</ul></li>
-</ol>
-
-<p>上述的 (n,e) 这两个数据在一起就是公钥，(n,d) 这两个数据就是私钥，满足用私钥加密，公钥解密，或反过来公钥加密，私钥解密，也满足在只暴露公钥 (只知道 n 和 e)的情况下，要推导出私钥 (n,d)，需要把大整数 n 因数分解。目前因数分解只能靠暴力穷举，而 n 数字越大，越难以用穷举计算出因数 p 和 q，也就越安全，当 n 大到二进制 1024 位或 2048 位时，以目前技术要破解几乎不可能，所以非常安全。</p>
-</blockquote>
-
-<h2 id="toc_9">目录</h2>
-
-<ul>
-<li>
-<a href="#toc_0">一、哈希（散列）函数</a>
-<ul>
-<li>
-<a href="#toc_1">特点：</a>
-</li>
-<li>
-<a href="#toc_2">应用：</a>
-</li>
-<li>
-<a href="#toc_3">终端</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_4">二、对称加密算法（传统加密算法）</a>
-<ul>
-<li>
-<a href="#toc_5">每个对称加密算法有两种加密方式</a>
-</li>
-<li>
-<a href="#toc_6">终端</a>
-</li>
-<li>
-<a href="#toc_7">iOS 加密核心函数</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_8">三、非对称加密算法（现在加密算法）</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_9">目录</a>
-
 
 
     
@@ -420,16 +185,13 @@ opsenssl是一个最具说服力的标准</p>
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15254163602054.html" 
-          title="Previous Post: ShadowSocks 配置及BBR加速">&laquo; ShadowSocks 配置及BBR加速</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15253114095127.html" 
-          title="Next Post: LLDB 使用">LLDB 使用 &raquo;</a>
+          <a  href="15396681011495.html" 
+          title="Next Post: Shell">Shell &raquo;</a>
       
       </p>
         </div>

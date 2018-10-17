@@ -120,551 +120,54 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="15397594715622.html">
+                
+                  <h1>浅谈iOS中的全局变量和static全局变量</h1>
+                  <div class="a-content">
+                      
+                      
+                      <div class="a-content-text">
+                        
+                        	定义了一个静态全局变量，如何释放的问题？
+                        
+
+                      </div>
+
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/10/17</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+    
+			<div class="article">
                 <a class="clearlink" href="15396681011495.html">
                 
                   <h1>Shell</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">Shell 环境</h2>
-
-<p>Linux 的 Shell 种类众多，常见的有：</p>
-
-<ul>
-<li>Bourne Shell（/usr/bin/sh或/bin/sh）</li>
-<li>Bourne Again Shell（/bin/bash）</li>
-<li>C Shell（/usr/bin/csh）</li>
-<li>K Shell（/usr/bin/ksh）</li>
-<li>Shell for Root（/sbin/sh）</li>
-</ul>
-
-<p>常用 Bourne Again Shell，在一般情况下，人们并不区分 Bourne Shell 和 Bourne Again Shell，所以，像 #!/bin/sh，它同样也可以改为 #!/bin/bash</p>
-
-<p><code>#! 告诉系统其后路径所指定的程序即是解释此脚本文件的 Shell 程序。</code></p>
-
-<h2 id="toc_1">Hello World！</h2>
-
-<h3 id="toc_2">创建 test.h 文件</h3>
-
-<pre><code class="language-text">#!/bin/bash
-echo &quot;Hello World !&quot;
-</code></pre>
-
-<h3 id="toc_3">运行 Shell 脚本两种方法</h3>
-
-<h5 id="toc_4">1、作为可执行程序</h5>
-
-<pre><code class="language-text">chmod +x ./test.sh  #使脚本具有执行权限
-./test.sh  #执行脚本
-</code></pre>
-
-<h5 id="toc_5">2、作为解释器参数</h5>
-
-<pre><code class="language-text">/bin/sh test.sh
-</code></pre>
-
-<h2 id="toc_6">Shell 变量</h2>
-
-<h3 id="toc_7">Shell 变量的定义及使用</h3>
-
-<p><em>变量名和等号之间不能有空格</em></p>
-
-<pre><code class="language-text">#定义变量
-your_name=&quot;qinjx&quot; 
-
-#使用变量
-echo $your_name  
-或 
-echo ${your_name}
-</code></pre>
-
-<h3 id="toc_8">read 获取用户的输入</h3>
-
-<pre><code class="language-text">echo -n &quot;Enter your age:&quot;
-read age
-</code></pre>
-
-<h3 id="toc_9">Shell 字符串</h3>
-
-<p>单双引号的区别：双引号可以有变量，可以出现转义字符；单引号字符串中的变量无效，不可转义字符。</p>
-
-<p><code>#string</code> 获取字符串长度</p>
-
-<h3 id="toc_10">Shell 数组</h3>
-
-<h5 id="toc_11">1. 定义数组</h5>
-
-<pre><code class="language-text">数组名=(值1 值2 ... 值n)
-</code></pre>
-
-<p>例如：</p>
-
-<pre><code class="language-text">array_name=(value0 value1 value2 value3)
-</code></pre>
-
-<h5 id="toc_12">2. 读取数组</h5>
-
-<pre><code class="language-text">${数组名[下标]}
-</code></pre>
-
-<p>例如：</p>
-
-<pre><code class="language-text">valuen=${array_name[n]}
-</code></pre>
-
-<p>使用 @ 符号可以获取数组中的所有元素，例如：</p>
-
-<pre><code class="language-text">echo ${array_name[@]}
-</code></pre>
-
-<h3 id="toc_13">Shell 注释</h3>
-
-<p>以 <code>#</code> 开头的行就是注释，会被解释器忽略。</p>
-
-<p>多行注释</p>
-
-<pre><code class="language-text">:&lt;&lt;EOF
-注释内容...
-注释内容...
-注释内容...
-EOF
-</code></pre>
-
-<p>或 EOF 也可以使用其他符号：</p>
-
-<pre><code class="language-text">:&lt;&lt;&#39;
-注释内容...
-注释内容...
-注释内容...
-&#39;
-
-:&lt;&lt;!
-注释内容...
-注释内容...
-注释内容...
-!
-</code></pre>
-
-<h2 id="toc_14">Shell 传递参数</h2>
-
-<p>脚本内获取参数的格式为：$n。n 代表一个数字，0 为执行的文件名，1 为执行脚本的第一个参数，2 为执行脚本的第二个参数，以此类推……   </p>
-
-<h2 id="toc_15">Shell 基本运算符</h2>
-
-<p>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。</p>
-
-<pre><code class="language-text">#!/bin/bash
-
-val=`expr 2 + 2`
-echo &quot;两数之和为 : $val&quot;
-</code></pre>
-
-<p><strong>两点注意：</strong></p>
-
-<ul>
-<li>表达式和运算符之间要有空格，例如 2+2 是不对的，必须写成 2 + 2，这与我们熟悉的大多数编程语言不一样。</li>
-<li>完整的表达式要被 <code></code> 包含，注意这个字符不是常用的单引号，在 Esc 键下边。</li>
-</ul>
-
-<h3 id="toc_16">算术运算符</h3>
-
-<p>下表列出了常用的算术运算符，假定变量 a 为 10，变量 b 为 20：</p>
-
-<table>
-<thead>
-<tr>
-<th>运算符</th>
-<th style="text-align: left">说明</th>
-<th style="text-align: left"><span class="Apple-tab-span" style="white-space:pre"></span>举例</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>+</td>
-<td style="text-align: left">加法</td>
-<td style="text-align: left"><code>expr $a + $b</code> 结果为 30。</td>
-</tr>
-<tr>
-<td>-</td>
-<td style="text-align: left">减法</td>
-<td style="text-align: left"><code>expr $a - $b</code> 结果为 -10。</td>
-</tr>
-<tr>
-<td>*</td>
-<td style="text-align: left">乘法</td>
-<td style="text-align: left"><code>expr $a \* $b</code> 结果为  200。</td>
-</tr>
-<tr>
-<td>/</td>
-<td style="text-align: left">除法</td>
-<td style="text-align: left"><code>expr $b / $a</code> 结果为 2。</td>
-</tr>
-<tr>
-<td>%</td>
-<td style="text-align: left">取余</td>
-<td style="text-align: left"><code>expr $b % $a</code> 结果为 0。</td>
-</tr>
-<tr>
-<td>=</td>
-<td style="text-align: left">赋值</td>
-<td style="text-align: left">a=$b 将把变量 b 的值赋给 a。</td>
-</tr>
-<tr>
-<td>==<span class="Apple-tab-span" style="white-space:pre"></span></td>
-<td style="text-align: left">相等。用于比较两个数字，相同则返回 true。</td>
-<td style="text-align: left">[ \(a == \)b ] 返回 false。</td>
-</tr>
-<tr>
-<td>!=</td>
-<td style="text-align: left">不相等。用于比较两个数字，不相同则返回 true。</td>
-<td style="text-align: left">[ \(a != \)b ] 返回 true。</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>注意：</strong>条件表达式要放在方括号之间，并且要有空格，例如: [\(a==\)b] 是错误的，必须写成 [ \(a == \)b ]。</p>
-
-<h3 id="toc_17">文件测试运算符</h3>
-
-<table>
-<thead>
-<tr>
-<th>操作符            <span class="Apple-tab-span" style="white-space:pre"></span></th>
-<th>说明</th>
-<th><span class="Apple-tab-span" style="white-space:pre"></span>举例 </th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>-b file</td>
-<td>检测文件是否是块设备文件，如果是，则返回 true。</td>
-<td>[ -b $file ] 返回 false。</td>
-</tr>
-<tr>
-<td>-c file</td>
-<td>检测文件是否是字符设备文件，如果是，则返回 true。</td>
-<td>[ -c $file ] 返回 false。</td>
-</tr>
-<tr>
-<td>-d file</td>
-<td>检测文件是否是目录，如果是，则返回 true。</td>
-<td>[ -d $file ] 返回 false。</td>
-</tr>
-<tr>
-<td>-f file</td>
-<td>检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。</td>
-<td>[ -f $file ] 返回 true。</td>
-</tr>
-<tr>
-<td>-g file</td>
-<td>检测文件是否设置了 SGID 位，如果是，则返回 true。</td>
-<td>[ -g $file ] 返回 false。</td>
-</tr>
-<tr>
-<td>-k file</td>
-<td>检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。</td>
-<td>[ -k $file ] 返回 false。</td>
-</tr>
-<tr>
-<td>-p file</td>
-<td>检测文件是否是有名管道，如果是，则返回 true。</td>
-<td>[ -p $file ] 返回 false。</td>
-</tr>
-<tr>
-<td>-u file</td>
-<td>检测文件是否设置了 SUID 位，如果是，则返回 true。</td>
-<td>[ -u $file ] 返回 false。</td>
-</tr>
-<tr>
-<td>-r file</td>
-<td>检测文件是否可读，如果是，则返回 true。</td>
-<td>[ -r $file ] 返回 true。</td>
-</tr>
-<tr>
-<td>-x file</td>
-<td>检测文件是否可执行，如果是，则返回 true。</td>
-<td>[ -x $file ] 返回 true。</td>
-</tr>
-<tr>
-<td>-s file</td>
-<td>检测文件是否为空（文件大小是否大于0），不为空返回 true。</td>
-<td>[ -s $file ] 返回 true。</td>
-</tr>
-<tr>
-<td>-e file</td>
-<td>检测文件（包括目录）是否存在，如果是，则返回 true</td>
-<td>[ -e $file ] 返回 true。</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="toc_18">Shell echo命令</h2>
-
-<ul>
-<li><p>显示换行 </p>
-<pre><code class="language-text">echo -e &quot;OK! \n&quot; # -e 开启转义
-echo &quot;It is a test&quot;
-</code></pre></li>
-<li><p>显示不换行</p>
-<pre><code class="language-text">#!/bin/sh
-echo -e &quot;OK! \c&quot; # -e 开启转义 \c 不换行<br/>
-echo &quot;It is a test&quot;
-</code></pre></li>
-<li><p>显示结果定向至文件</p>
-<pre><code class="language-text">echo &quot;It is a test&quot; &gt; myfile
-</code></pre></li>
-<li><p>显示命令执行结果 </p>
-<pre><code class="language-text">echo `date`  # 显示当前日期
-</code></pre></li>
-</ul>
-
-<h2 id="toc_19">Shell printf 命令</h2>
-
-<p>printf 的脚本比使用 echo 移植性好</p>
-
-<p>printf 命令的语法：</p>
-
-<pre><code class="language-text"> printf  format-string  [arguments...]
-</code></pre>
-
-<p><strong>参数说明：</strong></p>
-
-<ul>
-<li>format-string: 为格式控制字符串</li>
-<li>arguments: 为参数列表。</li>
-</ul>
-
-<pre><code class="language-text">$ echo &quot;Hello, Shell&quot;
-Hello, Shell
-$ printf &quot;Hello, Shell\n&quot;
-Hello, Shell
-
-</code></pre>
-
-<h2 id="toc_20">Shell test 命令</h2>
-
-<p>Shell中的 test 命令用于检查某个条件是否成立，它可以进行数值、字符和文件三个方面的测试。</p>
-
-<p>|<br/><br/>
-<div>参数<br/>
-</div></p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th><span class="Apple-tab-span" style="white-space:pre"></span>说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>-e 文件名</td>
-<td>如果文件存在则为真</td>
-</tr>
-<tr>
-<td>-r 文件名</td>
-<td>如果文件存在且可读则为真</td>
-</tr>
-<tr>
-<td>-w 文件名</td>
-<td>如果文件存在且可写则为真</td>
-</tr>
-<tr>
-<td>-x 文件名</td>
-<td>如果文件存在且可执行则为真</td>
-</tr>
-<tr>
-<td>-s 文件名</td>
-<td>如果文件存在且至少有一个字符则为真</td>
-</tr>
-<tr>
-<td>-d 文件名</td>
-<td>如果文件存在且为目录则为真</td>
-</tr>
-<tr>
-<td>-f 文件名</td>
-<td>如果文件存在且为普通文件则为真</td>
-</tr>
-<tr>
-<td>-c 文件名</td>
-<td>如果文件存在且为字符型特殊文件则为真</td>
-</tr>
-<tr>
-<td>-b 文件名</td>
-<td>如果文件存在且为块特殊文件则为真</td>
-</tr>
-</tbody>
-</table>
-
-<pre><code class="language-text">cd /bin
-if test -e ./bash
-then
-    echo &#39;文件已存在!&#39;
-else
-    echo &#39;文件不存在!&#39;
-fi
-</code></pre>
-
-<h2 id="toc_21">Shell 流程控制</h2>
-
-<p>sh的流程控制不可为空</p>
-
-<h3 id="toc_22">1. if else</h3>
-
-<ul>
-<li>if</li>
-</ul>
-
-<pre><code class="language-text">if condition
-then
-    command1 
-    command2
-    ...
-    commandN 
-fi
-</code></pre>
-
-<ul>
-<li>if else</li>
-</ul>
-
-<pre><code class="language-text">if condition
-then
-    command1 
-    command2
-    ...
-    commandN
-else
-    command
-fi
-</code></pre>
-
-<ul>
-<li>if else-if else</li>
-</ul>
-
-<pre><code class="language-text">if condition1
-then
-    command1
-elif condition2 
-then 
-    command2
-else
-    commandN
-fi
-</code></pre>
-
-<h3 id="toc_23">2. for 循环</h3>
-
-<p>234</p>
-
-<h1 id="toc_24">目录</h1>
-
-<ul>
-<li>
-<a href="#toc_0">Shell 环境</a>
-</li>
-<li>
-<a href="#toc_1">Hello World！</a>
-<ul>
-<li>
-<a href="#toc_2">创建 test.h 文件</a>
-</li>
-<li>
-<a href="#toc_3">运行 Shell 脚本两种方法</a>
-<ul>
-<li>
-<ul>
-<li>
-<a href="#toc_4">1、作为可执行程序</a>
-</li>
-<li>
-<a href="#toc_5">2、作为解释器参数</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">Shell 变量</a>
-<ul>
-<li>
-<a href="#toc_7">Shell 变量的定义及使用</a>
-</li>
-<li>
-<a href="#toc_8">read 获取用户的输入</a>
-</li>
-<li>
-<a href="#toc_9">Shell 字符串</a>
-</li>
-<li>
-<a href="#toc_10">Shell 数组</a>
-<ul>
-<li>
-<ul>
-<li>
-<a href="#toc_11">1. 定义数组</a>
-</li>
-<li>
-<a href="#toc_12">2. 读取数组</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_13">Shell 注释</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_14">Shell 传递参数</a>
-</li>
-<li>
-<a href="#toc_15">Shell 基本运算符</a>
-<ul>
-<li>
-<a href="#toc_16">算术运算符</a>
-</li>
-<li>
-<a href="#toc_17">文件测试运算符</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_18">Shell echo命令</a>
-</li>
-<li>
-<a href="#toc_19">Shell printf 命令</a>
-</li>
-<li>
-<a href="#toc_20">Shell test 命令</a>
-</li>
-<li>
-<a href="#toc_21">Shell 流程控制</a>
-<ul>
-<li>
-<a href="#toc_22">1. if else</a>
-</li>
-<li>
-<a href="#toc_23">2. for 循环</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_24">目录</a>
-
-
+                        	Shell 学习记录笔记
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -685,16 +188,17 @@ fi
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15283573748540.html">
                 
                   <h1>iOS逆向-砸壳（Clutch & dumpdecrypted）</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<blockquote>
+                        	<!-- <blockquote>
 <p>MachO文件 -&gt; 苹果加密 -&gt; 加壳文件</p>
 
 <p>加壳文件 -&gt; 苹果解密 -&gt; MachO文件（DYLD）</p>
@@ -798,9 +302,11 @@ DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/.../WeChat.app/WeChat
 
 <p>执行之后 当前目录下 <code>ls</code> 得到 <code>WeChat.decrypted</code>可执行文件<br/>
 其他文件可在<code>/var/mobile/.../WeChat.app</code>拷贝组合成砸壳后的ipa包</p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -821,16 +327,17 @@ DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/.../WeChat.app/WeChat
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15271533818539.html">
                 
                   <h1>Mac上搭建直播服务器 Nginx+HLS</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>HLS(<a href="https://zh.wikipedia.org/wiki/HTTP_Live_Streaming">HTTP Live Streaming</a>)是一个由苹果公司提出的基于HTTP的流媒体网络传输协议。是苹果公司QuickTime X和iPhone软件系统的一部分。它的工作原理是把整个流分成一个个小的基于HTTP的文件来下载，每次只下载一些。当媒体流正在播放时，客户端可以选择从许多不同的备用源中以不同的速率下载同样的资源，允许流媒体会话适应不同的数据速率。在开始一个流媒体会话时，客户端会下载一个包含元数据的extended M3U (m3u8) playlist文件，用于寻找可用的媒体流。</p>
+                        	<!-- <p>HLS(<a href="https://zh.wikipedia.org/wiki/HTTP_Live_Streaming">HTTP Live Streaming</a>)是一个由苹果公司提出的基于HTTP的流媒体网络传输协议。是苹果公司QuickTime X和iPhone软件系统的一部分。它的工作原理是把整个流分成一个个小的基于HTTP的文件来下载，每次只下载一些。当媒体流正在播放时，客户端可以选择从许多不同的备用源中以不同的速率下载同样的资源，允许流媒体会话适应不同的数据速率。在开始一个流媒体会话时，客户端会下载一个包含元数据的extended M3U (m3u8) playlist文件，用于寻找可用的媒体流。</p>
 
 <p>Mac 直播服务器 Nginx+rtmp 见上文<a href="https://www.jianshu.com/p/cf74a34af15d">Mac上搭建直播服务器 Nginx+rtmp</a></p>
 
@@ -963,9 +470,11 @@ rtmp {
 </li>
 </ul>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -986,16 +495,17 @@ rtmp {
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15271456510220.html">
                 
                   <h1>Mac上搭建直播服务器 Nginx+rtmp</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">简介</h2>
+                        	<!-- <h2 id="toc_0">简介</h2>
 
 <p><a href="https://zh.wikipedia.org/wiki/Nginx">Nginx</a> 是非常优秀的开源服务器，用它来做hls或者rtmp流媒体服务器是非常不错的选择，</p>
 
@@ -1166,9 +676,11 @@ rtmp {
 </li>
 </ul>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -1189,16 +701,17 @@ rtmp {
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15264613640203.html">
                 
                   <h1>Logos语法</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p><a href="http://iphonedevwiki.net/index.php/Logos">logos</a> 语法主要是对<a href="http://iphonedevwiki.net/index.php/Cydia_Substrate">Cydia Substrate</a>的MSHookMessageEx函数作了一层封装。</p>
+                        	<!-- <p><a href="http://iphonedevwiki.net/index.php/Logos">logos</a> 语法主要是对<a href="http://iphonedevwiki.net/index.php/Cydia_Substrate">Cydia Substrate</a>的MSHookMessageEx函数作了一层封装。</p>
 
 <p><strong>1.%hook</strong> <br/>
 指定需要hook的class,必须以％end结尾。</p>
@@ -1229,9 +742,11 @@ Objective-C的category与class_addMethod的区别： <br/>
 
 <p><strong>8.%c</strong> <br/>
 该指令的作用等同于objc_getClass或NSClassFromString,即动态获取一个类的定义，在%hook或％ctor内使用。</p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -1252,16 +767,17 @@ Objective-C的category与class_addMethod的区别： <br/>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15264578086555.html">
                 
                   <h1>RunLoop</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>Runloop 是和线程紧密相关的一个基础组件，是很多线程有关功能的幕后功臣。尽管在平常使用中几乎不太会直接用到，理解 Runloop 有利于我们更加深入地理解 iOS 的多线程模型。</p>
+                        	<!-- <p>Runloop 是和线程紧密相关的一个基础组件，是很多线程有关功能的幕后功臣。尽管在平常使用中几乎不太会直接用到，理解 Runloop 有利于我们更加深入地理解 iOS 的多线程模型。</p>
 
 <p><strong>目的</strong>：保住当前线程的生命,监听事件：触摸、时钟、网络等</p>
 
@@ -1399,9 +915,11 @@ void callBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *i
 mode，时间都能得到执行。</li>
 <li>第二种：另一种解决Timer的方法是，我们在另一个线程执行和处理Timer事件，然后在主线程更新UI。</li>
 </ul>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -1422,16 +940,17 @@ mode，时间都能得到执行。</li>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15264570316513.html">
                 
                   <h1>Runtime</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">一、基本概念</h2>
+                        	<!-- <h2 id="toc_0">一、基本概念</h2>
 
 <ol>
 <li>RunTime简称运行时,就是系统在运行的时候的一些机制，其中最主要的是消息机制。</li>
@@ -1530,9 +1049,11 @@ struct objc_class {
 /* Use `Class` instead of `struct objc_class *` */
 
 </code></pre>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -1553,16 +1074,17 @@ struct objc_class {
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15263723434422.html">
                 
                   <h1>OpenGL - 渲染过程</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">一、基本图形硬件流水线设计</h2>
+                        	<!-- <h2 id="toc_0">一、基本图形硬件流水线设计</h2>
 
 <p><img src="media/15263723434422/15263724067540.jpg" alt=""/><br/>
 <mark>应⽤用程序层 -&gt; 硬件抽象层 -&gt; 硬件层</mark></p>
@@ -1730,9 +1252,11 @@ struct objc_class {
 </li>
 </ul>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -1753,16 +1277,17 @@ struct objc_class {
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15263715509093.html">
                 
                   <h1>Open GL - GLSL着色器语言</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>GLSL(OpenGL Shading Language) 是一个以C语言为基础的高阶着色语言</p>
+                        	<!-- <p>GLSL(OpenGL Shading Language) 是一个以C语言为基础的高阶着色语言</p>
 
 <h2 id="toc_0">作用</h2>
 
@@ -1914,9 +1439,11 @@ void main (void)
 </li>
 </ul>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -1937,16 +1464,17 @@ void main (void)
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15263712692654.html">
                 
                   <h1>OpenGL 常见概念性理解整理</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h3 id="toc_0">什么叫光栅化（Rasterize/rasteriztion）？</h3>
+                        	<!-- <h3 id="toc_0">什么叫光栅化（Rasterize/rasteriztion）？</h3>
 
 <p>栅格化或者像素化，就是把矢量图形转化成像素点儿的过程</p>
 
@@ -2150,9 +1678,11 @@ ObjectSpace(物体空间/模型空间)-&gt; WorldSpace(世界空<br/>
 </li>
 </ul>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2173,16 +1703,17 @@ ObjectSpace(物体空间/模型空间)-&gt; WorldSpace(世界空<br/>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15263696340511.html">
                 
                   <h1>OpenGL FrameBuffer Objects,RenderBuffer Objects and Textures</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h3 id="toc_0">RenderBuffer</h3>
+                        	<!-- <h3 id="toc_0">RenderBuffer</h3>
 
 <blockquote>
 <p>A renderbuffer object is a 2D image buffer allocated by the application. The renderbuffer can be used to allocate and store color, depth, or stencil values and can be used as a color, depth, or stencil attachment in a framebuffer object. A renderbuffer is similar to an off-screen window system provided drawable surface, such as a pbuffer. A renderbuffer, however, cannot be directly used as a GL texture.</p>
@@ -2199,9 +1730,11 @@ ObjectSpace(物体空间/模型空间)-&gt; WorldSpace(世界空<br/>
 </blockquote>
 
 <p><img src="media/15263696340511/15263708418675.jpg" alt="FrameBuffer Objects,RenderBuffer Objects and Textures"/></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2222,16 +1755,17 @@ ObjectSpace(物体空间/模型空间)-&gt; WorldSpace(世界空<br/>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15263628382501.html">
                 
                   <h1>OpenGL 与 OpenGL ES</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">一、什么是图形编程接⼝</h2>
+                        	<!-- <h2 id="toc_0">一、什么是图形编程接⼝</h2>
 
 <p><strong>2D图形编程接⼝</strong>: GDI, Skiz, OpenVG <br/>
 <strong>3D图形编程接口</strong>: DirectX, OpenGL/OpenGL ES, Embedded Systems</p>
@@ -2269,9 +1803,11 @@ GPU 图形硬件，图形处理器</p>
 
 <p>在渲染过程中，必须存储2种着色器，分别是顶点着色器、片元着色器。顶点着色器是第一个着⾊器、片元着色器是最后一个。顶点着⾊器中处理顶点、片元着⾊器处理理像素点颜⾊。<br/>
 <img src="media/15263628382501/15263637921501.jpg" alt=""/></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2292,16 +1828,17 @@ GPU 图形硬件，图形处理器</p>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15262813725894.html">
                 
                   <h1>HOOK</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">一、HOOK概述</h2>
+                        	<!-- <h2 id="toc_0">一、HOOK概述</h2>
 
 <blockquote>
 <p>HOOK(钩子) 其实就是改变程序执行流程的一种技术的统称!</p>
@@ -2367,9 +1904,11 @@ GPU 图形硬件，图形处理器</p>
 
 <p><strong>safe mode</strong><br/>
    因为APP程序质量参差不齐崩溃再所难免，破解程序本质是dylib，寄生在别人进程里。 系统进程一旦出错，可能导致整个进程崩溃,崩溃后就会造成iOS瘫痪。所以CydiaSubstrate引入了安全模式,在安全模 式下所有基于CydiaSubstratede 的三方dylib都会被禁用，便于查错与修复。</p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2390,16 +1929,17 @@ GPU 图形硬件，图形处理器</p>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15262794243261.html">
                 
                   <h1>Core ML-Vision</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">Vison 与 Core ML 的关系</h2>
+                        	<!-- <h2 id="toc_0">Vison 与 Core ML 的关系</h2>
 
 <p>Vision 是 Apple 在 WWDC 2017 推出的图像识别框架。</p>
 
@@ -2502,9 +2042,11 @@ GPU 图形硬件，图形处理器</p>
 </code></pre>
 
 <p>项目代码：<a href="https://github.com/Caolongs/CoreML-Vision">CoreML-Vision </a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2525,16 +2067,17 @@ GPU 图形硬件，图形处理器</p>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15262781134516.html">
                 
                   <h1>Core ML</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>Core ML 大大降低了开发者在苹果设备上使用机器学习技术预测模型的门槛和成本。苹果制定了自己的模型文件格式，统一的格式和全新的 API 设计使得 Core ML 支持苹果生态下多个平台。</p>
+                        	<!-- <p>Core ML 大大降低了开发者在苹果设备上使用机器学习技术预测模型的门槛和成本。苹果制定了自己的模型文件格式，统一的格式和全新的 API 设计使得 Core ML 支持苹果生态下多个平台。</p>
 
 <p><img src="media/15262781134516/15262781536717.jpg" alt=""/></p>
 
@@ -2585,9 +2128,11 @@ private func diplayDesc() {
         descLabel.text = &quot;I&#39;m \(probability)% sure it&#39;s a \(output.classLabel)! &quot;
     }
 </code></pre>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2608,16 +2153,17 @@ private func diplayDesc() {
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15261041285565.html">
                 
                   <h1>iOS App MachO注入 - Dylib注入</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">dylib 注入</h2>
+                        	<!-- <h2 id="toc_0">dylib 注入</h2>
 
 <h3 id="toc_1">1. 新建<code>TARGETS</code></h3>
 
@@ -2669,9 +2215,11 @@ INJECT_FRAMEWORK_RELATIVE_PATH=&quot;Frameworks/libHookDylib.dylib&quot;
 <h3 id="toc_6">GitHub</h3>
 
 <p><a href="https://github.com/Caolongs/iOSInjectFramework">GitHub Demo</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2692,16 +2240,17 @@ INJECT_FRAMEWORK_RELATIVE_PATH=&quot;Frameworks/libHookDylib.dylib&quot;
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15259432014565.html">
                 
                   <h1>iOS App MachO注入 - Framework注入</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">Framework注入</h2>
+                        	<!-- <h2 id="toc_0">Framework注入</h2>
 
 <h3 id="toc_1">1. 新建<code>TARGETS</code></h3>
 
@@ -2757,9 +2306,11 @@ INJECT_FRAMEWORK_RELATIVE_PATH=&quot;Frameworks/HookFramework.framework/HookFram
 <h3 id="toc_5">GitHub</h3>
 
 <p><a href="https://github.com/Caolongs/iOSInjectFramework">GitHub Demo</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -2780,16 +2331,17 @@ INJECT_FRAMEWORK_RELATIVE_PATH=&quot;Frameworks/HookFramework.framework/HookFram
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15258540971098.html">
                 
                   <h1>iOS App 签名过程及重签</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">目的：</h2>
+                        	<!-- <h2 id="toc_0">目的：</h2>
 
 <p>保证 iOS 平台对第三方 APP 有绝对的控制权，每一个安装到 iOS 上的 APP 都是经过苹果官方允许的。</p>
 
@@ -3007,9 +2559,11 @@ $ codesign -fs &quot;证书&quot; 需要签名的文件
 </li>
 </ul>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -3030,16 +2584,17 @@ $ codesign -fs &quot;证书&quot; 需要签名的文件
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15254163602054.html">
                 
                   <h1>ShadowSocks 配置及BBR加速</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>ShadowSocks势必先要后买VPS，本人目前使用的是 <a href="https://www.vultr.com/?ref=7305309">Vultr</a>, 购买流程此文不再赘述。</p>
+                        	<!-- <p>ShadowSocks势必先要后买VPS，本人目前使用的是 <a href="https://www.vultr.com/?ref=7305309">Vultr</a>, 购买流程此文不再赘述。</p>
 
 <h2 id="toc_0">SSH 登录 VPS</h2>
 
@@ -3194,9 +2749,11 @@ $ lsmod | grep bbr
 <p><a href="https://www.diycode.cc/topics/738">轻松在 VPS 搭建 Shadowsocks 翻墙 </a><br/>
 <a href="https://teddysun.com/486.html">Shadowsocks 一键安装脚本（四合一）</a><br/>
 <a href="https://teddysun.com/489.html">一键安装最新内核并开启 BBR 脚本</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -3217,16 +2774,17 @@ $ lsmod | grep bbr
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15253297909641.html">
                 
                   <h1>加密（哈希、AES、RSA）</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h3 id="toc_0">一、哈希（散列）函数</h3>
+                        	<!-- <h3 id="toc_0">一、哈希（散列）函数</h3>
 
 <ul>
 <li>MD5 </li>
@@ -3496,9 +3054,11 @@ opsenssl是一个最具说服力的标准</p>
 <li>
 <a href="#toc_9">目录</a>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -3519,16 +3079,17 @@ opsenssl是一个最具说服力的标准</p>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15253114095127.html">
                 
                   <h1>LLDB 使用</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>LLDB(Low Lever Debug)命令结构</p>
+                        	<!-- <p>LLDB(Low Lever Debug)命令结构</p>
 
 <pre><code class="language-text">&lt;command&gt; [&lt;subcommand&gt; [&lt;subcommand&gt;...]] &lt;action&gt; [-options [option-value]] [argument [argument...]]
 </code></pre>
@@ -3847,9 +3408,11 @@ $ help breakpoint
 </li>
 </ul>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -3870,16 +3433,17 @@ $ help breakpoint
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15246450401949.html">
                 
                   <h1>初识汇编</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>我们在学习逆向开发之前,我们要了解一个基本的逆向原理.首先我们是逆向iOS系统上面的APP.那么我们知道,一个APP安装在手机上面的可执行文件本质上是二进制文件.因为iPhone手机本质上执行的指令是二进制.是由手机上的CPU执行的.所以逆向开发是建立在分析二进制上面.所以今天我们接下来的课程从非常基础的东西开始讲解.</p>
+                        	<!-- <p>我们在学习逆向开发之前,我们要了解一个基本的逆向原理.首先我们是逆向iOS系统上面的APP.那么我们知道,一个APP安装在手机上面的可执行文件本质上是二进制文件.因为iPhone手机本质上执行的指令是二进制.是由手机上的CPU执行的.所以逆向开发是建立在分析二进制上面.所以今天我们接下来的课程从非常基础的东西开始讲解.</p>
 
 <h2 id="toc_0">汇编语言的发展</h2>
 
@@ -4372,9 +3936,11 @@ _B:
     add x0, x0, #0x10
     ret
 </code></pre>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -4395,16 +3961,17 @@ _B:
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15245531347178.html">
                 
                   <h1>MonkeyDev</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<blockquote>
+                        	<!-- <blockquote>
 <p>安装 MonkeyDev <br/>
 <a href="https://github.com/AloneMonkey/MonkeyDev/wiki/%E5%AE%89%E8%A3%85">https://github.com/AloneMonkey/MonkeyDev/wiki/安装</a></p>
 </blockquote>
@@ -4429,9 +3996,11 @@ _B:
 
 <pre><code class="language-text">$ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
 </code></pre>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -4452,16 +4021,17 @@ _B:
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15242338446694.html">
                 
                   <h1>Cycript 安装及使用</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<blockquote>
+                        	<!-- <blockquote>
 <p>Cycript允许开发人员通过交互式控制台，使用Objective-C ++和JavaScript语法的混合，在iOS或Mac OS X上检测和修改正在运行的应用程序。</p>
 </blockquote>
 
@@ -4538,9 +4108,11 @@ $ sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libr
 
 <pre><code class="language-text">mkdir: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib: Operation not permitted
 </code></pre>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -4561,16 +4133,17 @@ $ sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libr
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15241488811717.html">
                 
                   <h1>XtraFinder</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p><a href="https://www.trankynam.com/xtrafinder/">https://www.trankynam.com/xtrafinder/</a></p>
+                        	<!-- <p><a href="https://www.trankynam.com/xtrafinder/">https://www.trankynam.com/xtrafinder/</a></p>
 
 <p>在早期的OS X上，只需打开XtraFinderInstaller即可安装XtraFinder。</p>
 
@@ -4607,9 +4180,11 @@ XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
 <h3 id="toc_4">5、将系统完整性保护恢复到原始状态：</h3>
 
 <p>启动到恢复操作系统并输入以下命令：<code>csrutil clear</code></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -4630,16 +4205,17 @@ XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15241480672826.html">
                 
                   <h1>XtraFinder 系统完整性保护(SIP)</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p><a href="http://www.trankynam.com/xtrafinder/sip.html">XtraFinder 系统完整性保护原文</a>（译）</p>
+                        	<!-- <p><a href="http://www.trankynam.com/xtrafinder/sip.html">XtraFinder 系统完整性保护原文</a>（译）</p>
 
 <h3 id="toc_0">1、关于OS X 10.11中的系统完整性保护</h3>
 
@@ -4678,9 +4254,11 @@ XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
 
 <p>完全禁用SIP <code>csrutil disable</code><br/>
 启用SIP <code>csrutil enable</code></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -4701,16 +4279,17 @@ XtraFinder安装完成后，您可以重新启用系统完整性保护。</p>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15241412696951.html">
                 
                   <h1>Go2Shell and AppleScript</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<blockquote>
+                        	<!-- <blockquote>
 <p>给Finder加上一个打开当前路径的终端的功能</p>
 
 <p>有两种实现：<br/>
@@ -4839,9 +4418,11 @@ end run
 
 <p>使用的 Automator AppleScript 时候就在想为什么使用创建的服务，好吧，换个思路创建个应用，尝试着以Go2Shell的方式按住<code>command</code>键拖到文件夹上，结果和Go2Shell实现的效果一样OK，对 Automator 的使用充满期望~~<br/>
 <img src="media/15241412696951/15241470137311.jpg" alt=""/></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -4862,16 +4443,17 @@ end run
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15240395407492.html">
                 
                   <h1>iTerm2</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>强大的 Mac OS 终端利器，跟着教程走了一遍。</p>
+                        	<!-- <p>强大的 Mac OS 终端利器，跟着教程走了一遍。</p>
 
 <h3 id="toc_0">1. 安装 iTerm2</h3>
 
@@ -5091,9 +4673,11 @@ $ curl ip.cn
 <h3 id="toc_11">参考</h3>
 
 <p><a href="http://www.cnblogs.com/xishuai/p/mac-iterm2.html">Mac OS 终端利器 iTerm2</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -5114,19 +4698,22 @@ $ curl ip.cn
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15240236247092.html">
                 
                   <h1>Alfred</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>强大的只能搜索软件，w安全可以替代OS X自带的Spotlight</p>
-
+                        	<!-- <p>强大的只能搜索软件，w安全可以替代OS X自带的Spotlight</p>
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -5147,16 +4734,17 @@ $ curl ip.cn
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15240154214361.html">
                 
                   <h1>Block用法和实现原理</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h3 id="toc_0">Block 概念</h3>
+                        	<!-- <h3 id="toc_0">Block 概念</h3>
 
 <blockquote>
 <p>闭包 = 一个函数「或指向函数的指针」+ 该函数执行的外部的上下文变量「也就是自由变量」；<br/>
@@ -5431,9 +5019,11 @@ int main(){
 <p>参考：<br/>
 <a href="https://zhongjcbill.gitbooks.io/ios/oc/Block%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.html">Block基本概念</a><br/>
 <a href="https://juejin.im/entry/588075132f301e00697f18e0">iOS Block 详解</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -5454,16 +5044,17 @@ int main(){
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15215981447516.html">
                 
                   <h1>架构模式 MVC MVP MVVM</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<blockquote>
+                        	<!-- <blockquote>
 <p>架构模式，也叫架构风格，一个架构模式描述软件系统里的基本的结构组织或纲要。架构模式提供一些呈先定义好的子系统，指定它们的责任，并给出把它们组织在一起的法则和指南。一个架构模式常常可以分解成很多个设计模式的联合使用。MVC模式就属于架构模式。</p>
 </blockquote>
 
@@ -5496,9 +5087,11 @@ int main(){
 <p><img src="media/15215981447516/15216186538894.jpg" alt=""/></p>
 
 <p>Demo 中采用绑定关系为，view 的改变通过调用 ViewModel 暴露的方法进行修改；ViewModel 的改变通过 KVO 监听来将变化的值传递给 View 进行展示。</p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -5519,16 +5112,17 @@ int main(){
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15212766930412.html">
                 
                   <h1>OpenGL ES - - GLKit（GLKBaseEffect）</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<blockquote>
+                        	<!-- <blockquote>
 <p>Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.<br/>
 加快OpenGL ES或OpenGL应用程序开发。 使用数学库，背景纹理加载，预先创建的着色器效果以及标准视图和视图控制器来实现渲染循环。</p>
 </blockquote>
@@ -5587,9 +5181,11 @@ GLKBaseEffect是基于程序的，并且通过其基础GLSL程序的绑定</p>
 </ul>
 
 <p>详细代码：<a href="https://github.com/Caolongs/OpenGL-ES---GLKit">DEMO</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -5610,16 +5206,17 @@ GLKBaseEffect是基于程序的，并且通过其基础GLSL程序的绑定</p>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15211019198288.html">
                 
                   <h1>OpenGL ES - GLSL</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>不采用GLKBaseEffect，使用编译链接自定义的着色器（shader）。用简单的glsl语言来实现顶点、片元着色器，并图形进行简单的变换。</p>
+                        	<!-- <p>不采用GLKBaseEffect，使用编译链接自定义的着色器（shader）。用简单的glsl语言来实现顶点、片元着色器，并图形进行简单的变换。</p>
 
 <p><img src="media/15211019198288/OpenGL%20ES%20-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E7%9D%80%E8%89%B2%E5%99%A8-.png" alt="OpenGL ES -自定义的着色器-"/></p>
 
@@ -6039,9 +5636,11 @@ if (linkStatus == GL_FALSE) {<br/>
 <li>
 <a href="#toc_7">文章目录</a>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -6062,16 +5661,17 @@ if (linkStatus == GL_FALSE) {<br/>
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15209234462100.html">
                 
                   <h1>组件化 - 远程私有库</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>远程私有库相对于本地私有库多了许多配置，对 <code>.spec</code> 文件的配置就显得尤为重要了许多</p>
+                        	<!-- <p>远程私有库相对于本地私有库多了许多配置，对 <code>.spec</code> 文件的配置就显得尤为重要了许多</p>
 
 <p>首先，一般采用pod库的形式来集成的远程私有库就需要我们对 cocoapods 的工作有一定的认识。</p>
 
@@ -6247,9 +5847,11 @@ end
 <li>
 <a href="#toc_11">文章目录</a>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -6270,16 +5872,17 @@ end
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15208414821831.html">
                 
                   <h1>组件化 - 本地私有库创建</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h3 id="toc_0">创建子工程（测试工程）</h3>
+                        	<!-- <h3 id="toc_0">创建子工程（测试工程）</h3>
 
 <ul>
 <li><p><strong>方法一：</strong> 确定需要抽取的组件，那么势必需要一个将其放到一个工程中能够正常运行，常规可以直接创建一个冲程，然后将需要的组件拖入工程中，创建 <code>.spec</code> 文件：</p>
@@ -6330,9 +5933,11 @@ end
 </code></pre>
 
 <p>主工程Pods工程中就会出现本地组件化的代码</p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -6353,16 +5958,17 @@ end
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15204087282870.html">
                 
                   <h1>Jenkins + Fastlane 持续集成自动化打包</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<blockquote>
+                        	<!-- <blockquote>
 <p>本文使用 Jenkins 与 Fastlane 结合使用自动编译打包至蒲公英</p>
 </blockquote>
 
@@ -6521,9 +6127,11 @@ end
 <li>
 <a href="#toc_8">文章目录</a>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -6544,16 +6152,17 @@ end
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15196291080319.html">
                 
                   <h1>FastLane - 上传到蒲公英</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">安装蒲公英的 Fastlane 插件</h2>
+                        	<!-- <h2 id="toc_0">安装蒲公英的 Fastlane 插件</h2>
 
 <ul>
 <li>安装蒲公英的 Fastlane 插件
@@ -6584,9 +6193,11 @@ end
 <h2 id="toc_3">参考</h2>
 
 <p><a href="https://www.pgyer.com/doc/view/fastlane">使用 Fastlane 上传 App 到蒲公英</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -6607,16 +6218,17 @@ end
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15196148245866.html">
                 
                   <h1>Fastlane</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">简介</h2>
+                        	<!-- <h2 id="toc_0">简介</h2>
 
 <p>fastlane是为iOS和Android应用程序自动化测试版部署和发布的最简单方法。🚀它处理所有繁琐的任务，例如生成屏幕截图，处理代码签名以及发布应用程序。</p>
 
@@ -6782,9 +6394,11 @@ build_app   # alias for &quot;build_ios_app&quot;
 <li>
 <a href="#toc_12">文章目录</a>
 
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -6805,16 +6419,17 @@ build_app   # alias for &quot;build_ios_app&quot;
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15193516410111.html">
                 
                   <h1>Continuous Integration in Xcode</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<p>在Xcode中，持续集成是自动化和简化Mac和iOS应用程序的构建，分析，测试和存档的过程，以确保它们始终处于可释放状态。在持续集成工作流程中，您可以在开发Mac上的Xcode本地编写应用程序，并将它们检入源代码存储库。然后将它们发送到OS X服务器提供的服务Xcode Server进行处理。在开发Mac上的Xcode中，您设置了运行在服务器上的僵尸程序。这些机器人使用存储库中的源代码处理您的应用程序，并报告结果。bot的每次运行称为集成，并且这些运行在整个应用程序的开发生命周期中定期发生<br/>
+                        	<!-- <p>在Xcode中，持续集成是自动化和简化Mac和iOS应用程序的构建，分析，测试和存档的过程，以确保它们始终处于可释放状态。在持续集成工作流程中，您可以在开发Mac上的Xcode本地编写应用程序，并将它们检入源代码存储库。然后将它们发送到OS X服务器提供的服务Xcode Server进行处理。在开发Mac上的Xcode中，您设置了运行在服务器上的僵尸程序。这些机器人使用存储库中的源代码处理您的应用程序，并报告结果。bot的每次运行称为集成，并且这些运行在整个应用程序的开发生命周期中定期发生<br/>
 <img src="media/15193516410111/15193516796669.png" alt=""/></p>
 
 <h2 id="toc_0">持续集成的目标是提高软件质量，实现这一目标有多种方式：</h2>
@@ -6828,9 +6443,11 @@ build_app   # alias for &quot;build_ios_app&quot;
 <p><em>随着时间的推移生成构建和测试统计。</em>在持续集成工作流程中，记录所有进度和失败。在任何时候，您都可以看到您的应用程序在开发过程中的位置以及它随着时间的推移如何成熟。</p>
 
 <p>[关于iOS自动化打包的一些分享](<a href="https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ">https://mp.weixin.qq.com/s/2epELEgB1TGfJLDr2ax6eQ</a></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -6851,16 +6468,17 @@ build_app   # alias for &quot;build_ios_app&quot;
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
 			<div class="article">
                 <a class="clearlink" href="15176282030413.html">
                 
                   <h1>OpenGL简单介绍及实践</h1>
                   <div class="a-content">
                       
+                      
                       <div class="a-content-text">
                         
-                        	<h2 id="toc_0">什么是<a href="https://zh.wikipedia.org/wiki/OpenGL">OpenGL</a> (Open Graphics Library)</h2>
+                        	<!-- <h2 id="toc_0">什么是<a href="https://zh.wikipedia.org/wiki/OpenGL">OpenGL</a> (Open Graphics Library)</h2>
 
 <pre><code class="language-javascript">OpenGL 是一种应用程序编程接口（Application Programming Interface,API）,
 用于渲染2D、3D矢量图形。    
@@ -7084,9 +6702,11 @@ void setupRC()
 </code></pre>
 
 <p><img src="media/15176282030413/QQ20180203-0.jpg" alt="QQ20180203-0"/></p>
-
+ -->
                         
+
                       </div>
+
                   </div>
                 </a>
                 <div class="read-more clearfix">
@@ -7107,7 +6727,7 @@ void setupRC()
                   </div>
                 </div>
               </div><!-- article -->
-        
+    
               
 
 
@@ -7193,6 +6813,12 @@ void setupRC()
 	      
 		      
 			      <li class="post">
+			        <a href="15397594715622.html">浅谈iOS中的全局变量和static全局变量</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15396681011495.html">Shell</a>
 			      </li>
 		     
@@ -7212,12 +6838,6 @@ void setupRC()
 		      
 			      <li class="post">
 			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15264613640203.html">Logos语法</a>
 			      </li>
 		     
 		  
