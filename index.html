@@ -81,6 +81,8 @@
     <li><label>Categories</label></li>
 
         
+            <li><a href="AudioUnit.html">AudioUnit</a></li>
+        
             <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
         
             <li><a href="iOS.html">iOS</a></li>
@@ -119,6 +121,54 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15403726165605.html">
+                
+                  <h1>AudioUnit 使用问题记录</h1>
+                  <div class="a-content">
+                      
+                      
+                      <div class="a-content-text">
+                        
+                        	<!-- <h3 id="toc_0">【问题 1】AudioUnit 55: EXCEPTION (-1): &quot;&quot; 控制刷屏问题</h3>
+
+<p>仅仅需要录音采集的时候设置播放enableIO关闭，增加如下代码</p>
+
+<pre><code class="language-text">UInt32 disable = 0;
+AudioUnitSetProperty(_toneUnit,
+                             kAudioOutputUnitProperty_EnableIO,
+                             kAudioUnitScope_Output,
+                             kOutputBus,
+                             &amp;enable,
+                             sizeof(enable));
+                             
+</code></pre>
+ -->
+                        
+
+                      </div>
+
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/10/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='AudioUnit.html'>AudioUnit</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+    
 			<div class="article">
                 <a class="clearlink" href="15397594715622.html">
                 
@@ -6780,6 +6830,8 @@ void setupRC()
 
       	<p class="cat-list">
         
+            <a href="AudioUnit.html"><strong>AudioUnit</strong></a>
+        
             <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
         
             <a href="iOS.html"><strong>iOS</strong></a>
@@ -6813,6 +6865,12 @@ void setupRC()
 	      
 		      
 			      <li class="post">
+			        <a href="15403726165605.html">AudioUnit 使用问题记录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15397594715622.html">浅谈iOS中的全局变量和static全局变量</a>
 			      </li>
 		     
@@ -6832,12 +6890,6 @@ void setupRC()
 		      
 			      <li class="post">
 			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
 			      </li>
 		     
 		  

@@ -81,6 +81,8 @@
     <li><label>Categories</label></li>
 
         
+            <li><a href="AudioUnit.html">AudioUnit</a></li>
+        
             <li><a href="%E5%B7%A5%E5%85%B7.html">工具</a></li>
         
             <li><a href="iOS.html">iOS</a></li>
@@ -573,7 +575,79 @@ fi
 
 <h3 id="toc_23">2. for 循环</h3>
 
-<h1 id="toc_24">目录</h1>
+<p>for循环一般格式为：</p>
+
+<pre><code class="language-text">for var in item1 item2 ... itemN
+do
+    command1
+    command2
+    ...
+    commandN
+done
+</code></pre>
+
+<h3 id="toc_24">3. while 语句</h3>
+
+<pre><code class="language-text">while condition
+do
+    command
+done
+</code></pre>
+
+<h3 id="toc_25">4. until 循环</h3>
+
+<p>until 循环执行一系列命令直至条件为 true 时停止。<br/>
+until 循环与 while 循环在处理方式上刚好相反。</p>
+
+<h3 id="toc_26">5. case</h3>
+
+<pre><code class="language-text">case 值 in
+模式1)
+    command1
+    command2
+    ...
+    commandN
+    ;;
+模式2）
+    command1
+    command2
+    ...
+    commandN
+    ;;
+esac
+</code></pre>
+
+<h3 id="toc_27">6. 跳出循环</h3>
+
+<p>在循环过程中，有时候需要在未达到循环结束条件时强制跳出循环，Shell使用两个命令来实现该功能：break和continue。</p>
+
+<h2 id="toc_28">Shell 函数</h2>
+
+<p>shell中函数的定义格式如下：</p>
+
+<pre><code class="language-text">[ function ] funname [()]
+
+{
+
+    action;
+
+    [return int;]
+
+}
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。</li>
+<li>2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。 return后跟数值n(0-255</li>
+</ul>
+
+<p><strong>注意：</strong> 在Shell中，调用函数时可以向其传递参数。在函数体内部，通过 <code>$n</code> 的形式来获取参数的值，例如，<code>$1</code>表示第一个参数，<code>$2</code>表示第二个参数...当n&gt;=10时，需要使用<code>${n}</code>来获取参数。</p>
+
+<h2 id="toc_29">Shell 输入/输出重定向</h2>
+
+<h1 id="toc_30">目录</h1>
 
 <ul>
 <li>
@@ -666,12 +740,30 @@ fi
 <li>
 <a href="#toc_23">2. for 循环</a>
 </li>
-</ul>
+<li>
+<a href="#toc_24">3. while 语句</a>
+</li>
+<li>
+<a href="#toc_25">4. until 循环</a>
+</li>
+<li>
+<a href="#toc_26">5. case</a>
+</li>
+<li>
+<a href="#toc_27">6. 跳出循环</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_24">目录</a>
+<a href="#toc_28">Shell 函数</a>
+</li>
+<li>
+<a href="#toc_29">Shell 输入/输出重定向</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_30">目录</a>
 
 
 
@@ -746,6 +838,8 @@ fi
 
       	<p class="cat-list">
         
+            <a href="AudioUnit.html"><strong>AudioUnit</strong></a>
+        
             <a href="%E5%B7%A5%E5%85%B7.html"><strong>工具</strong></a>
         
             <a href="iOS.html"><strong>iOS</strong></a>
@@ -779,6 +873,12 @@ fi
 	      
 		      
 			      <li class="post">
+			        <a href="15403726165605.html">AudioUnit 使用问题记录</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15397594715622.html">浅谈iOS中的全局变量和static全局变量</a>
 			      </li>
 		     
@@ -798,12 +898,6 @@ fi
 		      
 			      <li class="post">
 			        <a href="15271533818539.html">Mac上搭建直播服务器 Nginx+HLS</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15271456510220.html">Mac上搭建直播服务器 Nginx+rtmp</a>
 			      </li>
 		     
 		  
