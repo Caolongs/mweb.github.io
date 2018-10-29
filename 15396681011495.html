@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Shell - 
+  Shell 学习笔记录 - 
   
   </title>
   
@@ -122,7 +122,7 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Shell</h1>
+          <h1>Shell 学习笔记录</h1>
      
         <div class="read-more clearfix">
           <span class="date">2018/10/16</span>
@@ -142,7 +142,127 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h2 id="toc_0">Shell 环境</h2>
+      <ul>
+<li>
+<a href="#toc_0">Shell 环境</a>
+</li>
+<li>
+<a href="#toc_1">Hello World！</a>
+<ul>
+<li>
+<a href="#toc_2">创建 test.h 文件</a>
+</li>
+<li>
+<a href="#toc_3">运行 Shell 脚本两种方法</a>
+<ul>
+<li>
+<ul>
+<li>
+<a href="#toc_4">1、作为可执行程序</a>
+</li>
+<li>
+<a href="#toc_5">2、作为解释器参数</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">Shell 变量</a>
+<ul>
+<li>
+<a href="#toc_7">Shell 变量的定义及使用</a>
+</li>
+<li>
+<a href="#toc_8">read 获取用户的输入</a>
+</li>
+<li>
+<a href="#toc_9">Shell 字符串</a>
+</li>
+<li>
+<a href="#toc_10">Shell 数组</a>
+<ul>
+<li>
+<ul>
+<li>
+<a href="#toc_11">1. 定义数组</a>
+</li>
+<li>
+<a href="#toc_12">2. 读取数组</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13">Shell 注释</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_14">Shell 传递参数</a>
+</li>
+<li>
+<a href="#toc_15">Shell 基本运算符</a>
+<ul>
+<li>
+<a href="#toc_16">算术运算符</a>
+</li>
+<li>
+<a href="#toc_17">文件测试运算符</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_18">Shell echo命令</a>
+</li>
+<li>
+<a href="#toc_19">Shell printf 命令</a>
+</li>
+<li>
+<a href="#toc_20">Shell test 命令</a>
+</li>
+<li>
+<a href="#toc_21">Shell 流程控制</a>
+<ul>
+<li>
+<a href="#toc_22">1. if else</a>
+</li>
+<li>
+<a href="#toc_23">2. for 循环</a>
+</li>
+<li>
+<a href="#toc_24">3. while 语句</a>
+</li>
+<li>
+<a href="#toc_25">4. until 循环</a>
+</li>
+<li>
+<a href="#toc_26">5. case</a>
+</li>
+<li>
+<a href="#toc_27">6. 跳出循环</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_28">Shell 函数</a>
+</li>
+<li>
+<a href="#toc_29">Shell 输入/输出重定向</a>
+</li>
+<li>
+<a href="#toc_30">Shell 文件包含</a>
+</li>
+<li>
+<a href="#toc_31">参考学习</a>
+</li>
+</ul>
+
+
+<h2 id="toc_0">Shell 环境</h2>
 
 <p>Linux 的 Shell 种类众多，常见的有：</p>
 
@@ -463,14 +583,10 @@ Hello, Shell
 
 <p>Shell中的 test 命令用于检查某个条件是否成立，它可以进行数值、字符和文件三个方面的测试。</p>
 
-<p>|<br/><br/>
-<div>参数<br/>
-</div></p>
-
 <table>
 <thead>
 <tr>
-<th></th>
+<th><div>参数</div></th>
 <th><span class="Apple-tab-span" style="white-space:pre"></span>说明</th>
 </tr>
 </thead>
@@ -647,124 +763,64 @@ esac
 
 <h2 id="toc_29">Shell 输入/输出重定向</h2>
 
-<h1 id="toc_30">目录</h1>
+<table>
+<thead>
+<tr>
+<th><div>命令</div></th>
+<th><span class="Apple-tab-span" style="white-space:pre"></span>说明</th>
+</tr>
+</thead>
 
-<ul>
-<li>
-<a href="#toc_0">Shell 环境</a>
-</li>
-<li>
-<a href="#toc_1">Hello World！</a>
-<ul>
-<li>
-<a href="#toc_2">创建 test.h 文件</a>
-</li>
-<li>
-<a href="#toc_3">运行 Shell 脚本两种方法</a>
-<ul>
-<li>
-<ul>
-<li>
-<a href="#toc_4">1、作为可执行程序</a>
-</li>
-<li>
-<a href="#toc_5">2、作为解释器参数</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">Shell 变量</a>
-<ul>
-<li>
-<a href="#toc_7">Shell 变量的定义及使用</a>
-</li>
-<li>
-<a href="#toc_8">read 获取用户的输入</a>
-</li>
-<li>
-<a href="#toc_9">Shell 字符串</a>
-</li>
-<li>
-<a href="#toc_10">Shell 数组</a>
-<ul>
-<li>
-<ul>
-<li>
-<a href="#toc_11">1. 定义数组</a>
-</li>
-<li>
-<a href="#toc_12">2. 读取数组</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_13">Shell 注释</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_14">Shell 传递参数</a>
-</li>
-<li>
-<a href="#toc_15">Shell 基本运算符</a>
-<ul>
-<li>
-<a href="#toc_16">算术运算符</a>
-</li>
-<li>
-<a href="#toc_17">文件测试运算符</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_18">Shell echo命令</a>
-</li>
-<li>
-<a href="#toc_19">Shell printf 命令</a>
-</li>
-<li>
-<a href="#toc_20">Shell test 命令</a>
-</li>
-<li>
-<a href="#toc_21">Shell 流程控制</a>
-<ul>
-<li>
-<a href="#toc_22">1. if else</a>
-</li>
-<li>
-<a href="#toc_23">2. for 循环</a>
-</li>
-<li>
-<a href="#toc_24">3. while 语句</a>
-</li>
-<li>
-<a href="#toc_25">4. until 循环</a>
-</li>
-<li>
-<a href="#toc_26">5. case</a>
-</li>
-<li>
-<a href="#toc_27">6. 跳出循环</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_28">Shell 函数</a>
-</li>
-<li>
-<a href="#toc_29">Shell 输入/输出重定向</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_30">目录</a>
+<tbody>
+<tr>
+<td>command &gt; file</td>
+<td>将输出重定向到 file。</td>
+</tr>
+<tr>
+<td>command &lt; file</td>
+<td>将输入重定向到 file。</td>
+</tr>
+<tr>
+<td>command &gt;&gt; file</td>
+<td>将输出以追加的方式重定向到 file。</td>
+</tr>
+<tr>
+<td>n &gt; file</td>
+<td>将文件描述符为 n 的文件重定向到 file。</td>
+</tr>
+<tr>
+<td>n &gt;&gt; file</td>
+<td>将文件描述符为 n 的文件以追加的方式重定向到 file。</td>
+</tr>
+<tr>
+<td>n &gt;&amp; m</td>
+<td>将输出文件 m 和 n 合并。</td>
+</tr>
+<tr>
+<td>n &lt;&amp; m</td>
+<td>将输入文件 m 和 n 合并。</td>
+</tr>
+<tr>
+<td>&lt;&lt; tag</td>
+<td>将开始标记 tag 和结束标记 tag 之间的内容作为输入。</td>
+</tr>
+</tbody>
+</table>
 
+<h2 id="toc_30">Shell 文件包含</h2>
+
+<p>Shell 文件包含的语法格式如下：</p>
+
+<pre><code class="language-text">. filename   # 注意点号(.)和文件名中间有一空格
+
+或
+
+source filename
+</code></pre>
+
+<h2 id="toc_31">参考学习</h2>
+
+<p>更详细内容参见 <a href="http://www.runoob.com/linux/linux-shell-include-file.html">菜鸟教程</a></p>
 
 
     
@@ -885,7 +941,7 @@ esac
 		  
 		      
 			      <li class="post">
-			        <a href="15396681011495.html">Shell</a>
+			        <a href="15396681011495.html">Shell 学习笔记录</a>
 			      </li>
 		     
 		  
