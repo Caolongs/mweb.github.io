@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  MonkeyDev - 
+  iOS 编写高质量Objective-C代码 - 
   
   </title>
   
@@ -122,14 +122,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>MonkeyDev</h1>
+          <h1>iOS 编写高质量Objective-C代码</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2018/4/24</span>
+          <span class="date">2018/11/14</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
+              <span class="posted-in"><a href='iOS.html'>iOS</a></span>
            
          
           <span class="comments">
@@ -142,31 +142,53 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <blockquote>
-<p>安装 MonkeyDev <br/>
-<a href="https://github.com/AloneMonkey/MonkeyDev/wiki/%E5%AE%89%E8%A3%85">https://github.com/AloneMonkey/MonkeyDev/wiki/安装</a></p>
-</blockquote>
+      <p><a href="https://www.jianshu.com/p/76ac67f1bd95">https://www.jianshu.com/p/76ac67f1bd95</a></p>
 
-<ol>
-<li>安装最新的theos</li>
-</ol>
+<h3 id="toc_0">为了减少编译时间，.h文件中尽量少引入其他头文件。</h3>
 
-<pre><code class="language-text">$ sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+<h3 id="toc_1">多用字面量语法，少用等价方法</h3>
+
+<p>好处：简明易读，提高代码的可读性和可维护性<br/>
+局限性：用字面量预防创建数组或字典时，值不能有nil，否则会抛出异常。</p>
+
+<h3 id="toc_2">多用类型常量，少用#define预处理指令</h3>
+
+<pre><code class="language-text">#define ANIMATION_DURATION 0.5
+
+// 替换成
+static const NSTimeInterval kAnimationDuration = 0.5;
+
+// 全局常量
+// QiShare.h
+extern const NSTimeInterval QiShareAnimationDuration;
+
+// QiShare.m
+const NSTimeInterval QiShareAnimationDuration = 0.3;
+
+作者：QiShare
+链接：https://www.jianshu.com/p/76ac67f1bd95
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 </code></pre>
 
-<ol>
-<li>安装ldid(如安装theos过程安装了ldid，跳过)</li>
-</ol>
+<h3 id="toc_3">多用枚举表示状态、选项、状态码</h3>
 
-<pre><code class="language-text">$ brew install ldid
-</code></pre>
+<h3 id="toc_4">理解“ 属性 ”这一概念</h3>
 
-<ol>
-<li>执行安装MonkeyDev命令</li>
-</ol>
+<p>在iOS开发中，99.99..%的属性都会声明为nonatomic。<br/>
+一是atomic会严重影响性能，<br/>
+二是atomic只能保证读/写操作的过程是可靠的，并不能保证线程安全。</p>
 
-<pre><code class="language-text">$ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
-</code></pre>
+<h3 id="toc_5">在对象内部尽量直接访问实例变量</h3>
+
+<h3 id="toc_6">以 “自动释放池块” 降低内存峰值</h3>
+
+<p>默认情况下：自动释放池需要等待线程执行下一次事件循环时才清空，通常for循环会不断创建新对象加入自动释放池里，循环结束才释放。因此，可能会占用大量内存。<br/>
+手动加入自动释放池块（@autoreleasepool）：每次for循环都会直接释放内存，从而降低了内存的峰值。</p>
+
+<h3 id="toc_7">多用派发队列，少用同步锁</h3>
+
+<h3 id="toc_8">多用GCD，少用performSelector系列方法</h3>
 
 
     
@@ -177,16 +199,16 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15246450401949.html" 
-          title="Previous Post: 初识汇编">&laquo; 初识汇编</a>
+          <a href="15428530050944.html" 
+          title="Previous Post: iOS 录音">&laquo; iOS 录音</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15242338446694.html" 
-          title="Next Post: Cycript 安装及使用">Cycript 安装及使用 &raquo;</a>
+          <a  href="15403726165605.html" 
+          title="Next Post: AudioUnit 使用问题记录">AudioUnit 使用问题记录 &raquo;</a>
       
       </p>
         </div>
