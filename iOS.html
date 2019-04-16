@@ -124,6 +124,284 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="15553847404538.html">
+                
+                  <h1>iOS 集合如何弱引用对象</h1>
+                  <div class="a-content">
+                      
+                      
+                      <div class="a-content-text">
+                        
+                        	<!-- <h2 id="toc_0">一. 使用 NSValue</h2>
+
+<p>NSValue 可以弱引用保存一个对象，我们可以使用这种方法间接的引用。</p>
+
+<pre><code class="language-text">
+NSMutableArray *array = @[].mutableCopy;
+// 添加
+NSObject *obj = [NSObject new];
+[array addObject:[NSValue valueWithNonretainedObject:obj]];
+// 读取
+NSValue *value = array[0];
+NSObject *obj2 = [value nonretainedObjectValue];
+
+</code></pre>
+
+<blockquote>
+<p><strong>注意</strong>：使用 NSValue 的方式，确实可以实现对对象的弱引用（即被添加到集合中时，对象的引用计数不会+1），但是当对象被释放的时候，数组中对应的对象会变成野指针，因此需要手动删除 NSArray 中对应对象的值，否则会在执行 [value nonretainedObjectValue] 时崩溃；而使用 NSPointerArray 不会有这个问题，对象的释放会使得集合中的对象变为 NULL</p>
+</blockquote>
+
+<h2 id="toc_1">二.  使用 NSPointerArray，NSMapTable，NSHashTable</h2>
+
+<p>在iOS6.0之后出现了NSPointerArray，NSMapTable，NSHashTable。<br/>
+用法分别对应 NSMutableArray，NSMutableDictionary，NSMutableSet。</p>
+
+<h3 id="toc_2">- 1. NSPointerArray</h3>
+
+<h4 id="toc_3">特性介绍</h4>
+
+<p>NSPointerArray 是 NSArray 的通用版本，和 NSArray/NSMutableArray 不同的是，NSPointerArray 具有下面这些特性：</p>
+
+<ul>
+<li>与 NSArray/NSMutableArray 相对应，NSArray/NSMutableArray 强引用集合对象</li>
+<li>NSPointerArray 可以弱引用集合对象，一旦对象没人持有了，NSPointerArray 中对应的项会被变成 NULL</li>
+<li>NSPointerArray 是可变的，没有不可变的版本</li>
+<li>NSPointerArray 可以存储 NULL，NULL 参与 count 计算</li>
+<li>NSPointerArray 的 count 可以被设置，如果直接设置 count，多余的位置会使用 NULL 占位</li>
+<li>NSPointerArray 存储的是指针类型 void * 而不是对象，所以需要 __bridge 进行转换</li>
+<li>使用 addPointer 和 pointerAtIndex 来存取指针</li>
+</ul>
+
+<pre><code class="language-text">- (instancetype)initWithOptions:(NSPointerFunctionsOptions)options;
+- (instancetype)initWithPointerFunctions:(NSPointerFunctions *)functions;
+
+</code></pre>
+
+<p>NSPointerFunctionsOptions 枚举定义着内存管理策略、方法特性和内存标识，以下是几个常用的枚举值：<br/>
+内存管理策略：<br/>
+NSPointerFunctionsStrongMemory：强引用成员<br/>
+NSPointerFunctionsMallocMemory：  用于 Mach 的 虚拟内存管理<br/>
+NSPointerFunctionsMachVirtualMemory： 用于 Mach 的 虚拟内存管理<br/>
+NSPointerFunctionsWeakMemory：弱引用成员</p>
+
+<p>方法特性：<br/>
+NSPointerFunctionsObjectPersonality：hash、isEqual、对象描述<br/>
+NSPointerFunctionsOpaquePersonality：pointer 的 hash 、直接判等</p>
+
+<p>内存标识：<br/>
+NSPointerFunctionsCopyIn 添加成员时进行 copy 操作</p>
+
+<h4 id="toc_4">提供 compact 方法剔除 NULL 元素</h4>
+
+<p>NSPointerArray 可以存储 NULL，作为补充，它也提供了 compact 方法，用于剔除数组中为 NULL 的成员。但是 compact 函数有个已经报备的 bug，每次 compact 之前需要添加一个 NULL，否则会 compact 失败</p>
+
+<h4 id="toc_5">弱引用测试代码</h4>
+
+<pre><code class="language-text">NSPointerArray *pointerArray = [[NSPointerArray alloc] initWithOptions:NSPointerFunctionsWeakMemory];
+@autoreleasepool{
+    NSObject *obj = [NSObject new];
+    [pointerArray addPointer:(__bridge void *)obj];
+    NSLog(@&quot;NSPointerArray is: %p count: %@&quot;, [pointerArray pointerAtIndex:0], @(pointerArray.count));
+    // 输出 NSPointerArray is: 0x60000000e800 count: 1
+}
+NSLog(@&quot;After Release NSPointerArray is: %p count: %@&quot;, [pointerArray pointerAtIndex:0], @(pointerArray.count));
+// 输出 After Release NSPointerArray is: 0x0 count: 1
+    
+// 每次 compact 之前需要添加 NULL，规避系统 Bug
+[pointerArray addPointer:NULL];
+    
+[pointerArray compact];
+    
+NSLog(@&quot;After Compact NSPointerArray count: %@&quot;, @(pointerArray.count));
+// 输出 After Compact NSPointerArray count: 0
+</code></pre>
+
+<h3 id="toc_6">- 2. NSHashTable</h3>
+
+<h4 id="toc_7">特性介绍</h4>
+
+<p>NSHashTable 是 NSSet 的通用版本，和 NSSet / NSMutableSet 不同的是，NSHashTable 具有下面这些特性:</p>
+
+<ul>
+<li>与 NSSet/NSMutableSet 相对应，NSSet/NSMutableSet 强引用集合对象</li>
+<li>NSHashTable 可以弱引用集合对象，一旦对象没人持有了，NSHashTable 中的值也会被移除</li>
+<li>NSHashTable 是可变的，没有不可变的版本</li>
+<li>除了存储对象，NSHashTable 也可以存储任意指针，比如 void *</li>
+</ul>
+
+<h4 id="toc_8">初始化参数</h4>
+
+<pre><code class="language-text">+ (NSHashTable&lt;ObjectType&gt; *)hashTableWithOptions:(NSPointerFunctionsOptions)options;
+
+</code></pre>
+
+<p>NSHashTableOptions 的取值如下：</p>
+
+<ul>
+<li>NSHashTableStrongMemory: 默认值，强引用集合对象，与 NSSet 一样</li>
+<li>NSHashTableWeakMemory: 弱引用集合对象</li>
+<li>NSHashTableZeroingWeakMemory: 废弃，请使用 NSHashTableWeakMemory</li>
+<li>NSHashTableCopyIn: 在将对象添加到集合之前，会拷贝对象</li>
+<li>NSHashTableObjectPointerPersonality: 使用 shifted pointer 来做 hash 检测及确定两个对象是否相等</li>
+</ul>
+
+<h4 id="toc_9">弱引用测试代码</h4>
+
+<pre><code class="language-text">NSHashTable *hashTable = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+@autoreleasepool {
+    NSObject *obj = [NSObject new];
+    [hashTable addObject:obj];
+    NSLog(@&quot;hashTable is: %@&quot;, hashTable);
+    // hashTable is: NSHashTable {[3] &lt;NSObject: 0x6000035e3f60&gt;}
+}
+    
+NSLog(@&quot;hashTable is: %@&quot;, hashTable);
+// hashTable is: NSHashTable {}
+</code></pre>
+
+<h3 id="toc_10">- 3. NSMapTable</h3>
+
+<h4 id="toc_11">特性介绍</h4>
+
+<p>NSMapTable 是 NSDictionary 的通用版本，和 NSDictionary/NSMutableDictionary 不同的是，NSMapTable 具有下面这些特性:</p>
+
+<ul>
+<li>与 NSDictionary/NSMutableDictionary 相对应，NSDictionary/NSMutableDictionary 对 Key 拷贝，对 Value 强引用</li>
+<li>key 和 value 的内存管理方式可以分开，如：key 是强引用，value 是弱引用</li>
+<li>NSMapTable 可以弱引用 Key 和 Value，一旦 Key 或 Value 中的某一个没人持有了，NSMapTable 中对应的项也会被移除</li>
+<li>NSMapTable 是可变的，没有不可变的版本</li>
+<li>除了存储对象，NSMapTable 也可以存储任意指针，比如 void *</li>
+</ul>
+
+<p>总结起来一共有 4 种可能：</p>
+
+<ul>
+<li>key 为 strong，value 为 strong</li>
+<li>key 为 strong，value 为 weak</li>
+<li>key 为 weak，value 为 strong</li>
+<li>key 为 weak，value 为 weak<br/>
+当用 weak 修饰 key 或 value 时，有一方被释放，则该键值对移除</li>
+</ul>
+
+<h4 id="toc_12">初始化参数</h4>
+
+<p>可以在初始化 NSMapTable 时指定 NSPointerFunctionsOptions 来分别确定对 Key 和 Value 的内存引用</p>
+
+<pre><code class="language-text">+ (NSMapTable&lt;KeyType, ObjectType&gt; *)mapTableWithKeyOptions:(NSPointerFunctionsOptions)keyOptions valueOptions:(NSPointerFunctionsOptions)valueOptions;
+
+</code></pre>
+
+<ul>
+<li>NSMapTableStrongMemory: 默认值，强引用 Key/Value</li>
+<li>NSMapTableWeakMemory: 弱引用 Key/Value</li>
+<li>NSHashTableZeroingWeakMemory: 废弃，请使用 NSMapTableWeakMemory</li>
+<li>NSMapTableCopyIn: 在将对象添加到集合之前，会拷贝对象</li>
+<li>NSMapTableObjectPointerPersonality: 使用 shifted pointer 来做 hash 检测及确定两个对象是否相等</li>
+</ul>
+
+<h4 id="toc_13">弱引用测试代码</h4>
+
+<pre><code class="language-text">NSMapTable *mapTable = [NSMapTable weakToStrongObjectsMapTable];
+@autoreleasepool {
+    NSObject *key = [NSObject new];
+    NSObject *value = [NSObject new];
+    [mapTable setObject:value forKey:key];
+    NSLog(@&quot;mapTable is: %@&quot;, mapTable);
+    // mapTable is: NSMapTable {&lt;NSObject: 0x6000008df890&gt; -&gt; &lt;NSObject: 0x6000008df870&gt;}
+}
+    
+NSLog(@&quot;mapTable is: %@&quot;, mapTable);
+// mapTable is: NSMapTable {}
+// key 是 weak 引用，所以析构之后 NSMapTable 就会移除对应的项
+</code></pre>
+
+<h2 id="toc_14">参照</h2>
+
+<p>参考： <a href="https://norcy.github.io/wiki/iOS/%E5%BC%B1%E5%BC%95%E7%94%A8%E9%9B%86%E5%90%88%E5%AF%B9%E8%B1%A1/">弱引用集合对象</a></p>
+
+<ul>
+<li>
+<a href="#toc_0">一. 使用 NSValue</a>
+</li>
+<li>
+<a href="#toc_1">二.  使用 NSPointerArray，NSMapTable，NSHashTable</a>
+<ul>
+<li>
+<a href="#toc_2">- 1. NSPointerArray</a>
+<ul>
+<li>
+<a href="#toc_3">特性介绍</a>
+</li>
+<li>
+<a href="#toc_4">提供 compact 方法剔除 NULL 元素</a>
+</li>
+<li>
+<a href="#toc_5">弱引用测试代码</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">- 2. NSHashTable</a>
+<ul>
+<li>
+<a href="#toc_7">特性介绍</a>
+</li>
+<li>
+<a href="#toc_8">初始化参数</a>
+</li>
+<li>
+<a href="#toc_9">弱引用测试代码</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_10">- 3. NSMapTable</a>
+<ul>
+<li>
+<a href="#toc_11">特性介绍</a>
+</li>
+<li>
+<a href="#toc_12">初始化参数</a>
+</li>
+<li>
+<a href="#toc_13">弱引用测试代码</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_14">参照</a>
+</li>
+</ul>
+
+ -->
+                        
+
+                      </div>
+
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/4/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+    
+			<div class="article">
                 <a class="clearlink" href="15421737791379.html">
                 
                   <h1>iOS 编写高质量Objective-C代码</h1>
@@ -946,6 +1224,12 @@ int main(){
 	      
 		      
 			      <li class="post">
+			        <a href="15553847404538.html">iOS 集合如何弱引用对象</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15514205211153.html">曝光铁三角 - 光圈、快门、ISO</a>
 			      </li>
 		     
@@ -965,12 +1249,6 @@ int main(){
 		      
 			      <li class="post">
 			        <a href="15421737791379.html">iOS 编写高质量Objective-C代码</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15403726165605.html">AudioUnit 使用问题记录</a>
 			      </li>
 		     
 		  
