@@ -124,6 +124,229 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="15657731633691.html">
+                
+                  <h1>iOS 制作静态库自动编译脚本</h1>
+                  <div class="a-content">
+                      
+                      
+                      <div class="a-content-text">
+                        
+                        	<!-- <h3 id="toc_0">编译framework的shell脚本</h3>
+
+<pre><code class="language-text">#!/bin/sh
+#要build的target名
+TARGET_NAME=${PROJECT_NAME}
+if [[ $1 ]]
+then
+TARGET_NAME=$1
+fi
+UNIVERSAL_OUTPUT_FOLDER=&quot;${SRCROOT}/${PROJECT_NAME}_Products/&quot;
+
+#创建输出目录，并删除之前的framework文件
+mkdir -p &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+rm -rf &quot;${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework&quot;
+
+#分别编译模拟器和真机的Framework
+xcodebuild -target &quot;${TARGET_NAME}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
+xcodebuild -target &quot;${TARGET_NAME}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
+
+#拷贝framework到univer目录
+cp -R &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework&quot; &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+
+#合并framework，输出最终的framework到build目录
+lipo -create -output &quot;${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/${TARGET_NAME}&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework/${TARGET_NAME}&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphoneos/${TARGET_NAME}.framework/${TARGET_NAME}&quot;
+
+#删除编译之后生成的无关的配置文件
+dir_path=&quot;${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/&quot;
+for file in ls $dir_path
+do
+if [[ ${file} =~ &quot;.xcconfig&quot; ]]
+then
+rm -f &quot;${dir_path}/${file}&quot;
+fi
+done
+
+#判断build文件夹是否存在，存在则删除
+if [ -d &quot;${SRCROOT}/build&quot; ]
+then
+rm -rf &quot;${SRCROOT}/build&quot;
+fi
+
+rm -rf &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphoneos&quot;
+
+#打开合并后的文件夹
+open &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+</code></pre>
+
+<h3 id="toc_1">编译library的脚本</h3>
+
+<pre><code class="language-text">#!/bin/sh
+
+#要build的target名
+target_Name=${PROJECT_NAME}
+if [[ $1 ]]
+then
+target_Name=$1
+fi
+
+UNIVERSAL_OUTPUT_FOLDER=&quot;${SRCROOT}/${PROJECT_NAME}_Products&quot;
+
+# 创建输出目录，并删除之前的文件
+rm -rf &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+mkdir -p &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+
+# 分别编译真机和模拟器版本
+xcodebuild -target &quot;${target_Name}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
+xcodebuild -target &quot;${target_Name}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
+
+#复制头文件到目标文件夹
+HEADER_FOLDER=&quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/include/${target_Name}&quot;
+if [[ -d &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/usr/local/include&quot; ]]
+then
+    HEADER_FOLDER=&quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/usr/local/include&quot;
+fi
+cp -R &quot;${HEADER_FOLDER}&quot; &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+
+#合成模拟器和真机.a包
+lipo -create &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${target_Name}.a&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${target_Name}.a&quot; -output &quot;${UNIVERSAL_OUTPUT_FOLDER}/lib${target_Name}.a&quot;
+
+# 判断build文件夹是否存在，存在则删除
+if [ -d &quot;${SRCROOT}/build&quot; ]
+then
+rm -rf &quot;${SRCROOT}/build&quot;
+fi
+
+#打开目标文件夹
+open &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+</code></pre>
+ -->
+                        
+
+                      </div>
+
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/8/14</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+    
+			<div class="article">
+                <a class="clearlink" href="15610124385065.html">
+                
+                  <h1>数组操作</h1>
+                  <div class="a-content">
+                      
+                      
+                      <div class="a-content-text">
+                        
+                        	<!-- <p>这将返回一个数组，其中包含myCars数组中每个项目的licensePlate的值：</p>
+
+<pre><code class="language-text">NSArray *licensePlates = [myCars valueForKeyPath:@&quot;licensePlate&quot;]
+</code></pre>
+
+<p>如果你只想要唯一的项目(例如)，你可以这样做：</p>
+
+<pre><code class="language-text">NSArray *licensePlates = [myCars valueForKeyPath:@&quot;@distinctUnionOfObjects.licensePlate&quot;];
+</code></pre>
+
+<p>筛选数组</p>
+
+<pre><code class="language-text">NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;ownerCode == %@&quot;, serviceType];
+        NSArray *filteredArray = [self.serviceTypeOptionArr filteredArrayUsingPredicate:predicate];
+</code></pre>
+ -->
+                        
+
+                      </div>
+
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/6/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+    
+			<div class="article">
+                <a class="clearlink" href="15562444778035.html">
+                
+                  <h1>NS_UNAVAILABLE</h1>
+                  <div class="a-content">
+                      
+                      
+                      <div class="a-content-text">
+                        
+                        	<!-- <p>NS_UNAVAILABLE的作用是直接禁止此方法的使用，一般常见用法如下：</p>
+
+<pre><code class="language-text">+ (instancetype)new NS_UNAVAILABLE;
++ (instancetype)init NS_UNAVAILABLE;
+</code></pre>
+
+<p>这样就不能直接使用这两种创建实例的方法，而需要使用开源库自定义的初始化方法，从而确保了创建实例的统一性</p>
+
+<h3 id="toc_0">NS_EDSIGNATED_INITIALIZER</h3>
+
+<p>NS_EDSIGNATED_INITIALIZER的作用是指定构造器，通常来说指定初始化函数对一个类来说非常重要，参数也会比较多，为了适应不同的初始化需求就有了便利初始化函数。</p>
+
+<pre><code class="language-text">- (instancetype)initWithName:(NSString *)name NS_EDSIGNATED_INITIALIZER;
+
+</code></pre>
+ -->
+                        
+
+                      </div>
+
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/4/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+    
+			<div class="article">
                 <a class="clearlink" href="15553847404538.html">
                 
                   <h1>iOS 集合如何弱引用对象</h1>
@@ -7491,6 +7714,24 @@ void setupRC()
 	      
 		      
 			      <li class="post">
+			        <a href="15657731633691.html">iOS 制作静态库自动编译脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15610124385065.html">数组操作</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15562444778035.html">NS_UNAVAILABLE</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15553847404538.html">iOS 集合如何弱引用对象</a>
 			      </li>
 		     
@@ -7498,24 +7739,6 @@ void setupRC()
 		      
 			      <li class="post">
 			        <a href="15514205211153.html">曝光铁三角 - 光圈、快门、ISO</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15477997794055.html">UML 类图</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15428530050944.html">iOS 录音</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15421737791379.html">iOS 编写高质量Objective-C代码</a>
 			      </li>
 		     
 		  

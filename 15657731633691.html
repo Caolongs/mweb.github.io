@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  UML 类图 - 
+  iOS 制作静态库自动编译脚本 - 
   
   </title>
   
@@ -124,14 +124,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>UML 类图</h1>
+          <h1>iOS 制作静态库自动编译脚本</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2019/1/18</span>
+          <span class="date">2019/8/14</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='UML.html'>UML</a></span>
+              <span class="posted-in"><a href='iOS.html'>iOS</a></span>
            
          
           <span class="comments">
@@ -144,70 +144,94 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h2 id="toc_0">类之间的关系</h2>
+      <h3 id="toc_0">编译framework的shell脚本</h3>
 
-<h3 id="toc_1">1. 泛化关系(generalization)</h3>
+<pre><code class="language-text">#!/bin/sh
+#要build的target名
+TARGET_NAME=${PROJECT_NAME}
+if [[ $1 ]]
+then
+TARGET_NAME=$1
+fi
+UNIVERSAL_OUTPUT_FOLDER=&quot;${SRCROOT}/${PROJECT_NAME}_Products/&quot;
 
-<p>类的继承结构表现在UML中为：泛化(generalize)与实现(realize)：<br/>
-泛化关系用一条带空心箭头的直接表示；如下图表示（A继承自B）；</p>
+#创建输出目录，并删除之前的framework文件
+mkdir -p &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+rm -rf &quot;${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework&quot;
 
-<p><img src="media/15477997794055/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="未命名文件"/><br/>
-注：最终代码中，泛化关系表现为继承非抽象类；</p>
+#分别编译模拟器和真机的Framework
+xcodebuild -target &quot;${TARGET_NAME}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
+xcodebuild -target &quot;${TARGET_NAME}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
 
-<h3 id="toc_2">2. 实现关系(realize)</h3>
+#拷贝framework到univer目录
+cp -R &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework&quot; &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
 
-<p>实现关系用一条带空心箭头的虚线表示；<br/>
-<img src="media/15477997794055/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20-1-.png" alt="未命名文件 -1-"/><br/>
-注：最终代码中，实现关系表现为继承抽象类；</p>
+#合并framework，输出最终的framework到build目录
+lipo -create -output &quot;${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/${TARGET_NAME}&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework/${TARGET_NAME}&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphoneos/${TARGET_NAME}.framework/${TARGET_NAME}&quot;
 
-<h3 id="toc_3">3. 聚合关系(aggregation)</h3>
+#删除编译之后生成的无关的配置文件
+dir_path=&quot;${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/&quot;
+for file in ls $dir_path
+do
+if [[ ${file} =~ &quot;.xcconfig&quot; ]]
+then
+rm -f &quot;${dir_path}/${file}&quot;
+fi
+done
 
-<p>聚合关系用一条带空心菱形箭头的直线表示，如下图表示A聚合到B上，或者说B由A组成；</p>
+#判断build文件夹是否存在，存在则删除
+if [ -d &quot;${SRCROOT}/build&quot; ]
+then
+rm -rf &quot;${SRCROOT}/build&quot;
+fi
 
-<p><img src="media/15477997794055/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20-2-.png" alt="未命名文件 -2-"/><br/>
-A:员工  B:部门</p>
+rm -rf &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphoneos&quot;
 
-<ul>
-<li>聚合关系用于表示实体对象之间的关系，表示整体由部分构成的语义；例如一个部门由多个员工组成；</li>
-<li>与组合关系不同的是，整体和部分不是强依赖的，即使整体不存在了，部分仍然存在；例如， 部门撤销了，人员不会消失，他们依然存在；</li>
-</ul>
+#打开合并后的文件夹
+open &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+</code></pre>
 
-<h3 id="toc_4">4. 组合关系(composition)</h3>
+<h3 id="toc_1">编译library的脚本</h3>
 
-<p>组合关系用一条带实心菱形箭头直线表示，如下图表示A组成B，或者B由A组成；</p>
+<pre><code class="language-text">#!/bin/sh
 
-<p><img src="media/15477997794055/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20-3-.png" alt="未命名文件 -3-"/></p>
+#要build的target名
+target_Name=${PROJECT_NAME}
+if [[ $1 ]]
+then
+target_Name=$1
+fi
 
-<ul>
-<li>与聚合关系一样，组合关系同样表示整体由部分构成的语义；比如公司由多个部门组成；</li>
-<li>但组合关系是一种强依赖的特殊聚合关系，如果整体不存在了，则部分也不存在了；例如， 公司不存在了，部门也将不存在了；</li>
-</ul>
+UNIVERSAL_OUTPUT_FOLDER=&quot;${SRCROOT}/${PROJECT_NAME}_Products&quot;
 
-<h3 id="toc_5">5. 关联关系(association)</h3>
+# 创建输出目录，并删除之前的文件
+rm -rf &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+mkdir -p &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
 
-<p>关联关系是用一条直线表示的；<br/>
-<img src="media/15477997794055/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20-4-.png" alt="未命名文件 -4-"/></p>
+# 分别编译真机和模拟器版本
+xcodebuild -target &quot;${target_Name}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
+xcodebuild -target &quot;${target_Name}&quot; ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator BUILD_DIR=&quot;${BUILD_DIR}&quot; BUILD_ROOT=&quot;${BUILD_ROOT}&quot; clean build
 
-<ul>
-<li>它描述不同类的对象之间的结构关系；它是一种静态关系， 通常与运行状态无关，一般由常识等因素决定的；</li>
-<li>它一般用来定义对象之间静态的、天然的结构； </li>
-<li>关联关系是一种“强关联”的关系；比如，乘车人和车票之间就是一种关联关系；学生和学校就是一种关联关系；</li>
-<li>关联关系默认不强调方向，表示对象间相互知道；如果特别强调方向，如下图，表示A知道B，但 B不知道A；</li>
-</ul>
+#复制头文件到目标文件夹
+HEADER_FOLDER=&quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/include/${target_Name}&quot;
+if [[ -d &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/usr/local/include&quot; ]]
+then
+    HEADER_FOLDER=&quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/usr/local/include&quot;
+fi
+cp -R &quot;${HEADER_FOLDER}&quot; &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
 
-<p>注：在最终代码中，关联对象通常是以成员变量的形式实现的；</p>
+#合成模拟器和真机.a包
+lipo -create &quot;${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${target_Name}.a&quot; &quot;${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${target_Name}.a&quot; -output &quot;${UNIVERSAL_OUTPUT_FOLDER}/lib${target_Name}.a&quot;
 
-<h3 id="toc_6">6. 依赖关系(dependency)</h3>
+# 判断build文件夹是否存在，存在则删除
+if [ -d &quot;${SRCROOT}/build&quot; ]
+then
+rm -rf &quot;${SRCROOT}/build&quot;
+fi
 
-<p>依赖关系是用一套带箭头的虚线表示的；如下图表示A依赖于B；他描述一个对象在运行期间会用到另一个对象的关系；<br/>
-<img src="media/15477997794055/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%20-5-.png" alt="未命名文件 -5-"/></p>
-
-<ul>
-<li><p>与关联关系不同的是，它是一种临时性的关系，通常在运行期间产生，并且随着运行时的变化； 依赖关系也可能发生变化；</p></li>
-<li><p>依赖也有方向，双向依赖是一种非常糟糕的结构，我们总是应该保持单向依赖，杜绝双向依赖的产生；</p></li>
-</ul>
-
-<p>注：在最终代码中，依赖关系体现为类构造方法及类方法的传入参数，箭头的指向为调用关系；依赖关系除了临时知道对方外，还是“使用”对方的方法和属性；</p>
+#打开目标文件夹
+open &quot;${UNIVERSAL_OUTPUT_FOLDER}&quot;
+</code></pre>
 
 
     
@@ -218,16 +242,13 @@ A:员工  B:部门</p>
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15514205211153.html" 
-          title="Previous Post: 曝光铁三角 - 光圈、快门、ISO">&laquo; 曝光铁三角 - 光圈、快门、ISO</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15428530050944.html" 
-          title="Next Post: iOS 录音">iOS 录音 &raquo;</a>
+          <a  href="15610124385065.html" 
+          title="Next Post: 数组操作">数组操作 &raquo;</a>
       
       </p>
         </div>
