@@ -124,6 +124,84 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="15659419408474.html">
+                
+                  <h1>如何确定我是否在调试器下运行</h1>
+                  <div class="a-content">
+                      
+                      
+                      <div class="a-content-text">
+                        
+                        	<!-- <pre><code class="language-text">#include &lt;assert.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;sys / types.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys / sysctl.h&gt;
+
+static bool AmIBeingDebugged（void）
+    //如果正在调试当前进程，则返回true（或者 
+    //在调试器下运行或事后连接调试器）。
+{
+    int junk;
+    你NEI [4];
+    struct kinfo_proc info;
+    size_t大小;
+
+    //初始化标志，以便，如果sysctl失败了一些奇怪的事情 
+    //原因，我们得到了可预测的结果。
+
+    info.kp_proc.p_flag = 0;
+
+    //初始化mib，在这种情况下告诉sysctl我们想要的信息
+    //我们正在寻找有关特定进程ID的信息。
+
+    mib [0] = CTL_KERN;
+    mib [1] = KERN_PROC;
+    mib [2] = KERN_PROC_PID;
+    mib [3] = getpid（）;
+
+    //调用sysctl。
+
+    size = sizeof（info）;
+    junk = sysctl（mib，sizeof（mib）/ sizeof（* mib），＆info，＆size，NULL，0）;
+    断言（垃圾== 0）;
+
+    //如果设置了P_TRACED标志，我们正在调试。
+
+    return（（info.kp_proc.p_flag＆P_TRACED）！= 0）;
+}
+</code></pre>
+
+<p><strong>重要说明</strong>：  由于kinfo_proc结构（in <sys/sysctl.h>）的定义是以条件为条件的__APPLE_API_UNSTABLE，因此您应该将上述代码的使用限制在程序的调试版本中。</p>
+
+<h3 id="toc_0">参考 <a href="https://developer.apple.com/library/archive/qa/qa1361/_index.html#//apple_ref/doc/uid/DTS10003368">Detecting the Debugger</a></h3>
+ -->
+                        
+
+                      </div>
+
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/8/16</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+    
+			<div class="article">
                 <a class="clearlink" href="15657731633691.html">
                 
                   <h1>iOS 制作静态库自动编译脚本</h1>
@@ -7714,6 +7792,12 @@ void setupRC()
 	      
 		      
 			      <li class="post">
+			        <a href="15659419408474.html">如何确定我是否在调试器下运行</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15657731633691.html">iOS 制作静态库自动编译脚本</a>
 			      </li>
 		     
@@ -7733,12 +7817,6 @@ void setupRC()
 		      
 			      <li class="post">
 			        <a href="15553847404538.html">iOS 集合如何弱引用对象</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15514205211153.html">曝光铁三角 - 光圈、快门、ISO</a>
 			      </li>
 		     
 		  

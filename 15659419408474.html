@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  iOS 录音 - 
+  如何确定我是否在调试器下运行 - 
   
   </title>
   
@@ -124,14 +124,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>iOS 录音</h1>
+          <h1>如何确定我是否在调试器下运行</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2018/11/22</span>
+          <span class="date">2019/8/16</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='%E9%9F%B3%E8%A7%86%E9%A2%91.html'>音视频</a></span>
+              <span class="posted-in"><a href='iOS.html'>iOS</a></span>
            
          
           <span class="comments">
@@ -144,20 +144,49 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <p>录音方案<br/>
-<strong>AVFoundation</strong>：提供AVAudioPlayer，AVAudioRecorder类，以及简单的OC接口，录音过程是把音频录制成音频文件，播放过程是播放音频文件，适合处理非实时的场景。<br/>
-<strong>Audio Unit</strong>：Audio Unit在音频开发中处于最底层，可以实时获取和播放PCM数据，具有响应快，低延迟的优点，适用于低延迟实时场景。<br/>
-<strong>Audio ToolBox</strong>：基于Audio Unit，提供Core Audio中层和高层服务的接口，包括Audio Session Services，AudioQueueService（音频队列）。音频队列是另一种录音方案，将录制的音频放置在队列中，取出播放。<br/>
-<strong>OpenAL</strong>：基于Audio Unit，主要提供跨平台的接口。<br/>
-可以看到，实时录音方案有两种，本文主要讲述这两种方式的特点。</p>
+      <pre><code class="language-text">#include &lt;assert.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;sys / types.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys / sysctl.h&gt;
 
-<h2 id="toc_0">Audio Queue]</h2>
+static bool AmIBeingDebugged（void）
+    //如果正在调试当前进程，则返回true（或者 
+    //在调试器下运行或事后连接调试器）。
+{
+    int junk;
+    你NEI [4];
+    struct kinfo_proc info;
+    size_t大小;
 
-<p><a href="https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/AudioQueueProgrammingGuide/AboutAudioQueues/AboutAudioQueues.html">Audio Queue Services Programming Guide</a></p>
+    //初始化标志，以便，如果sysctl失败了一些奇怪的事情 
+    //原因，我们得到了可预测的结果。
 
-<h2 id="toc_1">Audio Unit</h2>
+    info.kp_proc.p_flag = 0;
 
-<p><a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/AudioUnit.html#//apple_ref/doc/uid/TP40014214-CH22-SW1">https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/AudioUnit.html#//apple_ref/doc/uid/TP40014214-CH22-SW1</a></p>
+    //初始化mib，在这种情况下告诉sysctl我们想要的信息
+    //我们正在寻找有关特定进程ID的信息。
+
+    mib [0] = CTL_KERN;
+    mib [1] = KERN_PROC;
+    mib [2] = KERN_PROC_PID;
+    mib [3] = getpid（）;
+
+    //调用sysctl。
+
+    size = sizeof（info）;
+    junk = sysctl（mib，sizeof（mib）/ sizeof（* mib），＆info，＆size，NULL，0）;
+    断言（垃圾== 0）;
+
+    //如果设置了P_TRACED标志，我们正在调试。
+
+    return（（info.kp_proc.p_flag＆P_TRACED）！= 0）;
+}
+</code></pre>
+
+<p><strong>重要说明</strong>：  由于kinfo_proc结构（in <sys/sysctl.h>）的定义是以条件为条件的__APPLE_API_UNSTABLE，因此您应该将上述代码的使用限制在程序的调试版本中。</p>
+
+<h3 id="toc_0">参考 <a href="https://developer.apple.com/library/archive/qa/qa1361/_index.html#//apple_ref/doc/uid/DTS10003368">Detecting the Debugger</a></h3>
 
 
     
@@ -168,16 +197,13 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15477997794055.html" 
-          title="Previous Post: UML 类图">&laquo; UML 类图</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15421737791379.html" 
-          title="Next Post: iOS 编写高质量Objective-C代码">iOS 编写高质量Objective-C代码 &raquo;</a>
+          <a  href="15657731633691.html" 
+          title="Next Post: iOS 制作静态库自动编译脚本">iOS 制作静态库自动编译脚本 &raquo;</a>
       
       </p>
         </div>
