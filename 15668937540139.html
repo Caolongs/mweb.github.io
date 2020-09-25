@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  iOS App MachO注入 - Framework注入 - 
+  Python 读取xlsx文件 - 
   
   </title>
   
@@ -124,14 +124,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>iOS App MachO注入 - Framework注入</h1>
+          <h1>Python 读取xlsx文件</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2018/5/10</span>
+          <span class="date">2019/8/27</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8.html'>逆向与安全</a></span>
+              <span class="posted-in"><a href='%E5%B7%A5%E5%85%B7.html'>工具</a></span>
            
          
           <span class="comments">
@@ -144,62 +144,29 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h2 id="toc_0">Framework注入</h2>
+      <h2 id="toc_0">安装 openpyxl</h2>
 
-<h3 id="toc_1">1. 新建<code>TARGETS</code></h3>
-
-<p><img src="media/15259432014565/15259460082674.jpg" alt=""/></p>
-
-<h3 id="toc_2">2. 添加依赖关系</h3>
-
-<ul>
-<li>在<code>Buildd Phases</code>选择<code>New Copy Files Phase</code>新建依赖库文件，选择<code>Destination</code>为<code>Framework</code>。添加刚刚新建的frammework库</li>
-</ul>
-
-<p><img src="media/15259432014565/15260229574177.jpg" alt=""/></p>
-
-<p><img src="media/15259432014565/15260231241298.jpg" alt=""/></p>
-
-<ul>
-<li>验证<code>frammewor</code>注入库添加依赖是否成功<br/>
-编译程序，打开<code>Products</code>下app文件，包内容下<code>Frameworks</code>文件下已生成对应注入库
-<img src="media/15259432014565/15260234170472.jpg" alt=""/></li>
-</ul>
-
-<h3 id="toc_3">3. 修改MachO文件的Load Commands（将<code>frammewor</code>库注入到可执行文件中）</h3>
-
-<ul>
-<li>使用<code>yololib</code>工具注入（手动）</li>
-</ul>
-
-<pre><code class="language-text">$ yololib WeChact Frameworks/HookFramework.framework/HookFramework
+<pre><code class="language-text">pip3 install openpyxl
 </code></pre>
 
-<ul>
-<li>使用<code>yololib</code>工具注入（脚本）</li>
-</ul>
+<h2 id="toc_1">示例</h2>
 
-<pre><code class="language-text"># 需要注入的动态库的路径(写死了)
-INJECT_FRAMEWORK_RELATIVE_PATH=&quot;Frameworks/HookFramework.framework/HookFramework&quot;
+<pre><code class="language-text"> from openpyxl import load_workbook
+ 
+workbook = load_workbook(&#39;strings3.xlsx&#39;)
+#booksheet = workbook.active                #获取当前活跃的sheet,默认是第一个sheet
+booksheet = workbook[&#39;Sheet 1&#39;]
+ 
+rows = booksheet.rows
+columns = booksheet.columns
+#迭代所有的行
+for row in rows:
+    line = [col.value for col in row]
+    print(line)
 
-## 通过工具实现注入
-&quot;/${SRCROOT}&quot;/yololib &quot;$TARGET_APP_PATH/$APP_BINARY&quot; &quot;$INJECT_FRAMEWORK_RELATIVE_PATH&quot;
 </code></pre>
 
-<ul>
-<li>使用<code>MachOView</code>工具查看是否注入成功</li>
-</ul>
-
-<p><img src="media/15259432014565/15260305277989.jpg" alt=""/></p>
-
-<h3 id="toc_4">4. 注入代码</h3>
-
-<p>在<code>HookFramework</code>库下创文件，实现<code>load</code>方法，利用<code>Method Swizzle</code>实现修改<br/>
-<img src="media/15259432014565/15260310477278.jpg" alt=""/></p>
-
-<h3 id="toc_5">GitHub</h3>
-
-<p><a href="https://github.com/Caolongs/iOSInjectFramework">GitHub Demo</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/55332266">参考</a></p>
 
 
     
@@ -210,16 +177,16 @@ INJECT_FRAMEWORK_RELATIVE_PATH=&quot;Frameworks/HookFramework.framework/HookFram
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15261041285565.html" 
-          title="Previous Post: iOS App MachO注入 - Dylib注入">&laquo; iOS App MachO注入 - Dylib注入</a>
+          <a href="15870916897984.html" 
+          title="Previous Post: Xcode 配置常用变量">&laquo; Xcode 配置常用变量</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15258540971098.html" 
-          title="Next Post: iOS App 签名过程及重签">iOS App 签名过程及重签 &raquo;</a>
+          <a  href="15659419408474.html" 
+          title="Next Post: 如何确定我是否在调试器下运行">如何确定我是否在调试器下运行 &raquo;</a>
       
       </p>
         </div>
