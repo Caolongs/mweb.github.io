@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Xcode 配置常用变量 - 
+  Fragment 向 Activity 传值 - 
   
   </title>
   
@@ -126,14 +126,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Xcode 配置常用变量</h1>
+          <h1>Fragment 向 Activity 传值</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2020/4/17</span>
+          <span class="date">2020/9/21</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='iOS.html'>iOS</a></span>
+              <span class="posted-in"><a href='Android.html'>Android</a></span>
            
          
           <span class="comments">
@@ -146,21 +146,48 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <p>PROJECT = HelloWorld</p>
+      <ul>
+<li>在fragment中 定义接口声明接口属性 并绑定Activity</li>
+</ul>
 
-<pre><code class="language-text">PROJECT_DIR = ~/Projects/HelloWorld
-PROJECT_FILE_PATH = ${PROJECT_DIR}/HelloWorld.xcodeproj
-PROJECT_NAME = HelloWorld
+<pre><code class="language-text">
+//定义接口
+  public interface IOnMessClick{
+      void onClick(String text);
+  }
+  
+  // 接口属性
+ private IOnMessClick listener;
+  
+  // 绑定activity
+  @Override
+  public void onAttach(Context context) {
+      super.onAttach(context);
+      try {
+          listener = (IOnMessClick) context;
+      }catch (ClassCastException e){
+          throw new ClassCastException(&quot;Activity 必须实现 IOnMessageClick接口&quot;);
+      }
+  }
+  
+</code></pre>
 
-SOURCE_ROOT =${PROJECT_DIR}
-SRCROOT =${PROJECT_DIR}
+<ul>
+<li>在fragment中 实现传值的调用</li>
+</ul>
 
-SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
+<pre><code class="language-text">
+listener.onClick(&quot;你好&quot;);
+</code></pre>
 
-SDK_DIR = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
+<p>2.在Activity中实现接口</p>
 
-SDK_NAME = macosx10.9
-
+<pre><code class="language-text">
+//实现AFragment.IOnMessClick
+      @Override
+      public void onClick(String text) {
+          mTvTitle.setText(text );
+      }
 </code></pre>
 
 
@@ -172,16 +199,16 @@ SDK_NAME = macosx10.9
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15927958863936.html" 
-          title="Previous Post: 反射C函数">&laquo; 反射C函数</a>
+          <a href="16010179174173.html" 
+          title="Previous Post: Android基础入门路线图![androidmap_00](media/16010179174173/androidmap_00.jpg)">&laquo; Android基础入门路线图![androidmap_00](media/16010179174173/androidmap_00.jpg)</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15668937540139.html" 
-          title="Next Post: Python 读取xlsx文件">Python 读取xlsx文件 &raquo;</a>
+          <a  href="15927958863936.html" 
+          title="Next Post: 反射C函数">反射C函数 &raquo;</a>
       
       </p>
         </div>
